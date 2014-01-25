@@ -6,13 +6,27 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" android:gravity="bottom">
-        <LinearLayout
-                android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true">
+        <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
-                android:orientation="horizontal"
-                android:id="@id/OHSNoteViewer">
-        </LinearLayout>
+                android:text="Current Period:"
+                android:id="@+id/textView"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/TimeText1"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/TimeText2"/>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@id/OHSNoteViewer" android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true">
     </LinearLayout>
 </RelativeLayout>

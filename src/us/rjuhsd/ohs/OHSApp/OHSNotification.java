@@ -14,7 +14,7 @@ public class OHSNotification {
 
 		ll.setOrientation(LinearLayout.HORIZONTAL);
 		//TODO: Add imageView code with srcID
-		iv.setImageResource(R.drawable.test);
+		iv.setImageResource(srcID);
 		tv.setText(text);
 
 		l.addView(ll);
