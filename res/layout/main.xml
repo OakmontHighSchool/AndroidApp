@@ -29,4 +29,8 @@
             android:id="@id/OHSNoteViewer" android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true">
     </LinearLayout>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/debugText" android:layout_centerVertical="true" android:layout_alignParentRight="true"/>
 </RelativeLayout>

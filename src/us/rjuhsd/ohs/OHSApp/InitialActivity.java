@@ -7,13 +7,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class InitialActivity extends Activity {
 	//Variables:
 	private LinearLayout OHSNoteViewer;
 	private TextView TimerText1;
 	private TextView TimerText2;
+	private TextView debugText;
 	private OHSNotification ohsn;
 	private OHSPeriodClock ohspc;
+	private Timer timer;
+	private int counter = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +32,27 @@ public class InitialActivity extends Activity {
 		TimerText1.setClickable(true);
 
 		TimerText1.setOnClickListener(listener);
+
+		timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				update();
+			}
+		}, 0, 1000);
 	}
+
+	private void update() {
+		counter++;
+		this.runOnUiThread(UI_UPDATE);
+	}
+
+	private Runnable UI_UPDATE = new Runnable() {
+		@Override
+		public void run() {
+			debugText.setText(counter+"");
+		}
+	};
 
 	private OnClickListener listener = new OnClickListener() {
 		@Override
@@ -39,5 +65,6 @@ public class InitialActivity extends Activity {
 		OHSNoteViewer = (LinearLayout) this.findViewById(R.id.OHSNoteViewer);
 		TimerText1 = (TextView) this.findViewById(R.id.TimeText1);
 		TimerText2 = (TextView) this.findViewById(R.id.TimeText2);
+		debugText = (TextView) this.findViewById(R.id.debugText);
 	}
 }
