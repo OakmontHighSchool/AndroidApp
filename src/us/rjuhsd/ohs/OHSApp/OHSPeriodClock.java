@@ -15,10 +15,10 @@ public class OHSPeriodClock {
 		this.t1 = t1;
 		this.t2 = t2;
 		this.day = day;
-		findPeriod(this.t1, this.t2);
+		findPeriod();
 	}
 
-	public void findPeriod(TextView t1, TextView t2) {
+	protected void findPeriod() {
 		Calendar c = Calendar.getInstance();
 		this.h = c.get(Calendar.HOUR_OF_DAY);
 		this.m = c.get(Calendar.MINUTE);
