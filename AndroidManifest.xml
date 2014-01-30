@@ -12,5 +12,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name="GradesActivity"
+                  android:label="@string/activity_grades">
+        </activity>
+        <activity android:name="Preferences"
+                  android:label="@string/activity_preferences">
+        </activity>
     </application>
+	<uses-permission android:name="android.permission.INTERNET" />
 </manifest> 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<EditTextPreference
+		android:key="aeries_username"
+		android:title="@string/aeries_username" />
+	<EditTextPreference
+		android:key="aeries_password"
+		android:title="@string/aeries_password"
+		android:inputType="textPassword"/>
+</PreferenceScreen>
