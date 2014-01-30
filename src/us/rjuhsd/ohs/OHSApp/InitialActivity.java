@@ -16,7 +16,6 @@ public class InitialActivity extends Activity {
 	private TextView TimerText1;
 	private TextView TimerText2;
 	private TextView debugText;
-	private OHSNotification ohsn;
 	private OHSPeriodClock ohspc;
 	private Timer timer;
 	private int counter = 0;
@@ -27,10 +26,10 @@ public class InitialActivity extends Activity {
 		setContentView(R.layout.main);
 
 		this.getAllByID();
-		this.ohsn = new OHSNotification(R.drawable.test, "TEST", OHSNoteViewer, this);
+		new OHSNotification(R.drawable.test, "TEST", OHSNoteViewer, this);
 		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, DailySchedualEnum.INTERVENTION);
-		TimerText1.setClickable(true);
 
+		TimerText1.setClickable(true);
 		TimerText1.setOnClickListener(listener);
 
 		timer = new Timer();
@@ -47,10 +46,15 @@ public class InitialActivity extends Activity {
 		this.runOnUiThread(UI_UPDATE);
 	}
 
+	private void updateUI() {
+		debugText.setText(counter+"");
+		//new OHSNotification(R.drawable.test, "TEST", OHSNoteViewer, this);
+	}
+
 	private Runnable UI_UPDATE = new Runnable() {
 		@Override
 		public void run() {
-			debugText.setText(counter+"");
+			updateUI();
 		}
 	};
 
