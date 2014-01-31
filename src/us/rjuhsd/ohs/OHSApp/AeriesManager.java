@@ -1,6 +1,8 @@
 package us.rjuhsd.ohs.OHSApp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -18,6 +20,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -31,9 +34,10 @@ import java.util.List;
 public class AeriesManager {
 	private AeriesManager() {} //Disallow instantiation of this class
     private static String LOGIN_URL = "https://homelink.rjuhsd.us/LoginParent.aspx";
+	//private static String DEFAULT_URL = "http://homelink.rjuhsd.us/Default.aspx";
 
-	public static ArrayList<String> getGrades(Context context) {
-		ArrayList<String> grades = new ArrayList<String>();
+	public static ArrayList<SchoolClass> getGrades(Context context) {
+		ArrayList<SchoolClass> grades = new ArrayList<SchoolClass>();
 		try {
 			String[] loginData = aeriesLoginData(context);
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
@@ -47,15 +51,62 @@ public class AeriesManager {
 
 			HttpPost request = new HttpPost(LOGIN_URL);
 			request.setEntity(new UrlEncodedFormEntity(nvps,"UTF-8"));
-			HttpClient client = sslClient(new DefaultHttpClient());
+			HttpClient client = HttpsClientFactory.sslClient();
 			HttpResponse response = client.execute(request);
 
 			Document doc = Jsoup.parse(response.getEntity().getContent(),null,LOGIN_URL);
-			Element trClass1 = doc.select("tr#ctl00_MainContent_ctl19_DataDetails_ctl01_trGBKItem").first();
-			if(trClass1 == null) {
-				Log.d("JSoup", "Its null doctor, what do we do?");
- 			} else {
-				Log.d("JSoup", trClass1.select("td").get(3).text());
+			int rowCount = 1;
+			while(true) {
+				String trId = "tr#ctl00_MainContent_ctl19_DataDetails_ctl0"+rowCount+"_trGBKItem";
+				Element tr = doc.select(trId).first();
+				if(tr == null) {
+					if(rowCount == 1) {
+						new AlertDialog.Builder(context)
+								.setTitle("Login Failure!")
+								.setMessage("Either the grades system is unavailable or your login is incorrect.")
+								.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int which) {
+										// continue with delete
+									}
+								})
+								.show();
+						return grades;
+					}
+					break;
+				} else {
+					SchoolClass sClass = new SchoolClass();
+					Elements tds = tr.select("td");
+					Element className = tds.get(1);
+					if(className != null) {
+						sClass.className = className.text();
+					}
+					Element period = tds.get(2);
+					if(period != null) {
+						sClass.period= period.text();
+					}
+					Element teacherName = tds.get(3);
+					if(teacherName != null) {
+						sClass.teacherName= teacherName.text();
+					}
+					Element percentage = tds.get(4);
+					if(percentage != null) {
+						sClass.percentage= percentage.text();
+					}
+					Element mark = tds.get(6);
+					if(mark != null) {
+						sClass.mark = mark.text();
+					}
+					Element missingAssign = tds.get(8);
+					if(missingAssign!= null) {
+						sClass.missingAssign = missingAssign.text();
+					}
+					Element lastUpdate = tds.get(10);
+					if(lastUpdate != null) {
+						sClass.lastUpdate = lastUpdate.text();
+					}
+					grades.add(sClass);
+				}
+				rowCount++;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
