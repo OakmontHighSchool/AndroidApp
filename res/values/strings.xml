@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">OHS App</string>
+    <string name="activity_grades">Grades</string>
+    <string name="aeries_username">Aeries Username</string>
+    <string name="aeries_password">Aeries Password</string>
+    <string name="activity_preferences">Settings</string>
+	<string name="activity_grades_detail">Class Details</string>
 </resources>

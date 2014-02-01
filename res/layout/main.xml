@@ -38,4 +38,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/debugText" android:layout_centerVertical="true" android:layout_alignParentRight="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grades"
+            android:id="@+id/launch_grades"
+            android:onClick="onClick"
+            android:layout_above="@+id/launch_preferences" android:layout_centerHorizontal="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preferences"
+            android:id="@+id/launch_preferences"
+            android:onClick="onClick"
+            android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"/>
 </RelativeLayout>

@@ -1,11 +1,12 @@
 package us.rjuhsd.ohs.OHSApp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -64,6 +65,16 @@ public class InitialActivity extends Activity {
 			ohspc.findPeriod();
 		}
 	};
+
+	public void onClick(View view) {
+		if(view.getId() == R.id.launch_grades) {
+			Intent myIntent=new Intent(this,GradesActivity.class );
+			startActivity(myIntent);
+		} else if(view.getId() == R.id.launch_preferences) {
+			Intent myIntent=new Intent(this,Preferences.class );
+			startActivity(myIntent);
+		}
+	}
 
 	public void getAllByID() {
 		OHSNoteViewer = (LinearLayout) this.findViewById(R.id.OHSNoteViewer);
