@@ -1,8 +1,9 @@
 package us.rjuhsd.ohs.OHSApp;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,23 +13,24 @@ import java.util.ArrayList;
 
 public class GradesActivity extends Activity {
 	ArrayList<SchoolClass> grades;
+	final Context context = this; //required for intents to work inside the click listener
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		Log.d("GradesActivity", "Launching this");
 		super.onCreate(savedInstanceState);
+		//ProgressDialog dialog = ProgressDialog.show(this, "","Loading grades. Please wait...", true); NOT FUNCTIONAL YET
 		setContentView(R.layout.grades);
 
 		final ListView listview = (ListView) findViewById(R.id.listview);
-		grades = AeriesManager.getGrades(this, this);
+		grades = ((OHSApplication)getApplication()).aeriesManager.getGrades(this);
 		final ArrayAdapter adapter = new GradesArrayAdapter(this,R.layout.grades_list_item, grades);
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-			                        long arg3) {
-				// TODO Auto-generated method stub
-				Log.d("############","Items " +  grades.get(arg2));
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				Intent gradeDetailIntent = new Intent(context, GradesDetailActivity.class);
+				gradeDetailIntent.putExtra("schoolClassId",arg2);
+				startActivity(gradeDetailIntent);
 			}
 
 		});

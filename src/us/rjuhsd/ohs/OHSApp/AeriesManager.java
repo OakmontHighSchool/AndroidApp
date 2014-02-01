@@ -11,35 +11,34 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.scheme.SchemeRegistry;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AeriesManager {
-	private AeriesManager() {} //Disallow instantiation of this class
-    private static String LOGIN_URL = "https://homelink.rjuhsd.us/LoginParent.aspx";
+
+	private static String LOGIN_URL = "https://homelink.rjuhsd.us/LoginParent.aspx";
 	//private static String DEFAULT_URL = "http://homelink.rjuhsd.us/Default.aspx";
 
-	public static ArrayList<SchoolClass> getGrades(Context context, final Activity activity) {
+	private ArrayList<SchoolClass> grades;
+
+	public ArrayList<SchoolClass> getGrades(Activity activity) {
+		return getGrades(activity, false);
+	}
+
+	private ArrayList<SchoolClass> getGrades(final Activity activity, boolean updateFlag) {
+		if (!updateFlag && this.grades != null) { //Check if an update is necessary
+			return this.grades;
+		}
 		ArrayList<SchoolClass> grades = new ArrayList<SchoolClass>();
 		try {
-			String[] loginData = aeriesLoginData(context);
+			String[] loginData = aeriesLoginData(activity);
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("portalAccountUsername", loginData[0]));
 			nvps.add(new BasicNameValuePair("portalAccountPassword", loginData[1]));
@@ -50,18 +49,18 @@ public class AeriesManager {
 			nvps.add(new BasicNameValuePair("checkTabletDevice", "false"));
 
 			HttpPost request = new HttpPost(LOGIN_URL);
-			request.setEntity(new UrlEncodedFormEntity(nvps,"UTF-8"));
+			request.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
 			HttpClient client = HttpsClientFactory.sslClient();
 			HttpResponse response = client.execute(request);
 
-			Document doc = Jsoup.parse(response.getEntity().getContent(),null,LOGIN_URL);
+			Document doc = Jsoup.parse(response.getEntity().getContent(), null, LOGIN_URL);
 			int rowCount = 1;
-			while(true) {
-				String trId = "tr#ctl00_MainContent_ctl19_DataDetails_ctl0"+rowCount+"_trGBKItem";
+			while (true) {
+				String trId = "tr#ctl00_MainContent_ctl19_DataDetails_ctl0" + rowCount + "_trGBKItem";
 				Element tr = doc.select(trId).first();
-				if(tr == null) {
-					if(rowCount == 1) {
-						new AlertDialog.Builder(context)
+				if (tr == null) {
+					if (rowCount == 1) {
+						new AlertDialog.Builder(activity)
 								.setTitle("Login Failure!")
 								.setMessage("Either the grades system is unavailable or your login is incorrect.")
 								.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -74,34 +73,34 @@ public class AeriesManager {
 					}
 					break;
 				} else {
-					SchoolClass sClass = new SchoolClass();
+					SchoolClass sClass = new SchoolClass(rowCount - 1);
 					Elements tds = tr.select("td");
 					Element className = tds.get(1);
-					if(className != null) {
+					if (className != null) {
 						sClass.className = className.text();
 					}
 					Element period = tds.get(2);
-					if(period != null) {
-						sClass.period= period.text();
+					if (period != null) {
+						sClass.period = period.text();
 					}
 					Element teacherName = tds.get(3);
-					if(teacherName != null) {
-						sClass.teacherName= teacherName.text();
+					if (teacherName != null) {
+						sClass.teacherName = teacherName.text();
 					}
 					Element percentage = tds.get(4);
-					if(percentage != null) {
-						sClass.percentage= percentage.text();
+					if (percentage != null) {
+						sClass.percentage = percentage.text();
 					}
 					Element mark = tds.get(6);
-					if(mark != null) {
+					if (mark != null) {
 						sClass.mark = mark.text();
 					}
 					Element missingAssign = tds.get(8);
-					if(missingAssign!= null) {
+					if (missingAssign != null) {
 						sClass.missingAssign = missingAssign.text();
 					}
 					Element lastUpdate = tds.get(10);
-					if(lastUpdate != null) {
+					if (lastUpdate != null) {
 						sClass.lastUpdate = lastUpdate.text();
 					}
 					grades.add(sClass);
@@ -111,40 +110,19 @@ public class AeriesManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.grades = grades;
 		return grades;
 	}
 
-	public static String[] aeriesLoginData(Context context) {
+	private String[] aeriesLoginData(Context context) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		String[] toReturn = new String[2];
-		toReturn[0] = prefs.getString("aeries_username",null);
-		toReturn[1] = prefs.getString("aeries_password",null);
+		toReturn[0] = prefs.getString("aeries_username", null);
+		toReturn[1] = prefs.getString("aeries_password", null);
 		return toReturn;
 	}
 
-    private static HttpClient sslClient(HttpClient client) {
-        try {
-            X509TrustManager tm = new X509TrustManager() {
-                public void checkClientTrusted(X509Certificate[] xcs, String string) throws CertificateException {
-                }
-
-                public void checkServerTrusted(X509Certificate[] xcs, String string) throws CertificateException {
-                }
-
-                public X509Certificate[] getAcceptedIssuers() {
-                    return null;
-                }
-            };
-            SSLContext ctx = SSLContext.getInstance("TLS");
-            ctx.init(null, new TrustManager[]{tm}, null);
-            SSLSocketFactory ssf = new FixedSSLSocketFactory(ctx);
-            ssf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-            ClientConnectionManager ccm = client.getConnectionManager();
-            SchemeRegistry sr = ccm.getSchemeRegistry();
-            sr.register(new Scheme("https", ssf, 443));
-            return new DefaultHttpClient(ccm, client.getParams());
-        } catch (Exception ex) {
-            return null;
-        }
-    }
+	public SchoolClass getById(int id) {
+		return grades.get(id);
+	}
 }

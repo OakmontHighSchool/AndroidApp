@@ -8,4 +8,9 @@ public class SchoolClass {
 	public String mark;
 	public String missingAssign;
 	public String lastUpdate;
+	public int ID;
+
+	public SchoolClass(int id) {
+		this.ID = id;
+	}
 }
