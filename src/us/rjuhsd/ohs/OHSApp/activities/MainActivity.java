@@ -17,10 +17,8 @@ public class MainActivity extends Activity {
 	private LinearLayout OHSNoteViewer;
 	private TextView TimerText1;
 	private TextView TimerText2;
-	private TextView debugText;
 	private OHSPeriodClock ohspc;
 	private Timer timer;
-	private int counter = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,12 +42,10 @@ public class MainActivity extends Activity {
 	}
 
 	private void update() {
-		counter++;
 		this.runOnUiThread(UI_UPDATE);
 	}
 
 	private void updateUI() {
-		debugText.setText(counter+"");
 		//new OHSNotification(R.drawable.test, "TEST", OHSNoteViewer, this);
 	}
 
@@ -81,6 +77,5 @@ public class MainActivity extends Activity {
 		OHSNoteViewer = (LinearLayout) this.findViewById(R.id.OHSNoteViewer);
 		TimerText1 = (TextView) this.findViewById(R.id.TimeText1);
 		TimerText2 = (TextView) this.findViewById(R.id.TimeText2);
-		debugText = (TextView) this.findViewById(R.id.debugText);
 	}
 }

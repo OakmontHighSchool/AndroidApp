@@ -1,55 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout
-            android:orientation="vertical"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="#FFFFFF">
+    <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="100dp" android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true" android:background="@drawable/tan" android:baselineAligned="true">
-        <TextView
+            android:layout_height="wrap_content" android:background="#C4D8E2"
+            android:layout_alignParentLeft="true">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true" android:baselineAligned="true">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current Period:"
+                    android:id="@+id/textView" android:textColor="#000000"
+                    android:textSize="18sp" android:layout_marginTop="10dp"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TimeText1" android:textColor="#000000" android:textSize="18sp"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TimeText2" android:textColor="#000000" android:textSize="18sp"/>
+        </LinearLayout>
+        <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Period:"
-                android:id="@+id/textView" android:textColor="#000000" android:layout_marginTop="15dp"/>
-        <TextView
+                android:text="Grades"
+                android:id="@+id/launch_grades"
+                android:onClick="onClick"
+                android:layout_alignParentRight="true" android:textSize="18sp"/>
+        <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/TimeText1" android:textColor="#000000"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/TimeText2" android:textColor="#000000"/>
-    </LinearLayout>
+                android:text="Preferences"
+                android:id="@+id/launch_preferences"
+                android:onClick="onClick"
+                android:layout_alignParentBottom="false" android:layout_below="@+id/launch_grades"
+                android:layout_alignRight="@+id/launch_grades" android:textSize="18sp"/>
+    </RelativeLayout>
     <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="400dp"
+            android:layout_height="fill_parent"
             android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/debugText"
-            >
+            android:id="@+id/scrollView">
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" android:id="@id/OHSNoteViewer">
         </LinearLayout>
     </ScrollView>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/debugText" android:layout_centerVertical="true" android:layout_alignParentRight="true"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Grades"
-            android:id="@+id/launch_grades"
-            android:onClick="onClick"
-            android:layout_above="@+id/launch_preferences" android:layout_centerHorizontal="true"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Preferences"
-            android:id="@+id/launch_preferences"
-            android:onClick="onClick"
-            android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"/>
-</RelativeLayout>
+</LinearLayout>

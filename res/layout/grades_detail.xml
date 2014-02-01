@@ -3,11 +3,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent" android:background="#FFFFFF">
 
 	<TextView
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
 			android:text="Default Text"
-			android:id="@+id/className"/>
+			android:id="@+id/className" android:textColor="#000000"/>
 </LinearLayout>

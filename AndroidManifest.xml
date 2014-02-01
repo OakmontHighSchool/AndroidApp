@@ -15,7 +15,7 @@
         <activity android:name=".activities.GradesActivity"
                   android:label="@string/activity_grades">
         </activity>
-        <activity android:name="Preferences"
+        <activity android:name=".activities.Preferences"
                   android:label="@string/activity_preferences">
         </activity>
 	    <activity android:name=".activities.GradesDetailActivity"

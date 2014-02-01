@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp;
+package us.rjuhsd.ohs.OHSApp.https;
 
 import org.apache.http.conn.ssl.SSLSocketFactory;
 

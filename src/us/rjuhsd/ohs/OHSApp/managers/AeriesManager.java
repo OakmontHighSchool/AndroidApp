@@ -16,7 +16,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import us.rjuhsd.ohs.OHSApp.HttpsClientFactory;
+import us.rjuhsd.ohs.OHSApp.https.HttpsClientFactory;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 
 import java.io.IOException;
