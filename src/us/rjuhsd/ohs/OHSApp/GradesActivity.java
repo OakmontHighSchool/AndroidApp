@@ -20,7 +20,7 @@ public class GradesActivity extends Activity {
 		setContentView(R.layout.grades);
 
 		final ListView listview = (ListView) findViewById(R.id.listview);
-		grades = AeriesManager.getGrades(this);
+		grades = AeriesManager.getGrades(this, this);
 		final ArrayAdapter adapter = new GradesArrayAdapter(this,R.layout.grades_list_item, grades);
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

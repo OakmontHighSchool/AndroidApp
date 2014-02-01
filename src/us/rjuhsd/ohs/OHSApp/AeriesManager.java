@@ -1,11 +1,11 @@
 package us.rjuhsd.ohs.OHSApp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -36,7 +36,7 @@ public class AeriesManager {
     private static String LOGIN_URL = "https://homelink.rjuhsd.us/LoginParent.aspx";
 	//private static String DEFAULT_URL = "http://homelink.rjuhsd.us/Default.aspx";
 
-	public static ArrayList<SchoolClass> getGrades(Context context) {
+	public static ArrayList<SchoolClass> getGrades(Context context, final Activity activity) {
 		ArrayList<SchoolClass> grades = new ArrayList<SchoolClass>();
 		try {
 			String[] loginData = aeriesLoginData(context);
@@ -66,7 +66,7 @@ public class AeriesManager {
 								.setMessage("Either the grades system is unavailable or your login is incorrect.")
 								.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog, int which) {
-										// continue with delete
+										activity.finish();
 									}
 								})
 								.show();
