@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 
 		this.getAllByID();
-		new OHSNotification(R.drawable.test, "TEST", OHSNoteViewer, this);
+		new OHSNotification(R.drawable.test, "Default", "Default", OHSNoteViewer, this);
 		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, DailySchedualEnum.INTERVENTION);
 
 		TimerText1.setClickable(true);
