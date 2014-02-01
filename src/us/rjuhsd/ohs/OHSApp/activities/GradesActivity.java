@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp;
+package us.rjuhsd.ohs.OHSApp.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import us.rjuhsd.ohs.OHSApp.GradesArrayAdapter;
+import us.rjuhsd.ohs.OHSApp.OHSApplication;
+import us.rjuhsd.ohs.OHSApp.R;
+import us.rjuhsd.ohs.OHSApp.SchoolClass;
 
 import java.util.ArrayList;
 

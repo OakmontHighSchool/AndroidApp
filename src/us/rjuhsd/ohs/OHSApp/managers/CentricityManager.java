@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp;
+package us.rjuhsd.ohs.OHSApp.managers;
 
 import android.util.Log;
 import org.apache.http.HttpResponse;
@@ -23,7 +23,9 @@ public class CentricityManager {
 			HttpClient client = new DefaultHttpClient();
 			HttpResponse response = client.execute(request);
 			doc = Jsoup.parse(response.getEntity().getContent(), null, URL);
-		} catch(IOException e) {}
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 
 		Element el = doc.select("div.ui-article").first();
 		if(el == null) {

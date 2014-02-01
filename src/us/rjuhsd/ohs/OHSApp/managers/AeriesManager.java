@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp;
+package us.rjuhsd.ohs.OHSApp.managers;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,6 +16,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import us.rjuhsd.ohs.OHSApp.HttpsClientFactory;
+import us.rjuhsd.ohs.OHSApp.SchoolClass;
 
 import java.io.IOException;
 import java.util.ArrayList;

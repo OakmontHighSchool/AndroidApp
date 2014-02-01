@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp;
+package us.rjuhsd.ohs.OHSApp.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,11 +7,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import us.rjuhsd.ohs.OHSApp.*;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class InitialActivity extends Activity {
+public class MainActivity extends Activity {
 	//Variables:
 	private LinearLayout OHSNoteViewer;
 	private TextView TimerText1;

@@ -1,8 +1,11 @@
-package us.rjuhsd.ohs.OHSApp;
+package us.rjuhsd.ohs.OHSApp.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
+import us.rjuhsd.ohs.OHSApp.OHSApplication;
+import us.rjuhsd.ohs.OHSApp.R;
+import us.rjuhsd.ohs.OHSApp.SchoolClass;
 
 public class GradesDetailActivity extends Activity {
 	private SchoolClass sClass;

@@ -1,6 +1,7 @@
 package us.rjuhsd.ohs.OHSApp;
 
 import android.widget.TextView;
+
 import java.util.Calendar;
 
 public class OHSPeriodClock {
@@ -20,7 +21,7 @@ public class OHSPeriodClock {
 		findPeriod();
 	}
 
-	protected void findPeriod() {
+	public void findPeriod() {
 		this.h = c.get(Calendar.HOUR_OF_DAY);
 		this.m = c.get(Calendar.MINUTE);
 		int[][] tempArray = day.originalInput;
