@@ -7,7 +7,8 @@
         android:background="#FFFFFF">
     <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" android:background="#C4D8E2"
+            android:layout_height="wrap_content"
+            android:background="@color/SchoolPrimaryColor"
             android:layout_alignParentLeft="true">
         <LinearLayout
                 android:orientation="vertical"

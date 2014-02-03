@@ -22,7 +22,9 @@ public class GradesDetailActivity extends Activity {
 	}
 
 	private void fillViews() {
-		final TextView classNameView = (TextView) findViewById(R.id.className);
-		classNameView.setText(sClass.className);
+		final TextView classNameView = (TextView) findViewById(R.id.grades_detail_className);
+		classNameView.setText("Class: "+sClass.className);
+		final TextView percentageView = (TextView) findViewById(R.id.grades_detail_percentage);
+		percentageView.setText("Percentage: "+sClass.percentage+"%");
 	}
 }
