@@ -34,7 +34,7 @@ public class GradesArrayAdapter extends ArrayAdapter<SchoolClass>{
 			row = inflater.inflate(layoutResourceId, parent, false);
 
 			holder = new GradesHolder();
-			holder.txtTitle = (TextView)row.findViewById(R.id.txtTitle);
+			holder.txtSecond = (TextView)row.findViewById(R.id.txtSecond);
 			holder.txtMain = (TextView)row.findViewById(R.id.txtMain);
 
 			row.setTag(holder);
@@ -45,14 +45,14 @@ public class GradesArrayAdapter extends ArrayAdapter<SchoolClass>{
 		}
 
 		SchoolClass sClass = data.get(position);
-		holder.txtTitle.setText(sClass.className);
-		holder.txtMain.setText(sClass.percentage);
+		holder.txtSecond.setText("Current Percentage: "+sClass.percentage+"%");
+		holder.txtMain.setText(sClass.className);
 
 		return row;
 	}
 }
 
 class GradesHolder {
-	TextView txtTitle;
+	TextView txtSecond;
 	TextView txtMain;
 }
