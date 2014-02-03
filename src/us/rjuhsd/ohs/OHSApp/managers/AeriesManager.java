@@ -16,8 +16,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import us.rjuhsd.ohs.OHSApp.https.HttpsClientFactory;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.https.HttpsClientFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,11 +30,11 @@ public class AeriesManager {
 
 	private ArrayList<SchoolClass> grades;
 
-	public ArrayList<SchoolClass> getGrades(Activity activity) {
-		return getGrades(activity, false);
+	public ArrayList<SchoolClass> getGradesOverview(Activity activity) {
+		return getGradesOverview(activity, false);
 	}
 
-	private ArrayList<SchoolClass> getGrades(final Activity activity, boolean updateFlag) {
+	private ArrayList<SchoolClass> getGradesOverview(final Activity activity, boolean updateFlag) {
 		if (!updateFlag && this.grades != null) { //Check if an update is necessary
 			return this.grades;
 		}

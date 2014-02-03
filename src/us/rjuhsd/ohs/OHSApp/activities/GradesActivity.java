@@ -26,7 +26,7 @@ public class GradesActivity extends Activity {
 		setContentView(R.layout.grades);
 
 		final ListView listview = (ListView) findViewById(R.id.listview);
-		grades = ((OHSApplication)getApplication()).aeriesManager.getGrades(this);
+		grades = ((OHSApplication)getApplication()).aeriesManager.getGradesOverview(this);
 		final ArrayAdapter adapter = new GradesArrayAdapter(this,R.layout.grades_list_item, grades);
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
