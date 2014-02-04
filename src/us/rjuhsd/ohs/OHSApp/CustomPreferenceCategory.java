@@ -33,7 +33,7 @@ public class CustomPreferenceCategory extends PreferenceCategory {
 		TextView categoryTitle = (TextView) super.onCreateView(parent);
 		if(categoryTitle != null) {
 			categoryTitle.setTextColor(Color.WHITE);
-			categoryTitle.setBackgroundColor(context.getResources().getColor(R.color.SchoolPrimaryColor));
+			categoryTitle.setBackgroundColor(context.getResources().getColor(R.color.OHSLightBlue));
 			return categoryTitle;
 		} else {
 			Log.d("OHS:CustomPreferenceCategory", "If this happens I have no idea what to do...");

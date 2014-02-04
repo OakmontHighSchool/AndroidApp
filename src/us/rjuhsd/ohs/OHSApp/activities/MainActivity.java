@@ -5,16 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import us.rjuhsd.ohs.OHSApp.*;
+import us.rjuhsd.ohs.OHSApp.DailySchedualEnum;
+import us.rjuhsd.ohs.OHSApp.OHSNotificationHandler;
+import us.rjuhsd.ohs.OHSApp.OHSPeriodClock;
+import us.rjuhsd.ohs.OHSApp.R;
+import us.rjuhsd.ohs.OHSApp.managers.CentricityManager;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends Activity {
 	//Variables:
-	private LinearLayout OHSNoteViewer;
 	private TextView TimerText1;
 	private TextView TimerText2;
 	private OHSPeriodClock ohspc;
@@ -26,7 +28,8 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 
 		this.getAllByID();
-		new OHSNotification(R.drawable.test, "Default", "Default", OHSNoteViewer, this);
+		OHSNotificationHandler.setContext(this);
+		new CentricityManager().execute();
 		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, DailySchedualEnum.INTERVENTION);
 
 		TimerText1.setClickable(true);
@@ -74,7 +77,6 @@ public class MainActivity extends Activity {
 	}
 
 	public void getAllByID() {
-		OHSNoteViewer = (LinearLayout) this.findViewById(R.id.OHSNoteViewer);
 		TimerText1 = (TextView) this.findViewById(R.id.TimeText1);
 		TimerText2 = (TextView) this.findViewById(R.id.TimeText2);
 	}

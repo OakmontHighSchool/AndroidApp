@@ -1,6 +1,6 @@
 package us.rjuhsd.ohs.OHSApp.managers;
 
-import android.util.Log;
+import android.os.AsyncTask;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -8,16 +8,19 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import us.rjuhsd.ohs.OHSApp.OHSNotificationHandler;
+import us.rjuhsd.ohs.OHSApp.R;
 
 import java.io.IOException;
 
-// Oh God Why.  Centricity might suck, but at least it doesn't need it's own SSLSocketFactory!
-public class CentricityManager {
-	private CentricityManager() {}
+public class CentricityManager extends AsyncTask<Void, articleWrapper, Void>{
 	private static String URL = "http://ohs.rjuhsd.us/site/default.aspx?PageID=1";
+	private static int ID = 20;
 	private static Document doc;
 
-	public static String[] getHeadlines() {
+	@Override
+	protected Void doInBackground(Void... unused) {
 		try {
 			HttpGet request = new HttpGet(URL);
 			HttpClient client = new DefaultHttpClient();
@@ -26,13 +29,25 @@ public class CentricityManager {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-
-		Element el = doc.select("div.ui-article").first();
-		if(el == null) {
-			Log.d("JSoup", "Dammit Jim! I am null, not an HTML Element!");
-		} else {
-			Log.d("JSoup", el.select("span").get(0).text());
-		}
+		publishProgress(new articleWrapper(doc.select("div.ui-article").get(ID)));
 		return null;
+	}
+
+	@Override
+	public void onProgressUpdate(articleWrapper... item) {
+		articleWrapper aw = item[0];
+		OHSNotificationHandler.addNotification(R.drawable.test, aw.articleHeader.text(), aw.articleText.text());
+	}
+}
+
+class articleWrapper {
+	public Element articleSource;
+	public Elements articleHeader;
+	public Elements articleText;
+
+	public articleWrapper(Element el) {
+		articleSource = el;
+		articleHeader = el.select("h1.ui-article-title").select("span");
+		articleText = el.select("p.ui-article-description");
 	}
 }
