@@ -3,6 +3,7 @@ package us.rjuhsd.ohs.OHSApp.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ public class MainActivity extends Activity {
 	//Variables:
 	private TextView TimerText1;
 	private TextView TimerText2;
+	private TextView TimerText3;
 	private OHSPeriodClock ohspc;
 	private Timer timer;
 
@@ -30,7 +32,7 @@ public class MainActivity extends Activity {
 		this.getAllByID();
 		OHSNotificationHandler.setContext(this);
 		new CentricityManager().execute();
-		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, DailySchedualEnum.INTERVENTION);
+		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, DailySchedualEnum.INTERVENTION);
 
 		TimerText1.setClickable(true);
 		TimerText1.setOnClickListener(listener);
@@ -49,7 +51,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void updateUI() {
-		//new OHSNotification(R.drawable.test, "TEST", OHSNoteViewer, this);
+		ohspc.timeLeft();
 	}
 
 	private Runnable UI_UPDATE = new Runnable() {
@@ -79,5 +81,6 @@ public class MainActivity extends Activity {
 	public void getAllByID() {
 		TimerText1 = (TextView) this.findViewById(R.id.TimeText1);
 		TimerText2 = (TextView) this.findViewById(R.id.TimeText2);
+		TimerText3 = (TextView) this.findViewById(R.id.timeLeftText);
 	}
 }
