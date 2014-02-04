@@ -62,15 +62,20 @@ public class AeriesManager {
 				Element tr = doc.select(trId).first();
 				if (tr == null) {
 					if (rowCount == 1) {
-						new AlertDialog.Builder(activity)
+						AlertDialog.Builder adb = new AlertDialog.Builder(activity)
 								.setTitle("Login Failure!")
-								.setMessage("Either the grades system is unavailable or your login is incorrect.")
+								.setMessage("Something went wrong while getting your grades...") //This should never show
 								.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog, int which) {
 										activity.finish();
 									}
-								})
-								.show();
+								});
+						if(loginData[0].equals("") || loginData[1].equals("")) {
+							adb.setMessage("Please check that you have entered your Aeries information in preferences correctly");
+						} else {
+							adb.setMessage("Either the grades system is unavailable or your login is incorrect");
+						}
+						adb.show();
 						return grades;
 					}
 					break;
@@ -119,8 +124,8 @@ public class AeriesManager {
 	private String[] aeriesLoginData(Context context) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		String[] toReturn = new String[2];
-		toReturn[0] = prefs.getString("aeries_username", null);
-		toReturn[1] = prefs.getString("aeries_password", null);
+		toReturn[0] = prefs.getString("aeries_username", "");
+		toReturn[1] = prefs.getString("aeries_password", "");
 		return toReturn;
 	}
 
