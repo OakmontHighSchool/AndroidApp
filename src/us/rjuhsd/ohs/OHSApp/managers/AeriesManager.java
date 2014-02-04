@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.tasks.GradesOverviewTask;
 
@@ -19,7 +18,6 @@ public class AeriesManager {
 
 	Activity activity;
 
-	private boolean loadingGrades = true;
 	private GradesOverviewTask gradesTask;
 
 	private ArrayList<SchoolClass> grades;
@@ -34,7 +32,6 @@ public class AeriesManager {
 
 	private void startLoadingGrades(final Activity activity) {
 		this.activity = activity;
-		loadingGrades = true;
 		gradesTask = new GradesOverviewTask(activity, this);
 		gradesTask.execute();
 	}
@@ -52,12 +49,7 @@ public class AeriesManager {
 	}
 
 	public void setSchoolClasses(ArrayList<SchoolClass> grades) {
-		Log.d("SchoolClasses","Loaded school classes");
 		this.grades = grades;
-	}
-
-	public void setGradesLoaded(boolean isDone) {
-		this.loadingGrades = isDone;
 	}
 
 	public void errorLoadingGrades(String errorText) {

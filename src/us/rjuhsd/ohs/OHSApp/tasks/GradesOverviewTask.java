@@ -128,7 +128,6 @@ public class GradesOverviewTask extends AsyncTask<Void, Void, Void> {
 			e.printStackTrace();
 		}
 		((OHSApplication)activity.getApplication()).aeriesManager.setSchoolClasses(grades);
-		((OHSApplication)activity.getApplication()).aeriesManager.setGradesLoaded(false);
 		return null;
 	}
 
