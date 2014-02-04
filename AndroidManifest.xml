@@ -21,6 +21,12 @@
 	    <activity android:name=".activities.GradesDetailActivity"
 	              android:label="@string/activity_grades_detail">
 	    </activity>
+	    <receiver android:name="WiFiStateReceiver">
+		    <intent-filter>
+			    <action android:name="android.net.wifi.STATE_CHANGE"></action>
+		    </intent-filter>
+	    </receiver>
     </application>
 	<uses-permission android:name="android.permission.INTERNET" />
-</manifest> 
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+</manifest>

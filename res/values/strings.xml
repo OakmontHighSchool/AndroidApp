@@ -6,4 +6,6 @@
     <string name="aeries_password">Aeries Password</string>
     <string name="activity_preferences">Settings</string>
 	<string name="activity_grades_detail">Class Details</string>
+	<string name="school_password">School Password</string>
+	<string name="school_username">School Username</string>
 </resources>

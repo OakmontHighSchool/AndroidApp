@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-<us.rjuhsd.ohs.OHSApp.CustomPreferenceCategory
-		android:title="Aeries Info" >
-	<EditTextPreference
-			android:key="aeries_username"
-			android:title="@string/aeries_username" />
-	<EditTextPreference
-			android:key="aeries_password"
-			android:title="@string/aeries_password"
-			android:inputType="textPassword"/>
-</us.rjuhsd.ohs.OHSApp.CustomPreferenceCategory>
+	<us.rjuhsd.ohs.OHSApp.CustomPreferenceCategory
+			android:title="Aeries Info" >
+		<EditTextPreference
+				android:key="aeries_username"
+				android:title="@string/aeries_username" />
+		<EditTextPreference
+				android:key="aeries_password"
+				android:title="@string/aeries_password"
+				android:inputType="textPassword"/>
+	</us.rjuhsd.ohs.OHSApp.CustomPreferenceCategory>
+	<us.rjuhsd.ohs.OHSApp.CustomPreferenceCategory
+			android:title="Oakmont Settings">
+		<EditTextPreference
+				android:key="school_username"
+				android:title="@string/school_username" />
+		<EditTextPreference
+				android:key="school_password"
+				android:title="@string/school_password"
+				android:inputType="textPassword" />
+	</us.rjuhsd.ohs.OHSApp.CustomPreferenceCategory>
 </PreferenceScreen>
