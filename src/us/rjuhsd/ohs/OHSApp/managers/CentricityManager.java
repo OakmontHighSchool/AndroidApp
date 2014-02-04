@@ -29,7 +29,11 @@ public class CentricityManager extends AsyncTask<Void, ArticleWrapper, Void>{
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		publishProgress(new ArticleWrapper(doc.select("div.ui-article").get(ID)));
+		Elements headlines = doc.select("div.headlines .ui-widget-detail ul li");
+		for(int i=0;i<headlines.size();i++) {
+			Element article = headlines.get(i);
+			publishProgress(new ArticleWrapper(article));
+		}
 		return null;
 	}
 
@@ -47,7 +51,7 @@ class ArticleWrapper {
 
 	public ArticleWrapper(Element el) {
 		articleSource = el;
-		articleHeader = el.select("h1.ui-article-title").select("span");
+		articleHeader = el.select("h1.ui-article-title span");
 		articleText = el.select("p.ui-article-description");
 	}
 }
