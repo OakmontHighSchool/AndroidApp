@@ -11,16 +11,21 @@ import android.widget.TextView;
 
 public class CustomPreferenceCategory extends PreferenceCategory {
 
+	Context context;
+
 	public CustomPreferenceCategory(Context context) {
 		super(context);
+		this.context = context;
 	}
 
 	public CustomPreferenceCategory(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		this.context = context;
 	}
 
 	public CustomPreferenceCategory(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		this.context = context;
 	}
 
 	@Override
@@ -28,7 +33,7 @@ public class CustomPreferenceCategory extends PreferenceCategory {
 		TextView categoryTitle = (TextView) super.onCreateView(parent);
 		if(categoryTitle != null) {
 			categoryTitle.setTextColor(Color.WHITE);
-			categoryTitle.setBackgroundColor(Color.BLUE);
+			categoryTitle.setBackgroundColor(context.getResources().getColor(R.color.SchoolPrimaryColor));
 			return categoryTitle;
 		} else {
 			Log.d("OHS:CustomPreferenceCategory", "If this happens I have no idea what to do...");
