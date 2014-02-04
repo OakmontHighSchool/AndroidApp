@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="SchoolPrimaryColor">#C4D8E2</color>
+	<color name="OHSLightBlue">#C4D8E2</color>
+	<color name="OHSDarkBlue">#000080</color>
 </resources>
