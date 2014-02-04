@@ -32,7 +32,7 @@ public class CustomPreferenceCategory extends PreferenceCategory {
 	protected View onCreateView(ViewGroup parent) {
 		TextView categoryTitle = (TextView) super.onCreateView(parent);
 		if(categoryTitle != null) {
-			categoryTitle.setTextColor(Color.WHITE);
+			categoryTitle.setTextColor(Color.BLACK);
 			categoryTitle.setBackgroundColor(context.getResources().getColor(R.color.OHSLightBlue));
 			return categoryTitle;
 		} else {
