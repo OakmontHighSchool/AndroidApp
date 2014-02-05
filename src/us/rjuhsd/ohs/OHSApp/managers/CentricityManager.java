@@ -16,8 +16,13 @@ import java.io.IOException;
 
 public class CentricityManager extends AsyncTask<Void, ArticleWrapper, Void>{
 	private static String URL = "http://ohs.rjuhsd.us/site/default.aspx?PageID=1";
-	private static int ID = 20;
 	private static Document doc;
+
+	@Override
+	protected void onPreExecute() {
+		super.onPreExecute();
+		OHSNotificationHandler.addNotification(R.drawable.test, "Loading articles...", "Please wait while articles are loaded from the OHS website");
+	}
 
 	@Override
 	protected Void doInBackground(Void... unused) {
@@ -32,6 +37,9 @@ public class CentricityManager extends AsyncTask<Void, ArticleWrapper, Void>{
 		Elements headlines = doc.select("div.headlines .ui-widget-detail ul li");
 		for(int i=0;i<headlines.size();i++) {
 			Element article = headlines.get(i);
+			if(i == 0) {
+				OHSNotificationHandler.clearNotifications();
+			}
 			publishProgress(new ArticleWrapper(article));
 		}
 		return null;
