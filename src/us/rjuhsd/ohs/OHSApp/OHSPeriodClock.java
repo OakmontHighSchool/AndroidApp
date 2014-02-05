@@ -63,7 +63,7 @@ public class OHSPeriodClock {
 			t3.setText(hLeft+":"+mLeft);
 		} else {
 			int mult = hLeft*60;
-			t3.setText("0:"+mult+mLeft); //Shutup its legit
+			t3.setText("0:"+(mult+mLeft)); //Shutup its legit
 		}
 	}
 }

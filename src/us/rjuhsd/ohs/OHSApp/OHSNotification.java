@@ -27,7 +27,7 @@ public class OHSNotification {
 		ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 		mtv.setText(MainText);
 		mtv.setTextColor(Color.BLACK);
-		mtv.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float) Math.floor((35 / MainText.length()) * 10) + 20);
+		mtv.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float) Math.floor((50 / MainText.length()) * 5) + 20);
 		mtv.setTypeface(null, Typeface.BOLD);
 		dtv.setText(DetailText);
 		dtv.setTextColor(Color.BLACK);
