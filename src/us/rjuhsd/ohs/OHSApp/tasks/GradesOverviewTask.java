@@ -46,7 +46,7 @@ public class GradesOverviewTask extends AsyncTask<Void, Void, Void> {
 	protected void onPreExecute() {
 		super.onPreExecute();
 		progressDialog = new ProgressDialog(activity);
-		progressDialog.setMessage("Loading Classes. Please Wait");
+		progressDialog.setMessage("Loading your classes. Please Wait");
 		progressDialog.setIndeterminate(false);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		progressDialog.setCancelable(true);

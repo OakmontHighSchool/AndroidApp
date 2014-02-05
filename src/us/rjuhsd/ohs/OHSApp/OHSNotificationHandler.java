@@ -23,4 +23,14 @@ public class OHSNotificationHandler {
 		Activity a = (Activity) c;
 		ll = (LinearLayout) a.findViewById(R.id.OHSNoteViewer);
 	}
+
+	public static void clearNotifications() {
+		Activity a = (Activity) c;
+		a.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ll.removeAllViews();
+			}
+		});
+	}
 }
