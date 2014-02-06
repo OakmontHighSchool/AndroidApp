@@ -13,7 +13,8 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 10 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jsoup-1.7.3" level="project" />
+    <orderEntry type="library" name="jsoup" level="project" />
+    <orderEntry type="library" name="appcompat" level="project" />
   </component>
 </module>
 

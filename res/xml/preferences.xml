@@ -20,5 +20,8 @@
 				android:key="school_password"
 				android:title="@string/school_password"
 				android:inputType="textPassword" />
+		<CheckBoxPreference
+				android:key="school_wifi_login_flag"
+		        android:title="@string/auto_login" />
 	</us.rjuhsd.ohs.OHSApp.CustomPreferenceCategory>
 </PreferenceScreen>
