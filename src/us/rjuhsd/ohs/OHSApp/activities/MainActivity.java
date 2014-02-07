@@ -73,11 +73,16 @@ public class MainActivity extends Activity {
 	};
 
 	public void onClick(View view) {
-		if(view.getId() == R.id.launch_grades) {
-			Intent myIntent=new Intent(this,GradesActivity.class );
-			startActivity(myIntent);
-		} else if(view.getId() == R.id.launch_preferences) {
-			Intent myIntent=new Intent(this,Preferences.class );
+		Intent myIntent = null;
+		switch (view.getId()) {
+			case R.id.launch_grades:
+				myIntent = new Intent(this,GradesActivity.class );
+				break;
+			case R.id.launch_preferences:
+				myIntent = new Intent(this,Preferences.class );
+				break;
+		}
+		if(myIntent!=null) {
 			startActivity(myIntent);
 		}
 	}

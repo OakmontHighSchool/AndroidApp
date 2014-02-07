@@ -36,15 +36,18 @@
                 android:text="Grades"
                 android:id="@+id/launch_grades"
                 android:onClick="onClick"
-                android:layout_alignParentRight="true" android:textSize="18sp"/>
+                android:layout_alignParentRight="true"
+                android:textSize="18sp"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Preferences"
                 android:id="@+id/launch_preferences"
                 android:onClick="onClick"
-                android:layout_alignParentBottom="false" android:layout_below="@+id/launch_grades"
-                android:layout_alignRight="@+id/launch_grades" android:textSize="18sp"/>
+                android:layout_alignParentBottom="false"
+                android:layout_below="@+id/launch_grades"
+                android:layout_alignRight="@+id/launch_grades"
+                android:textSize="18sp"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
