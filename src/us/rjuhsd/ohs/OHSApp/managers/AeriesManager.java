@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.https.NetTools;
 import us.rjuhsd.ohs.OHSApp.tasks.GradesOverviewTask;
 
 import java.util.ArrayList;
@@ -22,11 +23,24 @@ public class AeriesManager {
 
 	private ArrayList<SchoolClass> grades;
 
-	public void getGradesOverview(Activity activity) {
+	public void getGradesOverview(final Activity activity) {
 		if(grades != null) {
 			gradesTask.inflateList(activity);
 		} else {
-			startLoadingGrades(activity);
+			if(!NetTools.isConnected(activity)) {
+				AlertDialog.Builder adb = new AlertDialog.Builder(activity);
+				adb.setTitle("No internet!");
+				adb.setMessage("Your phone is not connected to the internet. Please try again when you are connected");
+				adb.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						activity.finish();
+					}
+				});
+				adb.show();
+
+			} else {
+				startLoadingGrades(activity);
+			}
 		}
 	}
 

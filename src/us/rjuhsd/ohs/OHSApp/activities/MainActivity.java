@@ -3,7 +3,6 @@ package us.rjuhsd.ohs.OHSApp.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -11,6 +10,7 @@ import us.rjuhsd.ohs.OHSApp.DailySchedualEnum;
 import us.rjuhsd.ohs.OHSApp.OHSNotificationHandler;
 import us.rjuhsd.ohs.OHSApp.OHSPeriodClock;
 import us.rjuhsd.ohs.OHSApp.R;
+import us.rjuhsd.ohs.OHSApp.https.NetTools;
 import us.rjuhsd.ohs.OHSApp.managers.CentricityManager;
 
 import java.util.Timer;
@@ -31,7 +31,11 @@ public class MainActivity extends Activity {
 
 		this.getAllByID();
 		OHSNotificationHandler.setContext(this);
-		new CentricityManager().execute();
+		if(NetTools.isConnected(this)) {
+			new CentricityManager().execute();
+		} else {
+			OHSNotificationHandler.addNotification(R.drawable.test, "Error loading articles", "Sorry, your device is not connected to the internet. Therefor we could not download the articles from the OHS website");
+		}
 		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, DailySchedualEnum.INTERVENTION);
 
 		TimerText1.setClickable(true);
