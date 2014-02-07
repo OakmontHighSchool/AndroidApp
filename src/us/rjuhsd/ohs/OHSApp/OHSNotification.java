@@ -1,12 +1,14 @@
 package us.rjuhsd.ohs.OHSApp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,7 +19,7 @@ public class OHSNotification {
 	private TextView dtv;
 	private View horizontal;
 
-	public OHSNotification(int srcID, String MainText, String DetailText, LinearLayout L, Context c) {
+	public OHSNotification(String MainText, String DetailText, LinearLayout L, final Context c, final String url) {
 		this.ll = new LinearLayout(c);
 		this.horizontal = new View(c);
 		this.mtv = new TextView(c);
@@ -36,12 +38,22 @@ public class OHSNotification {
 		horizontal.setBackgroundColor(Color.GRAY);
 		horizontal.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 2));
 
+		ll.setClickable(true);
+		ll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if(!url.equals("")) {
+					Intent browserIntenet = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+					c.startActivity(browserIntenet);
+				} else {
+					Log.d("HttpDragonSlayer", "There is no URL to be found here");
+				}
+			}
+		});
+
 		L.addView(ll);
 		ll.addView(mtv);
 		ll.addView(dtv);
-
-
-
 		ll.addView(horizontal);
 	}
 }

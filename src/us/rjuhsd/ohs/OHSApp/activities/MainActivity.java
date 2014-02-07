@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.DailySchedualEnum;
 import us.rjuhsd.ohs.OHSApp.OHSNotificationHandler;
@@ -34,12 +33,9 @@ public class MainActivity extends Activity {
 		if(NetTools.isConnected(this)) {
 			new CentricityManager().execute();
 		} else {
-			OHSNotificationHandler.addNotification(R.drawable.test, "Error loading articles", "Sorry, your device is not connected to the internet. Therefor we could not download the articles from the OHS website");
+			OHSNotificationHandler.addNotification("Error loading articles", "Sorry, your device is not connected to the internet. Therefor we could not download the articles from the OHS website", "");
 		}
 		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, DailySchedualEnum.INTERVENTION);
-
-		TimerText1.setClickable(true);
-		TimerText1.setOnClickListener(listener);
 
 		timer = new Timer();
 		timer.schedule(new TimerTask() {
@@ -62,13 +58,6 @@ public class MainActivity extends Activity {
 		@Override
 		public void run() {
 			updateUI();
-		}
-	};
-
-	private OnClickListener listener = new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			ohspc.findPeriod();
 		}
 	};
 
