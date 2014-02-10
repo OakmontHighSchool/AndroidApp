@@ -20,6 +20,8 @@ public class MainActivity extends Activity {
 	private TextView TimerText1;
 	private TextView TimerText2;
 	private TextView TimerText3;
+	private TextView StaticText1;
+	private TextView StaticText2;
 	private OHSPeriodClock ohspc;
 	private Timer timer;
 
@@ -35,7 +37,7 @@ public class MainActivity extends Activity {
 		} else {
 			OHSNotificationHandler.addNotification("Error loading articles", "Sorry, your device is not connected to the internet. Therefor we could not download the articles from the OHS website", "");
 		}
-		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, DailySchedualEnum.INTERVENTION);
+		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailySchedualEnum.INTERVENTION);
 
 		timer = new Timer();
 		timer.schedule(new TimerTask() {
@@ -80,5 +82,7 @@ public class MainActivity extends Activity {
 		TimerText1 = (TextView) this.findViewById(R.id.TimeText1);
 		TimerText2 = (TextView) this.findViewById(R.id.TimeText2);
 		TimerText3 = (TextView) this.findViewById(R.id.timeLeftText);
+		StaticText1 = (TextView) this.findViewById(R.id.timeLeft);
+		StaticText2 = (TextView) this.findViewById(R.id.currentPeriod);
 	}
 }
