@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import org.apache.http.client.HttpClient;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.https.HttpsClientFactory;
 import us.rjuhsd.ohs.OHSApp.https.NetTools;
 import us.rjuhsd.ohs.OHSApp.tasks.GradesTask;
 
@@ -17,6 +19,8 @@ public class AeriesManager {
 	public static String LOGIN_URL = "https://homelink.rjuhsd.us/LoginParent.aspx";
 	public static String GRADES_DETAIL = "https://homelink.rjuhsd.us/GradebookDetails.aspx";
 	//public static String DEFAULT_URL = "http://homelink.rjuhsd.us/Default.aspx";
+
+	public HttpClient client = HttpsClientFactory.sslClient();
 
 	Activity activity;
 

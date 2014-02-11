@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
@@ -19,11 +18,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.rjuhsd.ohs.OHSApp.GradesArrayAdapter;
-import us.rjuhsd.ohs.OHSApp.OHSApplication;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.activities.GradesDetailActivity;
-import us.rjuhsd.ohs.OHSApp.https.HttpsClientFactory;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 import java.io.IOException;
@@ -69,8 +66,8 @@ public class GradesTask extends AsyncTask<Void, Void, Void> {
 
 			HttpPost request = new HttpPost(AeriesManager.LOGIN_URL);
 			request.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
-			HttpClient client = HttpsClientFactory.sslClient();
-			HttpResponse response = client.execute(request);
+			HttpResponse response = aeriesManager.client.execute(request);
+
 
 			Document doc = Jsoup.parse(response.getEntity().getContent(), null, request.getURI().toString());
 			int rowCount = 1;
@@ -127,7 +124,6 @@ public class GradesTask extends AsyncTask<Void, Void, Void> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		((OHSApplication)activity.getApplication()).aeriesManager.setSchoolClasses(grades);
 		return null;
 	}
 

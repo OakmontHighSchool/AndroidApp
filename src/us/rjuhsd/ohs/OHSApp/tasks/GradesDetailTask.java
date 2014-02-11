@@ -5,8 +5,8 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.jsoup.Jsoup;
@@ -15,7 +15,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.rjuhsd.ohs.OHSApp.Assignment;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
-import us.rjuhsd.ohs.OHSApp.https.HttpsClientFactory;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 import java.io.IOException;
@@ -49,13 +48,21 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 
 	@Override
 	protected Void doInBackground(SchoolClass... schoolClasses) {
-		int skipped = 0;
 		try {
+			//Navigate to the grades_detail page, used to rip the class IDs for further navigation
+			HttpResponse response_main = aeriesManager.client.execute(new HttpGet(AeriesManager.GRADES_DETAIL));
+
+			Document doc_main = Jsoup.parse(response_main.getEntity().getContent(), null, AeriesManager.GRADES_DETAIL);
+			Elements options = doc_main.select("#ctl00_MainContent_subGBS_dlGN").first().children();
+
+			for(Element option: options) {
+				String stupidTitle = option.text();
+				String stupidId = option.attr("value");
+
+			}
 			for(int i=0;i<schoolClasses.length;i++) {
 				if(schoolClasses[i].aeriesID == null) {
-					skipped++;
-					continue; //Skip classes where we don't know the id
-					//TODO: Dont do this, download the default page and rip IDs from it
+					continue; //Skip classes where we don't know the id, this shouldn't happen in theory
 				}
 				List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 				nvps.add(new BasicNameValuePair("ctl00$MainContent$subGBS$dlGN", schoolClasses[i].aeriesID));
@@ -65,8 +72,7 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 
 				HttpPost request = new HttpPost(AeriesManager.GRADES_DETAIL);
 				request.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
-				HttpClient client = HttpsClientFactory.sslClient();
-				HttpResponse response = client.execute(request);
+				HttpResponse response = aeriesManager.client.execute(request);
 
 				Document doc = Jsoup.parse(response.getEntity().getContent(), null, request.getURI().toString());
 				String table = "div.ctl00_MainContent_subGBS_upEverything table table";
