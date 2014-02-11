@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp.managers;
+package us.rjuhsd.ohs.OHSApp.tasks;
 
 import android.os.AsyncTask;
 import org.apache.http.HttpResponse;
@@ -13,7 +13,7 @@ import us.rjuhsd.ohs.OHSApp.OHSNotificationHandler;
 
 import java.io.IOException;
 
-public class CentricityManager extends AsyncTask<Void, ArticleWrapper, Void>{
+public class HeadlineTask extends AsyncTask<Void, ArticleWrapper, Void>{
 	private static Document doc;
 
 	@Override
@@ -34,12 +34,9 @@ public class CentricityManager extends AsyncTask<Void, ArticleWrapper, Void>{
 			e.printStackTrace();
 		}
 		Elements headlines = doc.select("div.headlines .ui-widget-detail ul li");
-		for(int i=0;i<headlines.size();i++) {
-			Element article = headlines.get(i);
-			if(i == 0) {
-				OHSNotificationHandler.clearNotifications();
-			}
-			publishProgress(new ArticleWrapper(article));
+		OHSNotificationHandler.clearNotifications();
+		for (Element headline : headlines) {
+			publishProgress(new ArticleWrapper(headline));
 		}
 		return null;
 	}

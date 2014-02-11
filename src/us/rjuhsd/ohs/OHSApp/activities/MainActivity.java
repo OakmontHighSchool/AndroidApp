@@ -1,16 +1,14 @@
 package us.rjuhsd.ohs.OHSApp.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import us.rjuhsd.ohs.OHSApp.DailySchedualEnum;
-import us.rjuhsd.ohs.OHSApp.OHSNotificationHandler;
-import us.rjuhsd.ohs.OHSApp.OHSPeriodClock;
-import us.rjuhsd.ohs.OHSApp.R;
+import us.rjuhsd.ohs.OHSApp.*;
 import us.rjuhsd.ohs.OHSApp.https.NetTools;
-import us.rjuhsd.ohs.OHSApp.managers.CentricityManager;
+import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -32,11 +30,7 @@ public class MainActivity extends Activity {
 
 		this.getAllByID();
 		OHSNotificationHandler.setContext(this);
-		if(NetTools.isConnected(this)) {
-			new CentricityManager().execute();
-		} else {
-			OHSNotificationHandler.addNotification("Error loading articles", "Sorry, your device is not connected to the internet. Therefor we could not download the articles from the OHS website", "");
-		}
+		updateHeadlines(this);
 		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailySchedualEnum.INTERVENTION);
 
 		timer = new Timer();
@@ -46,6 +40,15 @@ public class MainActivity extends Activity {
 				update();
 			}
 		}, 0, 1000);
+	}
+
+	public static void updateHeadlines(Context context) {
+		OHSNotificationHandler.clearNotifications();
+		if(NetTools.isConnected(context)) {
+			new HeadlineTask().execute();
+		} else {
+			OHSNotificationHandler.addNotification("Error loading articles", "Sorry, your device is not connected to the internet. Click to try again", OHSNotification.ERROR_MESSAGE);
+		}
 	}
 
 	private void update() {
