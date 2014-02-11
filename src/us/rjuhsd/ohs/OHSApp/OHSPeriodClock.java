@@ -28,7 +28,7 @@ public class OHSPeriodClock {
 	}
 
 	public int findPeriod() {
-		Log.d("PeriodDragon", day.name());
+		Log.d("PeriodDragon", day.name()); //AAHHH! Console spam!
 		if (day.name().equals("OFF")) {
 			t3.setVisibility(View.INVISIBLE);
 			t2.setVisibility(View.INVISIBLE);
