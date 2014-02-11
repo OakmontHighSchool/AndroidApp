@@ -5,7 +5,8 @@
 			android:title="Aeries Info" >
 		<EditTextPreference
 				android:key="aeries_username"
-				android:title="@string/aeries_username" />
+				android:title="@string/aeries_username"
+				android:inputType="textEmailAddress"/>
 		<EditTextPreference
 				android:key="aeries_password"
 				android:title="@string/aeries_password"
