@@ -30,14 +30,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GradesOverviewTask extends AsyncTask<Void, Void, Void> {
+public class GradesTask extends AsyncTask<Void, Void, Void> {
 	Activity activity;
 	ProgressDialog progressDialog;
 	AeriesManager aeriesManager;
 	ArrayList<SchoolClass> grades;
 	String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
 
-	public GradesOverviewTask(Activity activity, AeriesManager aeriesManager) {
+	public GradesTask(Activity activity, AeriesManager aeriesManager) {
 		this.activity = activity;
 		this.aeriesManager = aeriesManager;
 	}
@@ -72,7 +72,7 @@ public class GradesOverviewTask extends AsyncTask<Void, Void, Void> {
 			HttpClient client = HttpsClientFactory.sslClient();
 			HttpResponse response = client.execute(request);
 
-			Document doc = Jsoup.parse(response.getEntity().getContent(), null, AeriesManager.LOGIN_URL);
+			Document doc = Jsoup.parse(response.getEntity().getContent(), null, request.getURI().toString());
 			int rowCount = 1;
 			while (true) {
 				String trId = "tr#ctl00_MainContent_ctl19_DataDetails_ctl0" + rowCount + "_trGBKItem";

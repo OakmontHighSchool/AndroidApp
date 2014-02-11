@@ -8,18 +8,19 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.https.NetTools;
-import us.rjuhsd.ohs.OHSApp.tasks.GradesOverviewTask;
+import us.rjuhsd.ohs.OHSApp.tasks.GradesTask;
 
 import java.util.ArrayList;
 
 public class AeriesManager {
 
 	public static String LOGIN_URL = "https://homelink.rjuhsd.us/LoginParent.aspx";
+	public static String GRADES_DETAIL = "https://homelink.rjuhsd.us/GradebookDetails.aspx";
 	//public static String DEFAULT_URL = "http://homelink.rjuhsd.us/Default.aspx";
 
 	Activity activity;
 
-	private GradesOverviewTask gradesTask;
+	private GradesTask gradesTask;
 
 	private ArrayList<SchoolClass> grades;
 
@@ -46,7 +47,7 @@ public class AeriesManager {
 
 	private void startLoadingGrades(final Activity activity) {
 		this.activity = activity;
-		gradesTask = new GradesOverviewTask(activity, this);
+		gradesTask = new GradesTask(activity, this);
 		gradesTask.execute();
 	}
 

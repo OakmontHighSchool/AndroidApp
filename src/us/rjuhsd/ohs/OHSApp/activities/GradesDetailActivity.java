@@ -6,6 +6,7 @@ import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.OHSApplication;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.tasks.GradesDetailTask;
 
 public class GradesDetailActivity extends Activity {
 	private SchoolClass sClass;
@@ -17,6 +18,9 @@ public class GradesDetailActivity extends Activity {
 		setContentView(R.layout.grades_detail);
 		if(id != -1) {
 			sClass = ((OHSApplication)getApplication()).aeriesManager.getById(id);
+		}
+		if(sClass.assignments == null) {
+			new GradesDetailTask(this,((OHSApplication)getApplication()).aeriesManager).execute(sClass);
 		}
 		fillViews();
 	}
