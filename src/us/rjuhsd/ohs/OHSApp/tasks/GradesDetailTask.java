@@ -3,6 +3,9 @@ package us.rjuhsd.ohs.OHSApp.tasks;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -14,6 +17,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.rjuhsd.ohs.OHSApp.Assignment;
+import us.rjuhsd.ohs.OHSApp.GradesArrayAdapter;
+import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
@@ -28,6 +33,7 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 	ProgressDialog progressDialog;
 	Activity activity;
 	String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
+	ArrayList<SchoolClass> grades;
 	AeriesManager aeriesManager;
 
 	public GradesDetailTask(Activity activity, AeriesManager aeriesManager) {
@@ -58,25 +64,32 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 			for(Element option: options) {
 				String stupidTitle = option.text();
 				String stupidId = option.attr("value");
-
+				if(!stupidTitle.startsWith("<<")) {
+					for(SchoolClass schoolClass: schoolClasses) {
+						if(stupidTitle.matches("(.*)" + schoolClass.className + "(.*)")) {
+							schoolClass.aeriesID = stupidId;
+						}
+					}
+				}
 			}
 			for(int i=0;i<schoolClasses.length;i++) {
 				if(schoolClasses[i].aeriesID == null) {
+					Log.d("ASSIGNAMEEGTSSTUPID",schoolClasses[i].className);
 					continue; //Skip classes where we don't know the id, this shouldn't happen in theory
 				}
 				List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 				nvps.add(new BasicNameValuePair("ctl00$MainContent$subGBS$dlGN", schoolClasses[i].aeriesID));
 				nvps.add(new BasicNameValuePair("__EVENTTARGET", "ctl00$MainContent$subGBS$dlGN"));
-				nvps.add(new BasicNameValuePair("__ASYNCPOST", "true")); //This is only needed to get the <select> element with ID listings
+				//nvps.add(new BasicNameValuePair("__ASYNCPOST", "true")); //This is only needed to get the <select> element with ID listings
 				nvps.add(new BasicNameValuePair("__VIEWSTATE", VIEW_STATE_POST)); //This is some stupid constant
 
 				HttpPost request = new HttpPost(AeriesManager.GRADES_DETAIL);
 				request.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
 				HttpResponse response = aeriesManager.client.execute(request);
-
 				Document doc = Jsoup.parse(response.getEntity().getContent(), null, request.getURI().toString());
-				String table = "div.ctl00_MainContent_subGBS_upEverything table table";
-				Elements rows = doc.select(table).first().children();
+				String table_locator = "div#ctl00_MainContent_subGBS_upEverything table table tr";
+				Elements rows = doc.select(table_locator);
+				Log.d("TheOneTableToRuleThemAll", ":" + rows.size());
 				if(rows == null) {
 					//No data was loaded, calling it quits here and posting a dialog explaining why
 					error = "An error occurred, Aeries might be down";
@@ -89,7 +102,8 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 						continue; //Skip the headers
 					}
 					Assignment assign = new Assignment();
-					//TODO: Fill Assignment class here with the data in the row
+					assign.description = row.children().get(3).text();
+					Log.d("ASSIGNAMEEGTSSTUPID",assign.description);
 					schoolClasses[i].assignments.add(assign);
 				}
 			}
@@ -114,5 +128,19 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 			return;
 		}
 		progressDialog.dismiss();
+	}
+	public void inflateList(final Activity act) {
+		final ArrayAdapter adapter = new GradesArrayAdapter(activity, R.layout.grades_list_item, aeriesManager.grades);
+		final ListView listview = (ListView) act.findViewById(R.id.grades_detail_assign_list);
+		listview.setAdapter(adapter);
+		/*listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				Intent gradeDetailIntent = new Intent(act, GradesDetailActivity.class);
+				gradeDetailIntent.putExtra("schoolClassId",arg2);
+				act.startActivity(gradeDetailIntent);
+			}
+
+		});*/
 	}
 }

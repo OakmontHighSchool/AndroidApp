@@ -16,5 +16,6 @@ public class SchoolClass {
 
 	public SchoolClass(int id) {
 		this.ID = id;
+		assignments = new ArrayList<Assignment>();
 	}
 }
