@@ -29,8 +29,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 
 		this.getAllByID();
-		OHSNotificationHandler.setContext(this);
-		updateHeadlines(this);
+		OHSArticleHandler.setContext(this);
 		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailySchedualEnum.INTERVENTION);
 
 		timer = new Timer();
@@ -42,12 +41,18 @@ public class MainActivity extends Activity {
 		}, 0, 1000);
 	}
 
+	@Override
+	public void onStart() {
+		super.onStart();
+		updateHeadlines(this);
+	}
+
 	public static void updateHeadlines(Context context) {
-		OHSNotificationHandler.clearNotifications();
+		OHSArticleHandler.clearNotifications();
 		if(NetTools.isConnected(context)) {
 			new HeadlineTask().execute();
 		} else {
-			OHSNotificationHandler.addNotification("Error loading articles", "Sorry, your device is not connected to the internet. Click to try again", OHSNotification.ERROR_MESSAGE);
+			OHSArticleHandler.addArticle("Error loading articles", "Sorry, your device is not connected to the internet. Click to try again", OHSNotification.ERROR_MESSAGE);
 		}
 	}
 

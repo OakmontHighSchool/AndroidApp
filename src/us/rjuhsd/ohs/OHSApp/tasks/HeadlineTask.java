@@ -9,7 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import us.rjuhsd.ohs.OHSApp.OHSNotificationHandler;
+import us.rjuhsd.ohs.OHSApp.OHSArticleHandler;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ public class HeadlineTask extends AsyncTask<Void, ArticleWrapper, Void>{
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		OHSNotificationHandler.addNotification("Loading articles...", "Please wait while articles are loaded from the OHS website", "");
+		OHSArticleHandler.addArticle("Loading articles...", "Please wait while articles are loaded from the OHS website", "");
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class HeadlineTask extends AsyncTask<Void, ArticleWrapper, Void>{
 			e.printStackTrace();
 		}
 		Elements headlines = doc.select("div.headlines .ui-widget-detail ul li");
-		OHSNotificationHandler.clearNotifications();
+		OHSArticleHandler.clearNotifications();
 		for (Element headline : headlines) {
 			publishProgress(new ArticleWrapper(headline));
 		}
@@ -44,7 +44,7 @@ public class HeadlineTask extends AsyncTask<Void, ArticleWrapper, Void>{
 	@Override
 	public void onProgressUpdate(ArticleWrapper... item) {
 		ArticleWrapper aw = item[0];
-		OHSNotificationHandler.addNotification(aw.articleHeader.text(), aw.articleText.text(), aw.urlString);
+		OHSArticleHandler.addArticle(aw.articleHeader.text(), aw.articleText.text(), aw.urlString);
 	}
 }
 

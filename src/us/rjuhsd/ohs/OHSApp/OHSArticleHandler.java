@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.LinearLayout;
 
-public class OHSNotificationHandler {
-	private OHSNotificationHandler() {}
+public class OHSArticleHandler {
+	private OHSArticleHandler() {}
 
 	private static Context c;
 	private static LinearLayout ll;
 
-	public static void addNotification(final String text1, final String text2, final String url) {
+	public static void addArticle(final String text1, final String text2, final String url) {
 		Activity a = (Activity) c;
 		a.runOnUiThread(new Runnable() {
 			@Override
