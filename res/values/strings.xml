@@ -9,4 +9,5 @@
 	<string name="school_password">School Password</string>
 	<string name="school_username">School Username</string>
 	<string name="auto_login">Automatically login to OHS wifi</string>
+	<string name="activity_grades_detail_detail">Details of assignment</string>
 </resources>

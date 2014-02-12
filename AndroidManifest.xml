@@ -21,6 +21,9 @@
 	    <activity android:name=".activities.GradesDetailActivity"
 	              android:label="@string/activity_grades_detail">
 	    </activity>
+	    <activity android:name=".activities.GradesDetailDetailActivity"
+	              android:label="@string/activity_grades_detail_detail">
+	    </activity>
 	    <receiver android:name="WiFiStateReceiver">
 		    <intent-filter>
 			    <action android:name="android.net.wifi.STATE_CHANGE" />
