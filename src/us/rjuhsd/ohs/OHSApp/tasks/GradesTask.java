@@ -20,7 +20,7 @@ import org.jsoup.select.Elements;
 import us.rjuhsd.ohs.OHSApp.GradesArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
-import us.rjuhsd.ohs.OHSApp.activities.GradesDetailActivity;
+import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 import java.io.IOException;
@@ -152,7 +152,7 @@ public class GradesTask extends AsyncTask<Void, Void, Void> {
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				Intent gradeDetailIntent = new Intent(act, GradesDetailActivity.class);
+				Intent gradeDetailIntent = new Intent(act, ClassDetailActivity.class);
 				gradeDetailIntent.putExtra("schoolClassId",arg2);
 				act.startActivity(gradeDetailIntent);
 			}

@@ -22,8 +22,8 @@ import us.rjuhsd.ohs.OHSApp.Assignment;
 import us.rjuhsd.ohs.OHSApp.GradesDetailArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
-import us.rjuhsd.ohs.OHSApp.activities.GradesDetailActivity;
-import us.rjuhsd.ohs.OHSApp.activities.GradesDetailDetailActivity;
+import us.rjuhsd.ohs.OHSApp.activities.ClassAssignmentActivity;
+import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 import java.io.IOException;
@@ -142,14 +142,14 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 	}
 
 	public void inflateList(final Activity act) {
-		final ArrayAdapter adapter = new GradesDetailArrayAdapter(activity, R.layout.grades_list_item, ((GradesDetailActivity)act).sClass.assignments);
+		final ArrayAdapter adapter = new GradesDetailArrayAdapter(activity, R.layout.grades_list_item, ((ClassDetailActivity)act).sClass.assignments);
 		final ListView listview = (ListView) act.findViewById(R.id.grades_detail_assign_list);
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				Intent gradeDetailIntent = new Intent(act, GradesDetailDetailActivity.class);
-				gradeDetailIntent.putExtra("schoolClassId",((GradesDetailActivity)act).sClass.ID);
+				Intent gradeDetailIntent = new Intent(act, ClassAssignmentActivity.class);
+				gradeDetailIntent.putExtra("schoolClassId",((ClassDetailActivity)act).sClass.ID);
 				gradeDetailIntent.putExtra("assignmentId",arg2);
 				act.startActivity(gradeDetailIntent);
 			}

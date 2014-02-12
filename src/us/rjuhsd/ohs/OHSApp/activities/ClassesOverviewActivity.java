@@ -6,7 +6,7 @@ import android.os.Bundle;
 import us.rjuhsd.ohs.OHSApp.OHSApplication;
 import us.rjuhsd.ohs.OHSApp.R;
 
-public class GradesActivity extends Activity {
+public class ClassesOverviewActivity extends Activity {
 	final Context context = this; //required for intents to work inside the click listener
 
 	@Override

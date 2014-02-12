@@ -12,16 +12,16 @@
 		        <category android:name="android.intent.category.LAUNCHER"/>
 	        </intent-filter>
         </activity>
-        <activity android:name=".activities.GradesActivity"
+        <activity android:name=".activities.ClassesOverviewActivity"
                   android:label="@string/activity_grades">
         </activity>
         <activity android:name=".activities.Preferences"
                   android:label="@string/activity_preferences">
         </activity>
-	    <activity android:name=".activities.GradesDetailActivity"
+	    <activity android:name=".activities.ClassDetailActivity"
 	              android:label="@string/activity_grades_detail">
 	    </activity>
-	    <activity android:name=".activities.GradesDetailDetailActivity"
+	    <activity android:name=".activities.ClassAssignmentActivity"
 	              android:label="@string/activity_grades_detail_detail">
 	    </activity>
 	    <receiver android:name="WiFiStateReceiver">

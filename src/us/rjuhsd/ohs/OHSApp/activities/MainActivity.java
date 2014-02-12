@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
 		Intent myIntent = null;
 		switch (view.getId()) {
 			case R.id.launch_grades:
-				myIntent = new Intent(this,GradesActivity.class );
+				myIntent = new Intent(this,ClassesOverviewActivity.class );
 				break;
 			case R.id.launch_preferences:
 				myIntent = new Intent(this,Preferences.class );
