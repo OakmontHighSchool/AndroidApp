@@ -12,6 +12,7 @@ public class OHSPeriodClock {
 	private TextView t3;
 	private TextView s1;
 	private TextView s2;
+	public int currPeriod;
 	private int h;
 	private int m;
 	private DailySchedualEnum day;
@@ -27,8 +28,8 @@ public class OHSPeriodClock {
 		findPeriod();
 	}
 
-	public int findPeriod() {
-		Log.d("PeriodDragon", day.name()); //AAHHH! Console spam!
+	public void findPeriod() {
+		Log.d("PeriodDragon", day.name());
 		if (day.name().equals("OFF")) {
 			t3.setVisibility(View.INVISIBLE);
 			t2.setVisibility(View.INVISIBLE);
@@ -47,30 +48,32 @@ public class OHSPeriodClock {
 						if (m <= tempArray[i][1]) {
 							t1.setText(translationArray[i]);
 							t2.setText(translationArray[i + 10]);
-							return i;
+							currPeriod = i;
+							break;
 						}
 					} else {
 						t1.setText(translationArray[i]);
 						t2.setText(translationArray[i + 10]);
-						return i;
+						currPeriod = i;
+						break;
 					}
 				}
 				if (i == tempArray.length - 1) {
 					t1.setText(translationArray[i + 1]);
-					return i;
+					currPeriod = -1;
+					break;
 				}
 			}
 		}
-		return 0;
 	}
 
 	public void timeLeft() {
-		if (!day.name().equals("OFF")) {
+		if (!day.name().equals("OFF") && currPeriod != -1) {
 			Calendar c = Calendar.getInstance();
 			this.h = c.get(Calendar.HOUR_OF_DAY);
 			this.m = c.get(Calendar.MINUTE);
-			int targetH = day.originalInput[findPeriod()][0];
-			int targetM = day.originalInput[findPeriod()][1];
+			int targetH = day.originalInput[currPeriod][0];
+			int targetM = day.originalInput[currPeriod][1];
 			int hLeft = targetH - h;
 			int mLeft = targetM - m;
 
@@ -78,8 +81,15 @@ public class OHSPeriodClock {
 				t3.setText(hLeft + ":" + mLeft);
 			} else {
 				int mult = hLeft * 60;
-				t3.setText("0:" + (mult + mLeft)); //Shutup its legit
+				int output = mult + mLeft;
+				if(output < 10) {
+					t3.setText("0:0" + output);
+				} else {
+					t3.setText("0:" + output); //Shutup its legit
+				}
 			}
+		} else {
+			s1.setVisibility(View.INVISIBLE);
 		}
 	}
 }

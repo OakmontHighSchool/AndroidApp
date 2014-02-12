@@ -16,7 +16,6 @@ import us.rjuhsd.ohs.OHSApp.activities.MainActivity;
 public class OHSNotification {
 	public static final String ERROR_MESSAGE = "ERROR_LOADING";
 
-	//This might have to increase in size to use all the screen real estate; however, for now it'll remain small until we decide on a layout.
 	private LinearLayout ll;
 	private TextView mtv;
 	private TextView dtv;
