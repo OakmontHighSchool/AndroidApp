@@ -18,10 +18,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import us.rjuhsd.ohs.OHSApp.Assignment;
-import us.rjuhsd.ohs.OHSApp.GradesDetailArrayAdapter;
-import us.rjuhsd.ohs.OHSApp.R;
-import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.*;
 import us.rjuhsd.ohs.OHSApp.activities.ClassAssignmentActivity;
 import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
@@ -39,9 +36,9 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 	String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
 	AeriesManager aeriesManager;
 
-	public GradesDetailTask(Activity activity, AeriesManager aeriesManager) {
+	public GradesDetailTask(Activity activity) {
 		this.activity = activity;
-		this.aeriesManager = aeriesManager;
+		this.aeriesManager = ((OHSApplication)activity.getApplication()).aeriesManager;
 	}
 
 	@Override
