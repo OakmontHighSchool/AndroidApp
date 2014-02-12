@@ -3,7 +3,6 @@ package us.rjuhsd.ohs.OHSApp.tasks;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import org.apache.http.HttpResponse;
@@ -74,11 +73,9 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 			}
 			for (SchoolClass schoolClass : schoolClasses) {
 				if (schoolClass.aeriesID == null) {
-					Log.d("SchoolClassNameError", schoolClass.className);
 					continue; //Skip classes where we don't know the id, this shouldn't happen in theory
 				}
 				List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-				Log.d("RowAeriesID", schoolClass.aeriesID);
 				nvps.add(new BasicNameValuePair("ctl00$MainContent$subGBS$dlGN", schoolClass.aeriesID));
 				nvps.add(new BasicNameValuePair("__EVENTTARGET", "ctl00$MainContent$subGBS$dlGN"));
 				//nvps.add(new BasicNameValuePair("__ASYNCPOST", "true")); //This is only needed to get the <select> element with ID listings
@@ -89,8 +86,6 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 				HttpResponse response = aeriesManager.client.execute(request);
 				Document doc = Jsoup.parse(response.getEntity().getContent(), null, request.getURI().toString());
 				Elements rows = doc.select("table#ctl00_MainContent_subGBS_tblEverything div#ctl00_MainContent_subGBS_upEverything > table").get(1).children().first().children().first().children().first().children().first().children().first().children();
-				Log.d("RowMainTag", "" + rows.first().tag());
-				Log.d("RowCount", "" + rows.size());
 				if (rows == null) {
 					//No data was loaded, calling it quits here and posting a dialog explaining why
 					error = "An error occurred, Aeries might be down";
@@ -98,9 +93,6 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 					return null;
 				}
 				for(Element row : rows) {
-					Log.d("RowTag", ":" + row.tag());
-					//Log.d("RowText", ":" + row.html());
-					Log.d("RowLength", ":" + row.children().size());
 					if (row.className().equals("SubHeaderRow")) {
 						continue; //Skip the header row
 					}
@@ -118,7 +110,6 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 						assign.dateDue = row.children().get(10).text();
 						assign.gradingComplete = row.children().get(11).text().contains("Yes");
 
-						Log.d("RowDescription", assign.description);
 						schoolClass.assignments.add(assign);
 					}
 				}
