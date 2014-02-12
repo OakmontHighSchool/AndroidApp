@@ -34,7 +34,6 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 	ProgressDialog progressDialog;
 	Activity activity;
 	String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
-	ArrayList<SchoolClass> grades;
 	AeriesManager aeriesManager;
 
 	public GradesDetailTask(Activity activity, AeriesManager aeriesManager) {
@@ -73,13 +72,14 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 					}
 				}
 			}
-			for(int i=0;i<schoolClasses.length;i++) {
-				if(schoolClasses[i].aeriesID == null) {
-					Log.d("SchoolClassNameError",schoolClasses[i].className);
+			for (SchoolClass schoolClass : schoolClasses) {
+				if (schoolClass.aeriesID == null) {
+					Log.d("SchoolClassNameError", schoolClass.className);
 					continue; //Skip classes where we don't know the id, this shouldn't happen in theory
 				}
 				List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-				nvps.add(new BasicNameValuePair("ctl00$MainContent$subGBS$dlGN", schoolClasses[i].aeriesID));
+				Log.d("RowAeriesID", schoolClass.aeriesID);
+				nvps.add(new BasicNameValuePair("ctl00$MainContent$subGBS$dlGN", schoolClass.aeriesID));
 				nvps.add(new BasicNameValuePair("__EVENTTARGET", "ctl00$MainContent$subGBS$dlGN"));
 				//nvps.add(new BasicNameValuePair("__ASYNCPOST", "true")); //This is only needed to get the <select> element with ID listings
 				nvps.add(new BasicNameValuePair("__VIEWSTATE", VIEW_STATE_POST)); //This is some stupid constant
@@ -88,24 +88,39 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 				request.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
 				HttpResponse response = aeriesManager.client.execute(request);
 				Document doc = Jsoup.parse(response.getEntity().getContent(), null, request.getURI().toString());
-				String table_locator = "div#ctl00_MainContent_subGBS_upEverything table table tr";
-				Elements rows = doc.select(table_locator);
-				Log.d("TheOneTableToRuleThemAll", ":" + rows.size());
-				if(rows == null) {
+				Elements rows = doc.select("table#ctl00_MainContent_subGBS_tblEverything div#ctl00_MainContent_subGBS_upEverything > table").get(1).children().first().children().first().children().first().children().first().children().first().children();
+				Log.d("RowMainTag", "" + rows.first().tag());
+				Log.d("RowCount", "" + rows.size());
+				if (rows == null) {
 					//No data was loaded, calling it quits here and posting a dialog explaining why
 					error = "An error occurred, Aeries might be down";
 					cancel(true);
 					return null;
 				}
-				for(int j=0;j<rows.size();j++) {
-					Element row = rows.get(j);
-					if(!row.className().equals("SubHeaderRow")) {
-						continue; //Skip the headers
+				for(Element row : rows) {
+					Log.d("RowTag", ":" + row.tag());
+					//Log.d("RowText", ":" + row.html());
+					Log.d("RowLength", ":" + row.children().size());
+					if (row.className().equals("SubHeaderRow")) {
+						continue; //Skip the header row
 					}
-					Assignment assign = new Assignment();
-					assign.description = row.children().get(3).text();
-					Log.d("ASSIGNAMEEGTSSTUPID",assign.description);
-					schoolClasses[i].assignments.add(assign);
+					if (row.children().size() >= 3) { //Avoids stupidhead invisible table children
+						Assignment assign = new Assignment();
+						row.children().get(2).children().remove();
+						assign.description = row.children().get(2).text();
+						assign.type = row.children().get(3).text();
+						assign.category = row.children().get(4).text();
+						assign.score = row.children().get(5).text();
+						assign.correct = row.children().get(6).text();
+						assign.percent = row.children().get(7).text();
+						assign.status = row.children().get(8).text();
+						assign.dateCompleted = row.children().get(9).text();
+						assign.dateDue = row.children().get(10).text();
+						assign.gradingComplete = row.children().get(11).text().contains("Yes");
+
+						Log.d("RowDescription", assign.description);
+						schoolClass.assignments.add(assign);
+					}
 				}
 			}
 		} catch (IOException e) {
