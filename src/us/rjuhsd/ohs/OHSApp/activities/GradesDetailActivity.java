@@ -9,7 +9,7 @@ import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.tasks.GradesDetailTask;
 
 public class GradesDetailActivity extends Activity {
-	private SchoolClass sClass;
+	public SchoolClass sClass;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -19,9 +19,7 @@ public class GradesDetailActivity extends Activity {
 		if(id != -1) {
 			sClass = ((OHSApplication)getApplication()).aeriesManager.getById(id);
 		}
-		if(sClass.assignments == null) {
-			new GradesDetailTask(this,((OHSApplication)getApplication()).aeriesManager).execute(sClass);
-		}
+		new GradesDetailTask(this,((OHSApplication)getApplication()).aeriesManager).execute(sClass);
 		fillViews();
 	}
 

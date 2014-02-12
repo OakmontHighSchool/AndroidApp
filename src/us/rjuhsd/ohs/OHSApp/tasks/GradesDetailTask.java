@@ -17,9 +17,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.rjuhsd.ohs.OHSApp.Assignment;
-import us.rjuhsd.ohs.OHSApp.GradesArrayAdapter;
+import us.rjuhsd.ohs.OHSApp.GradesDetailArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.activities.GradesDetailActivity;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 import java.io.IOException;
@@ -74,7 +75,7 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 			}
 			for(int i=0;i<schoolClasses.length;i++) {
 				if(schoolClasses[i].aeriesID == null) {
-					Log.d("ASSIGNAMEEGTSSTUPID",schoolClasses[i].className);
+					Log.d("SchoolClassNameError",schoolClasses[i].className);
 					continue; //Skip classes where we don't know the id, this shouldn't happen in theory
 				}
 				List<NameValuePair> nvps = new ArrayList<NameValuePair>();
@@ -110,7 +111,6 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//((OHSApplication)activity.getApplication()).aeriesManager.setSchoolClasses(grades);
 		return null;
 	}
 
@@ -127,10 +127,12 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 			onCancelled();
 			return;
 		}
+		inflateList(activity);
 		progressDialog.dismiss();
 	}
+
 	public void inflateList(final Activity act) {
-		final ArrayAdapter adapter = new GradesArrayAdapter(activity, R.layout.grades_list_item, aeriesManager.grades);
+		final ArrayAdapter adapter = new GradesDetailArrayAdapter(activity, R.layout.grades_list_item, ((GradesDetailActivity)act).sClass.assignments);
 		final ListView listview = (ListView) act.findViewById(R.id.grades_detail_assign_list);
 		listview.setAdapter(adapter);
 		/*listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
