@@ -29,6 +29,6 @@ public class ClassAssignmentActivity extends Activity { //"Detail" down the rabb
 		final TextView classNameView = (TextView) findViewById(R.id.grades_detail_className);
 		classNameView.setText("Description: "+assign.description);
 		final TextView percentageView = (TextView) findViewById(R.id.grades_detail_percentage);
-		percentageView.setText("Percentage: "+assign.percent+"%");
+		percentageView.setText("Percentage: "+assign.percent);
 	}
 }

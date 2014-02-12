@@ -33,8 +33,8 @@ public class GradesDetailArrayAdapter extends ArrayAdapter<Assignment> {
 			row = inflater.inflate(layoutResourceId, parent, false);
 
 			holder = new GradesDetailHolder();
-			holder.txtSecond = (TextView)row.findViewById(R.id.txtSecond);
 			holder.txtMain = (TextView)row.findViewById(R.id.txtMain);
+			holder.txtSecond = (TextView)row.findViewById(R.id.txtSecond);
 
 			row.setTag(holder);
 		}
@@ -44,8 +44,8 @@ public class GradesDetailArrayAdapter extends ArrayAdapter<Assignment> {
 		}
 
 		Assignment assign = data.get(position);
-		holder.txtSecond.setText(assign.correct);
 		holder.txtMain.setText(assign.description);
+		holder.txtSecond.setText("Score: "+assign.score+", "+assign.percent);
 
 		return row;
 	}
