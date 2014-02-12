@@ -19,7 +19,11 @@ public class ClassDetailActivity extends Activity {
 		if(id != -1) {
 			sClass = ((OHSApplication)getApplication()).aeriesManager.getById(id);
 		}
-		new GradesDetailTask(this).execute(sClass);
+		if(sClass.assignments.isEmpty()) {
+			new GradesDetailTask(this).execute(sClass);
+		} else {
+			new GradesDetailTask(this).inflateList(this);
+		}
 		fillViews();
 	}
 

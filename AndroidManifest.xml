@@ -24,7 +24,7 @@
 	    <activity android:name=".activities.ClassAssignmentActivity"
 	              android:label="@string/activity_grades_detail_detail">
 	    </activity>
-	    <receiver android:name="WiFiStateReceiver">
+	    <receiver android:name=".https.WiFiStateReceiver">
 		    <intent-filter>
 			    <action android:name="android.net.wifi.STATE_CHANGE" />
 		    </intent-filter>
