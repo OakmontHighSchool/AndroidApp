@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.*;
-import us.rjuhsd.ohs.OHSApp.https.NetTools;
+import us.rjuhsd.ohs.OHSApp.https.Tools;
 import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
 
 import java.util.Timer;
@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
 
 	public static void updateHeadlines(Context context) {
 		OHSArticleHandler.clearNotifications();
-		if(NetTools.isConnected(context)) {
+		if(Tools.isConnected(context)) {
 			new HeadlineTask().execute();
 		} else {
 			OHSArticleHandler.addArticle("Error loading articles", "Sorry, your device is not connected to the internet. Click to try again", OHSNotification.ERROR_MESSAGE);

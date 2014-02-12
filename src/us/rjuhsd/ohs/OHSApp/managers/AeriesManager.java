@@ -9,7 +9,7 @@ import android.preference.PreferenceManager;
 import org.apache.http.client.HttpClient;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.https.HttpsClientFactory;
-import us.rjuhsd.ohs.OHSApp.https.NetTools;
+import us.rjuhsd.ohs.OHSApp.https.Tools;
 import us.rjuhsd.ohs.OHSApp.tasks.GradesTask;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class AeriesManager {
 		if(grades != null) {
 			gradesTask.inflateList(activity);
 		} else {
-			if(!NetTools.isConnected(activity)) {
+			if(!Tools.isConnected(activity)) {
 				AlertDialog.Builder adb = new AlertDialog.Builder(activity);
 				adb.setTitle("No internet!");
 				adb.setMessage("Your phone is not connected to the internet. Please try again when you are connected");
