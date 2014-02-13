@@ -93,6 +93,7 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 					cancel(true);
 					return null;
 				}
+				schoolClass.assignments.clear();
 				for(Element row : rows) {
 					if (row.className().equals("SubHeaderRow")) {
 						continue; //Skip the header row

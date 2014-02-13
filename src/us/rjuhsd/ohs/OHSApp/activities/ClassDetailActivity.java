@@ -2,6 +2,7 @@ package us.rjuhsd.ohs.OHSApp.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.OHSApplication;
 import us.rjuhsd.ohs.OHSApp.R;
@@ -19,12 +20,16 @@ public class ClassDetailActivity extends Activity {
 		if(id != -1) {
 			sClass = ((OHSApplication)getApplication()).aeriesManager.getById(id);
 		}
-		if(sClass.assignments.isEmpty()) {
+		updateAssignments(false);
+		fillViews();
+	}
+
+	private void updateAssignments(boolean forceUpdate) {
+		if(sClass.assignments.isEmpty() || forceUpdate) {
 			new GradesDetailTask(this).execute(sClass);
 		} else {
 			new GradesDetailTask(this).inflateList(this);
 		}
-		fillViews();
 	}
 
 	private void fillViews() {
@@ -32,5 +37,13 @@ public class ClassDetailActivity extends Activity {
 		classNameView.setText("Class: "+sClass.className);
 		final TextView percentageView = (TextView) findViewById(R.id.grades_detail_percentage);
 		percentageView.setText("Percentage: "+sClass.percentage+"%");
+	}
+
+	public void onClick(View view) {
+		switch (view.getId()) {
+			case R.id.classes_detail_refresh_button:
+				updateAssignments(true);
+				break;
+		}
 	}
 }
