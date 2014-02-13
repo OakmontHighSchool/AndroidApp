@@ -22,7 +22,7 @@ public class AeriesManager {
 
 	public HttpClient client = HttpsClientFactory.sslClient();
 
-	Activity activity;
+	private Activity activity;
 
 	private GradesTask gradesTask;
 

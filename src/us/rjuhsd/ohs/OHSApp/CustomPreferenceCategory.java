@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-@SuppressWarnings("UnusedDeclaration")
 public class CustomPreferenceCategory extends PreferenceCategory {
 	Context context;
 

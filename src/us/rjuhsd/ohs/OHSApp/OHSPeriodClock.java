@@ -12,13 +12,13 @@ public class OHSPeriodClock {
 	private TextView t3;
 	private TextView s1;
 	private TextView s2;
-	public int currPeriod;
+	private int currPeriod;
 	private int h;
 	private int m;
-	private DailySchedualEnum day;
+	private DailyScheduleEnum day;
 	private String[] translationArray = {"Before School", "First Period", "Intervention", "Second Period", "Rally", "First Lunch", "Third Period", "Second Lunch", "Fourth Period", "After School", "", "", "", "", "", "Third Period", "", "Third Period", "", ""};
 
-	public OHSPeriodClock(TextView t1, TextView t2, TextView t3, TextView s1, TextView s2, DailySchedualEnum day) {
+	public OHSPeriodClock(TextView t1, TextView t2, TextView t3, TextView s1, TextView s2, DailyScheduleEnum day) {
 		this.t1 = t1;
 		this.t2 = t2;
 		this.t3 = t3;
@@ -85,7 +85,7 @@ public class OHSPeriodClock {
 				if(output < 10) {
 					t3.setText("0:0" + output);
 				} else {
-					t3.setText("0:" + output); //Shutup its legit
+					t3.setText("0:" + output); //Shut up its legit
 				}
 			}
 		} else {

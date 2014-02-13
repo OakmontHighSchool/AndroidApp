@@ -10,7 +10,7 @@ import us.rjuhsd.ohs.OHSApp.SchoolClass;
 
 public class ClassAssignmentActivity extends Activity { //"Detail" down the rabbit hole
 
-	Assignment assign;
+	private Assignment assign;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

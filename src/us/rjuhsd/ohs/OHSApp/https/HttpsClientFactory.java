@@ -6,7 +6,6 @@ import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
-import us.rjuhsd.ohs.OHSApp.https.FixedSSLSocketFactory;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -15,7 +14,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 public class HttpsClientFactory {
-	private HttpsClientFactory() {} //No instanciate for you
+	private HttpsClientFactory() {} //No instantiate for you
 
 	public static DefaultHttpClient sslClient() {
 		HttpClient client = new DefaultHttpClient();

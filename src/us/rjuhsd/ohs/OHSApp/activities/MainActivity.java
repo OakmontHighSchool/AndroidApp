@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 
 		this.getAllByID();
 		OHSArticleHandler.setContext(this);
-		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailySchedualEnum.INTERVENTION);
+		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailyScheduleEnum.INTERVENTION);
 
 		timer = new Timer();
 		timer.schedule(new TimerTask() {

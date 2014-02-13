@@ -28,11 +28,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GradesTask extends AsyncTask<Void, Void, Void> {
-	Activity activity;
-	ProgressDialog progressDialog;
-	AeriesManager aeriesManager;
-	ArrayList<SchoolClass> grades;
-	String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
+	private Activity activity;
+	private ProgressDialog progressDialog;
+	private AeriesManager aeriesManager;
+	private ArrayList<SchoolClass> grades;
+	private String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
 
 	public GradesTask(Activity activity, AeriesManager aeriesManager) {
 		this.activity = activity;
@@ -146,8 +146,8 @@ public class GradesTask extends AsyncTask<Void, Void, Void> {
 	}
 
 	public void inflateList(final Activity act) {
-		final ArrayAdapter adapter = new GradesArrayAdapter(activity, R.layout.grades_list_item, grades);
-		final ListView listview = (ListView) act.findViewById(R.id.listview);
+		final ArrayAdapter adapter = new GradesArrayAdapter(activity, grades);
+		final ListView listview = (ListView) act.findViewById(R.id.list_view);
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override

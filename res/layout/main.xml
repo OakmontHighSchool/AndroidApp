@@ -21,7 +21,7 @@
 			<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Current Period:"
+					android:text="@string/time_left"
 					android:id="@+id/currentPeriod"
 					android:textColor="#000000"
 					android:textSize="18sp"
@@ -42,7 +42,7 @@
 		<Button
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Grades"
+				android:text="@string/activity_grades"
 				android:id="@+id/launch_grades"
 				android:onClick="onClick"
 				android:layout_alignParentRight="true"
@@ -50,7 +50,7 @@
 		<Button
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Preferences"
+				android:text="@string/activity_preferences"
 				android:id="@+id/launch_preferences"
 				android:onClick="onClick"
 				android:layout_alignParentBottom="false"
@@ -60,7 +60,7 @@
 		<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Time Left"
+				android:text="@string/time_left"
 				android:id="@+id/timeLeft"
 				android:layout_above="@+id/timeLeftText"
 				android:layout_centerHorizontal="true"
@@ -79,7 +79,7 @@
 		<Button
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Refresh"
+				android:text="@string/refresh"
 				android:id="@+id/main_refresh_button"
 				android:layout_gravity="right"
 				android:layout_below="@+id/launch_preferences"
@@ -94,7 +94,7 @@
 		<LinearLayout
 				android:orientation="vertical"
 				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
+				android:layout_height="wrap_content"
 				android:id="@id/OHSNoteViewer">
 		</LinearLayout>
 	</ScrollView>

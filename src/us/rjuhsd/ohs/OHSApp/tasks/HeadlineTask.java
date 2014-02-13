@@ -49,13 +49,11 @@ public class HeadlineTask extends AsyncTask<Void, ArticleWrapper, Void>{
 }
 
 class ArticleWrapper {
-	public Element articleSource;
 	public Elements articleHeader;
 	public Elements articleText;
 	public String urlString;
 
 	public ArticleWrapper(Element el) {
-		articleSource = el;
 		articleHeader = el.select("h1.ui-article-title span");
 		articleText = el.select("p.ui-article-description");
 		urlString = el.select("h1.ui-article-title a").attr("abs:href");

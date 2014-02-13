@@ -13,12 +13,11 @@ import java.util.ArrayList;
 public class GradesArrayAdapter extends ArrayAdapter<SchoolClass>{
 
 	private final Context context;
-	private final int layoutResourceId;
+	private static final int layoutResourceId = R.layout.grades_list_item;
 	private final ArrayList<SchoolClass> data;
 
-	public GradesArrayAdapter(Context context, int layoutResourceId, ArrayList<SchoolClass> objects) {
+	public GradesArrayAdapter(Context context, ArrayList<SchoolClass> objects) {
 		super(context, layoutResourceId, objects);
-		this.layoutResourceId = layoutResourceId;
 		this.context = context;
 		this.data = objects;
 	}
@@ -36,7 +35,6 @@ public class GradesArrayAdapter extends ArrayAdapter<SchoolClass>{
 			holder = new GradesHolder();
 			holder.txtSecond = (TextView)row.findViewById(R.id.txtSecond);
 			holder.txtMain = (TextView)row.findViewById(R.id.txtMain);
-
 			row.setTag(holder);
 		}
 		else

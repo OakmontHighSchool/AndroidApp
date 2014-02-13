@@ -10,4 +10,7 @@
 	<string name="school_username">School Username</string>
 	<string name="auto_login">Automatically login to OHS wifi</string>
 	<string name="activity_grades_detail_detail">Details of assignment</string>
+	<string name="refresh">Refresh</string>
+	<string name="error">Error</string>
+	<string name="time_left">Time Left</string>
 </resources>

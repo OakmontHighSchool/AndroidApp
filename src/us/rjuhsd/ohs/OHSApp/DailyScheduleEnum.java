@@ -1,7 +1,7 @@
 package us.rjuhsd.ohs.OHSApp;
 
 @SuppressWarnings("UnusedDeclaration")
-public enum DailySchedualEnum {
+public enum DailyScheduleEnum {
 	INTERVENTION(new int[][]{{7, 45}, {9, 5}, {9, 40}, {11, 11}, {0, 0}, {11, 41}, {12, 38}, {13, 8}, {14, 35}}),
 	OFF(new int[][]{{0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}});
 
@@ -15,7 +15,7 @@ public enum DailySchedualEnum {
 	public int[] e3;
 	public int[] e4;
 	public int[][] originalInput;
-	DailySchedualEnum(int[][] args) {
+	DailyScheduleEnum(int[][] args) {
 		this.originalInput = args;
 		this.ss = args[0];
 		this.e1 = args[1];
