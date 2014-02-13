@@ -80,6 +80,9 @@ public class MainActivity extends Activity {
 			case R.id.launch_preferences:
 				myIntent = new Intent(this,Preferences.class );
 				break;
+			case R.id.main_refresh_button:
+				MainActivity.updateHeadlines(this);
+				break;
 		}
 		if(myIntent!=null) {
 			startActivity(myIntent);
