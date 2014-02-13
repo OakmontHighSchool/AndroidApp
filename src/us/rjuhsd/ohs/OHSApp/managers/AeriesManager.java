@@ -28,24 +28,28 @@ public class AeriesManager {
 
 	private ArrayList<SchoolClass> grades;
 
-	public void getGradesOverview(final Activity activity) {
-		if(grades != null) {
+	public void getGradesOverview(Activity activity, boolean forceUpdate) {
+		if(grades != null && !forceUpdate) {
 			gradesTask.inflateList(activity);
 		} else {
-			if(!Tools.isConnected(activity)) {
-				AlertDialog.Builder adb = new AlertDialog.Builder(activity);
-				adb.setTitle("No internet!");
-				adb.setMessage("Your phone is not connected to the internet. Please try again when you are connected");
-				adb.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						activity.finish();
-					}
-				});
-				adb.show();
+			getGradesOverview(activity);
+		}
+	}
 
-			} else {
-				startLoadingGrades(activity);
-			}
+	private void getGradesOverview(final Activity activity) {
+		if(!Tools.isConnected(activity)) {
+			AlertDialog.Builder adb = new AlertDialog.Builder(activity);
+			adb.setTitle("No internet!");
+			adb.setMessage("Your phone is not connected to the internet. Please try again when you are connected");
+			adb.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					activity.finish();
+				}
+			});
+			adb.show();
+
+		} else {
+			startLoadingGrades(activity);
 		}
 	}
 
