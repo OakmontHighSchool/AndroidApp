@@ -77,6 +77,7 @@ public class OHSPeriodClock {
 			int hLeft = targetH - h;
 			int mLeft = targetM - m;
 
+			//TODO: Add exception for one hour and less than 10 minuets
 			if (mLeft >= 0) {
 				t3.setText(hLeft + ":" + mLeft);
 			} else {
