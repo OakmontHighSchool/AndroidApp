@@ -1,33 +1,29 @@
 package us.rjuhsd.ohs.OHSApp;
 
 import android.app.Activity;
-import android.content.Context;
 import android.widget.LinearLayout;
 
 public class OHSArticleHandler {
 	private OHSArticleHandler() {}
 
-	private static Context c;
+	private static Activity a;
 	private static LinearLayout ll;
 
 	public static void addArticle(final String text1, final String text2, final String url) {
-		Activity a = (Activity) c;
 		a.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				new OHSArticle(text1, text2, ll, c, url);
+				new OHSArticle(text1, text2, ll, a, url);
 			}
 		});
 	}
 
-	public static void setContext(Context cn) {
-		c = cn;
-		Activity a = (Activity) c;
+	public static void setContext(Activity ac) {
+		a = ac;
 		ll = (LinearLayout) a.findViewById(R.id.OHSNoteViewer);
 	}
 
 	public static void clearNotifications() {
-		Activity a = (Activity) c;
 		a.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
