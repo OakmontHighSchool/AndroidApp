@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.*;
-import us.rjuhsd.ohs.OHSApp.https.Tools;
 import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
 
 import java.util.Timer;

@@ -1,11 +1,15 @@
-package us.rjuhsd.ohs.OHSApp.https;
+package us.rjuhsd.ohs.OHSApp;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import org.apache.http.client.HttpClient;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
+import us.rjuhsd.ohs.OHSApp.https.FixedSSLSocketFactory;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -13,8 +17,19 @@ import javax.net.ssl.X509TrustManager;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
-public class HttpsClientFactory {
-	private HttpsClientFactory() {} //No instantiate for you
+public class Tools {
+	private Tools() {} //No instantiate
+
+	public static boolean isConnected(Context context) {
+		try {
+			ConnectivityManager cm = (ConnectivityManager)context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+			return (activeNetwork!=null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	public static DefaultHttpClient sslClient() {
 		HttpClient client = new DefaultHttpClient();
