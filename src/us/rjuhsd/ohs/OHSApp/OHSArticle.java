@@ -15,6 +15,7 @@ import us.rjuhsd.ohs.OHSApp.activities.MainActivity;
 
 public class OHSArticle {
 	public static final String ERROR_MESSAGE = "ERROR_LOADING";
+	public static final String LOADING_MESSAGE = "LOADING";
 
 	private LinearLayout ll;
 	private TextView mtv;
@@ -46,6 +47,8 @@ public class OHSArticle {
 			public void onClick(View view) {
 				if(url.equals(ERROR_MESSAGE)) {
 					MainActivity.updateHeadlines(c);
+				} else if(url.equals(LOADING_MESSAGE)) {
+					//Don't do anything for this
 				} else if(!url.equals("")) {
 					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 					c.startActivity(browserIntent);

@@ -9,6 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import us.rjuhsd.ohs.OHSApp.OHSArticle;
 import us.rjuhsd.ohs.OHSApp.OHSArticleHandler;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class HeadlineTask extends AsyncTask<Void, ArticleWrapper, Void>{
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		OHSArticleHandler.addArticle("Loading articles...", "Please wait while articles are loaded from the OHS website", "");
+		OHSArticleHandler.addArticle("Loading articles...", "Please wait while articles are loaded from the OHS website", OHSArticle.LOADING_MESSAGE);
 	}
 
 	@Override
