@@ -27,14 +27,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GradesTask extends AsyncTask<Void, Void, Void> {
+public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 	private Activity activity;
 	private ProgressDialog progressDialog;
 	private AeriesManager aeriesManager;
 	private ArrayList<SchoolClass> grades;
 	private String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
 
-	public GradesTask(Activity activity, AeriesManager aeriesManager) {
+	public ClassesOverviewTask(Activity activity, AeriesManager aeriesManager) {
 		this.activity = activity;
 		this.aeriesManager = aeriesManager;
 	}

@@ -7,7 +7,7 @@ import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.OHSApplication;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
-import us.rjuhsd.ohs.OHSApp.tasks.GradesDetailTask;
+import us.rjuhsd.ohs.OHSApp.tasks.ClassDetailTask;
 
 public class ClassDetailActivity extends Activity {
 	public SchoolClass sClass;
@@ -26,9 +26,9 @@ public class ClassDetailActivity extends Activity {
 
 	private void updateAssignments(boolean forceUpdate) {
 		if(sClass.assignments.isEmpty() || forceUpdate) {
-			new GradesDetailTask(this).execute(sClass);
+			new ClassDetailTask(this).execute(sClass);
 		} else {
-			new GradesDetailTask(this).inflateList(this);
+			new ClassDetailTask(this).inflateList(this);
 		}
 	}
 

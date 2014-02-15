@@ -10,7 +10,7 @@ import org.apache.http.client.HttpClient;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.https.HttpsClientFactory;
 import us.rjuhsd.ohs.OHSApp.https.Tools;
-import us.rjuhsd.ohs.OHSApp.tasks.GradesTask;
+import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;
 
 import java.util.ArrayList;
 
@@ -24,13 +24,13 @@ public class AeriesManager {
 
 	private Activity activity;
 
-	private GradesTask gradesTask;
+	private ClassesOverviewTask classesTask;
 
 	private ArrayList<SchoolClass> grades;
 
 	public void getGradesOverview(Activity activity, boolean forceUpdate) {
 		if(grades != null && !forceUpdate) {
-			gradesTask.inflateList(activity);
+			classesTask.inflateList(activity);
 		} else {
 			getGradesOverview(activity);
 		}
@@ -55,8 +55,8 @@ public class AeriesManager {
 
 	private void startLoadingGrades(final Activity activity) {
 		this.activity = activity;
-		gradesTask = new GradesTask(activity, this);
-		gradesTask.execute();
+		classesTask = new ClassesOverviewTask(activity, this);
+		classesTask.execute();
 	}
 
 	public static String[] aeriesLoginData(Context context) {
