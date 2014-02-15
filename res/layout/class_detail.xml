@@ -16,7 +16,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/error"
-				android:id="@+id/grades_detail_className"
+				android:id="@+id/class_detail_className"
 				android:textColor="#000000"
 				android:textStyle="bold"
 				android:textSize="30sp"/>
@@ -24,14 +24,14 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/error"
-				android:id="@+id/grades_detail_percentage"
+				android:id="@+id/class_detail_percentage"
 				android:textColor="#000000"
 				android:textSize="22sp"/>
 		<Button
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/refresh"
-				android:id="@+id/classes_detail_refresh_button"
+				android:id="@+id/class_detail_refresh_button"
 				android:layout_gravity="right"
 				android:layout_alignParentRight="true"
 				android:onClick="onClick"/>
@@ -39,5 +39,5 @@
 	<ListView
 			android:layout_width="match_parent"
 			android:layout_height="fill_parent"
-			android:id="@+id/grades_detail_assign_list" />
+			android:id="@+id/class_detail_assign_list" />
 </LinearLayout>

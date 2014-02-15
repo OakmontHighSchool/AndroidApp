@@ -147,7 +147,7 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 
 	public void inflateList(final Activity act) {
 		final ArrayAdapter adapter = new GradesArrayAdapter(activity, grades);
-		final ListView listview = (ListView) act.findViewById(R.id.list_view);
+		final ListView listview = (ListView) act.findViewById(R.id.classes_overview_list_view);
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override

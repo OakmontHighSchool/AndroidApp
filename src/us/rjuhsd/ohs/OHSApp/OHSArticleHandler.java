@@ -20,7 +20,7 @@ public class OHSArticleHandler {
 
 	public static void setContext(Activity ac) {
 		a = ac;
-		ll = (LinearLayout) a.findViewById(R.id.OHSNoteViewer);
+		ll = (LinearLayout) a.findViewById(R.id.main_article_list_view);
 	}
 
 	public static void clearNotifications() {

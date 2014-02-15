@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:orientation="vertical"
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_height="fill_parent"
 		android:background="#FFFFFF">
 	<RelativeLayout
 			android:layout_width="fill_parent"
@@ -16,26 +17,25 @@
 				android:layout_height="wrap_content"
 				android:layout_alignParentTop="true"
 				android:layout_alignParentLeft="true"
-				android:baselineAligned="true"
-				android:id="@+id/linearLayout">
+				android:baselineAligned="true">
 			<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/time_left"
-					android:id="@+id/currentPeriod"
+					android:id="@+id/main_current_period"
 					android:textColor="#000000"
 					android:textSize="18sp"
 					android:layout_marginTop="10dp"/>
 			<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:id="@+id/TimeText1"
+					android:id="@+id/main_time_text_1"
 					android:textColor="#000000"
 					android:textSize="18sp"/>
 			<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:id="@+id/TimeText2"
+					android:id="@+id/main_time_text_2"
 					android:textColor="#000000"
 					android:textSize="18sp"/>
 		</LinearLayout>
@@ -43,7 +43,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/activity_grades"
-				android:id="@+id/launch_grades"
+				android:id="@+id/main_launch_grades"
 				android:onClick="onClick"
 				android:layout_alignParentRight="true"
 				android:textSize="18sp"/>
@@ -51,18 +51,18 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/activity_preferences"
-				android:id="@+id/launch_preferences"
+				android:id="@+id/main_launch_preferences"
 				android:onClick="onClick"
 				android:layout_alignParentBottom="false"
-				android:layout_below="@+id/launch_grades"
-				android:layout_alignRight="@+id/launch_grades"
+				android:layout_below="@+id/main_launch_grades"
+				android:layout_alignRight="@+id/main_launch_grades"
 				android:textSize="18sp"/>
 		<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/time_left"
-				android:id="@+id/timeLeft"
-				android:layout_above="@+id/timeLeftText"
+				android:id="@+id/main_time_left"
+				android:layout_above="@+id/main_time_left_text"
 				android:layout_centerHorizontal="true"
 				android:singleLine="false"
 				android:textColor="#000000"
@@ -72,7 +72,7 @@
 		<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:id="@+id/timeLeftText"
+				android:id="@+id/main_time_left_text"
 				android:layout_centerVertical="true"
 				android:layout_centerHorizontal="true"
 				android:textColor="#000000"/>
@@ -82,7 +82,7 @@
 				android:text="@string/refresh"
 				android:id="@+id/main_refresh_button"
 				android:layout_gravity="right"
-				android:layout_below="@+id/launch_preferences"
+				android:layout_below="@+id/main_launch_preferences"
 				android:layout_alignParentRight="true"
 				android:onClick="onClick"/>
 	</RelativeLayout>
@@ -90,12 +90,12 @@
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
 			android:layout_alignParentBottom="true"
-			android:id="@+id/scrollView">
+			android:id="@+id/main_scroll_view">
 		<LinearLayout
 				android:orientation="vertical"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:id="@id/OHSNoteViewer">
+				android:id="@id/main_article_list_view">
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

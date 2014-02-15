@@ -141,7 +141,7 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 
 	public void inflateList(final Activity act) {
 		final ArrayAdapter adapter = new GradesDetailArrayAdapter(activity, ((ClassDetailActivity)act).sClass.assignments);
-		final ListView listview = (ListView) act.findViewById(R.id.grades_detail_assign_list);
+		final ListView listview = (ListView) act.findViewById(R.id.class_detail_assign_list);
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override

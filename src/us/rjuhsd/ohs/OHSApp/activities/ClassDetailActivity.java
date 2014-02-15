@@ -33,15 +33,15 @@ public class ClassDetailActivity extends Activity {
 	}
 
 	private void fillViews() {
-		final TextView classNameView = (TextView) findViewById(R.id.grades_detail_className);
+		final TextView classNameView = (TextView) findViewById(R.id.class_detail_className);
 		classNameView.setText("Class: "+sClass.className);
-		final TextView percentageView = (TextView) findViewById(R.id.grades_detail_percentage);
+		final TextView percentageView = (TextView) findViewById(R.id.class_detail_percentage);
 		percentageView.setText("Percentage: "+sClass.percentage+"%");
 	}
 
 	public void onClick(View view) {
 		switch (view.getId()) {
-			case R.id.classes_detail_refresh_button:
+			case R.id.class_detail_refresh_button:
 				updateAssignments(true);
 				break;
 		}

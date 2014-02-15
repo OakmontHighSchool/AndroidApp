@@ -73,10 +73,10 @@ public class MainActivity extends Activity {
 	public void onClick(View view) {
 		Intent myIntent = null;
 		switch (view.getId()) {
-			case R.id.launch_grades:
+			case R.id.main_launch_grades:
 				myIntent = new Intent(this,ClassesOverviewActivity.class );
 				break;
-			case R.id.launch_preferences:
+			case R.id.main_launch_preferences:
 				myIntent = new Intent(this,Preferences.class );
 				break;
 			case R.id.main_refresh_button:
@@ -89,10 +89,10 @@ public class MainActivity extends Activity {
 	}
 
 	public void getAllByID() {
-		TimerText1 = (TextView) this.findViewById(R.id.TimeText1);
-		TimerText2 = (TextView) this.findViewById(R.id.TimeText2);
-		TimerText3 = (TextView) this.findViewById(R.id.timeLeftText);
-		StaticText1 = (TextView) this.findViewById(R.id.timeLeft);
-		StaticText2 = (TextView) this.findViewById(R.id.currentPeriod);
+		TimerText1 = (TextView) this.findViewById(R.id.main_time_text_1);
+		TimerText2 = (TextView) this.findViewById(R.id.main_time_text_2);
+		TimerText3 = (TextView) this.findViewById(R.id.main_time_left_text);
+		StaticText1 = (TextView) this.findViewById(R.id.main_time_left);
+		StaticText2 = (TextView) this.findViewById(R.id.main_current_period);
 	}
 }
