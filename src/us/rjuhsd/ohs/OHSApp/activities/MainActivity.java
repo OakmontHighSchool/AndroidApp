@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
 		if(Tools.isConnected(context)) {
 			new HeadlineTask().execute();
 		} else {
-			OHSArticleHandler.addArticle("Error loading articles", "Sorry, your device is not connected to the internet. Click to try again", OHSNotification.ERROR_MESSAGE);
+			OHSArticleHandler.addArticle("Error loading articles", "Sorry, your device is not connected to the internet. Click to try again", OHSArticle.ERROR_MESSAGE);
 		}
 	}
 

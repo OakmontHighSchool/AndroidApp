@@ -15,7 +15,7 @@ public class OHSArticleHandler {
 		a.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				new OHSNotification(text1, text2, ll, c, url);
+				new OHSArticle(text1, text2, ll, c, url);
 			}
 		});
 	}

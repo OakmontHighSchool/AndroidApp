@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.activities.MainActivity;
 
-public class OHSNotification {
+public class OHSArticle {
 	public static final String ERROR_MESSAGE = "ERROR_LOADING";
 
 	private LinearLayout ll;
@@ -21,7 +21,7 @@ public class OHSNotification {
 	private TextView dtv;
 	private View horizontal;
 
-	public  OHSNotification(String MainText, String DetailText, LinearLayout L, final Context c, final String url) {
+	public OHSArticle(String MainText, String DetailText, LinearLayout L, final Context c, final String url) {
 		this.ll = new LinearLayout(c);
 		this.horizontal = new View(c);
 		this.mtv = new TextView(c);
