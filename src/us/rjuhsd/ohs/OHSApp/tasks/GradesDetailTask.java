@@ -55,7 +55,7 @@ public class GradesDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 	@Override
 	protected Void doInBackground(SchoolClass... schoolClasses) {
 		try {
-			//Navigate to the grades_detail page, used to rip the class IDs for further navigation
+			//Navigate to the class_detail page, used to rip the class IDs for further navigation
 			HttpResponse response_main = aeriesManager.client.execute(new HttpGet(AeriesManager.GRADES_DETAIL));
 
 			Document doc_main = Jsoup.parse(response_main.getEntity().getContent(), null, AeriesManager.GRADES_DETAIL);

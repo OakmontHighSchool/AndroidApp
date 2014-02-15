@@ -16,7 +16,7 @@ public class ClassDetailActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		int id = getIntent().getIntExtra("schoolClassId", -1);
-		setContentView(R.layout.grades_detail);
+		setContentView(R.layout.class_detail);
 		if(id != -1) {
 			sClass = ((OHSApplication)getApplication()).aeriesManager.getById(id);
 		}

@@ -10,7 +10,7 @@ public class ClassesOverviewActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.grades);
+		setContentView(R.layout.classes_overview);
 		((OHSApplication)getApplication()).aeriesManager.getGradesOverview(this,false);
 	}
 

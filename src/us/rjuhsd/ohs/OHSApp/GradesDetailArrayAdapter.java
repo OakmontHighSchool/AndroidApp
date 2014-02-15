@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class GradesDetailArrayAdapter extends ArrayAdapter<Assignment> {
 	private final Context context;
-	private static final int layoutResourceId = R.layout.grades_list_item;
+	private static final int layoutResourceId = R.layout.two_line_list_item;
 	private final ArrayList<Assignment> data;
 
 	public GradesDetailArrayAdapter(Context context, ArrayList<Assignment> objects) {
