@@ -2,6 +2,7 @@ package us.rjuhsd.ohs.OHSApp.tasks;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
@@ -28,21 +29,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
-	private Activity activity;
+	protected Context context;
 	private ProgressDialog progressDialog;
-	private AeriesManager aeriesManager;
-	private ArrayList<SchoolClass> grades;
+	protected AeriesManager aeriesManager;
+	protected ArrayList<SchoolClass> grades;
 	private String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
 
-	public ClassesOverviewTask(Activity activity, AeriesManager aeriesManager) {
-		this.activity = activity;
+	public ClassesOverviewTask(Context context, AeriesManager aeriesManager) {
+		this.context = context;
 		this.aeriesManager = aeriesManager;
 	}
 
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		progressDialog = new ProgressDialog(activity);
+		progressDialog = new ProgressDialog(context);
 		progressDialog.setMessage("Loading your classes. Please Wait");
 		progressDialog.setIndeterminate(false);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -54,7 +55,7 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 	protected Void doInBackground(Void... voids) {
 		grades = new ArrayList<SchoolClass>();
 		try {
-			String[] loginData = AeriesManager.aeriesLoginData(activity);
+			String[] loginData = AeriesManager.aeriesLoginData(context);
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("portalAccountUsername", loginData[0]));
 			nvps.add(new BasicNameValuePair("portalAccountPassword", loginData[1]));
@@ -141,12 +142,12 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 			return;
 		}
 		aeriesManager.setSchoolClasses(grades);
-		inflateList(activity);
+		inflateList((Activity)context);
 		progressDialog.dismiss();
 	}
 
 	public void inflateList(final Activity act) {
-		final ArrayAdapter adapter = new GradesArrayAdapter(activity, grades);
+		final ArrayAdapter adapter = new GradesArrayAdapter(act, grades);
 		final ListView listview = (ListView) act.findViewById(R.id.classes_overview_list_view);
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
