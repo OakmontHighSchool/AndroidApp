@@ -7,11 +7,11 @@
 	<Button
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:id="@+id/refresh"
+			android:id="@+id/appwidget_classes_overview_refresh"
 	        android:text="@string/refresh" />
 	<LinearLayout
 			android:orientation="vertical"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
-			android:id="@+id/classes_view" />
+			android:id="@+id/appwidget_classes_view" />
 </LinearLayout>

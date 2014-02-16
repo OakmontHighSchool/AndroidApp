@@ -45,9 +45,9 @@ public class ClassesOverviewWidgetTask extends ClassesOverviewTask {
 			Intent intent = new Intent(context, ClassesOverviewActivity.class);
 			intent.putExtra("schoolClassId",sc.ID);
 			PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-			views.setOnClickPendingIntent(R.id.classes_view, pendingIntent);
+			views.setOnClickPendingIntent(R.id.appwidget_classes_view, pendingIntent);
 
-			views.addView(R.id.classes_view,rv);
+			views.addView(R.id.appwidget_classes_view,rv);
 		}
 	}
 }

@@ -4,4 +4,4 @@
                     android:minWidth="200dp"
                     android:minHeight="200dp"
                     android:updatePeriodMillis="86400000"
-                    android:initialLayout="@layout/example_appwidget" />
+                    android:initialLayout="@layout/classes_overview_appwidget" />
