@@ -66,9 +66,7 @@ public class AeriesManager {
 		return toReturn;
 	}
 
-	public SchoolClass getById(int id) {
-		return grades.get(id);
-	}
+	public SchoolClass getById(int id) { return grades.get(id); }
 
 	public void setSchoolClasses(ArrayList<SchoolClass> grades) {
 		this.grades = grades;
