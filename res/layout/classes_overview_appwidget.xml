@@ -9,6 +9,7 @@
 			android:layout_height="wrap_content"
 			android:id="@+id/appwidget_classes_overview_refresh"
 	        android:text="@string/refresh" />
+	<ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/appwidget_classes_progress"/>
 	<LinearLayout
 			android:orientation="vertical"
 			android:layout_width="fill_parent"

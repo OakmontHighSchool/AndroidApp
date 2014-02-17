@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 import android.widget.RemoteViews;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
@@ -27,12 +28,17 @@ public class ClassesOverviewWidgetTask extends ClassesOverviewTask {
 	@Override
 	protected void onPreExecute() {
 		//Override to not inherit the progress dialog
+		views.removeAllViews(R.id.appwidget_classes_view);
+
+		views.setViewVisibility(R.id.appwidget_classes_progress, View.VISIBLE);
+
+		appWidgetManager.updateAppWidget(appWidgetId, views);
 	}
 
 	@Override
 	protected void onPostExecute(Void v) {
 		inflateList();
-		//Update the widget
+		views.setViewVisibility(R.id.appwidget_classes_progress, View.GONE);
 		appWidgetManager.updateAppWidget(appWidgetId, views);
 	}
 

@@ -39,6 +39,7 @@
 	    <receiver android:name=".ClassesOverviewAppWidgetProvider" >
 		    <intent-filter>
 			    <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+			    <action android:name="us.rjuhsd.ohs.OHSApp.RELOAD_CLASSES_WIDGET" />
 		    </intent-filter>
 		    <meta-data android:name="android.appwidget.provider"
 		               android:resource="@xml/classes_overview_appwidget_info" />
