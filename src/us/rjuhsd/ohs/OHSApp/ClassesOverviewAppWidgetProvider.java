@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViews;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewWidgetTask;
 
@@ -19,7 +18,6 @@ public class ClassesOverviewAppWidgetProvider extends AppWidgetProvider {
 		if(RELOAD_CLASSES_WIDGET.equals(intent.getAction())) {
 			int appWidgetId = intent.getIntExtra("appWidgetID", -1);
 			if(appWidgetId != -1) {
-				Log.d("Dragon",appWidgetId+"");
 				doUpdate(context, AppWidgetManager.getInstance(context), appWidgetId);
 			}
 		}
