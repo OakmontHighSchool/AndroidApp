@@ -81,7 +81,7 @@ public class AeriesManager {
 		AlertDialog.Builder adb = new AlertDialog.Builder(activity)
 				.setTitle("Login Failure!")
 				.setMessage(errorText)
-				.setNegativeButton(R.string.back, new DialogInterface.OnClickListener() {
+				.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						activity.finish();
 					}
