@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import org.apache.http.client.HttpClient;
+import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.Tools;
+import us.rjuhsd.ohs.OHSApp.activities.Preferences;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;
 
 import java.util.ArrayList;
@@ -66,7 +69,9 @@ public class AeriesManager {
 		return toReturn;
 	}
 
-	public SchoolClass getById(int id) { return grades.get(id); }
+	public SchoolClass getById(int id) {
+		return grades.get(id);
+	}
 
 	public void setSchoolClasses(ArrayList<SchoolClass> grades) {
 		this.grades = grades;
@@ -79,6 +84,11 @@ public class AeriesManager {
 				.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						activity.finish();
+					}
+				})
+				.setPositiveButton(R.string.goto_settings, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						activity.startActivity(new Intent(activity, Preferences.class));
 					}
 				});
 		adb.show();

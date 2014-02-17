@@ -13,4 +13,5 @@
 	<string name="refresh">Refresh</string>
 	<string name="error">Error</string>
 	<string name="time_left">Time Left</string>
+	<string name="goto_settings">Go to settings</string>
 </resources>
