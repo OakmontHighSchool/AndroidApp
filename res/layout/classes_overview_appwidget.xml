@@ -15,6 +15,13 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:id="@+id/appwidget_classes_progress"/>
+		<TextView
+				android:layout_centerInParent="true"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+		        android:text="@string/error"
+				android:id="@+id/appwidget_classes_error"
+				android:visibility="gone"/>
 	</RelativeLayout>
 	<LinearLayout
 			android:orientation="vertical"

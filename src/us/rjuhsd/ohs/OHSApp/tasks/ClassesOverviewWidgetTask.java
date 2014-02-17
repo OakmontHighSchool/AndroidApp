@@ -31,12 +31,24 @@ public class ClassesOverviewWidgetTask extends ClassesOverviewTask {
 		views.removeAllViews(R.id.appwidget_classes_view);
 
 		views.setViewVisibility(R.id.appwidget_classes_progress, View.VISIBLE);
+		views.setViewVisibility(R.id.appwidget_classes_error, View.GONE);
 
 		appWidgetManager.updateAppWidget(appWidgetId, views);
 	}
 
 	@Override
+	protected void onCancelled() {
+		views.setViewVisibility(R.id.appwidget_classes_error, View.VISIBLE);
+		views.setViewVisibility(R.id.appwidget_classes_progress, View.GONE);
+		appWidgetManager.updateAppWidget(appWidgetId, views);
+	}
+
+	@Override
 	protected void onPostExecute(Void v) {
+		if(isCancelled()) {
+			onCancelled();
+			return;
+		}
 		inflateList();
 		views.setViewVisibility(R.id.appwidget_classes_progress, View.GONE);
 		appWidgetManager.updateAppWidget(appWidgetId, views);
