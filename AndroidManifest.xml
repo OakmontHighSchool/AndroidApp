@@ -25,6 +25,9 @@
         <activity android:name=".activities.Preferences"
                   android:label="@string/activity_preferences">
         </activity>
+	    <activity android:name=".activities.DebugPreferences"
+	              android:label="@string/activity_debug_preferences">
+	    </activity>
 	    <activity android:name=".activities.ClassDetailActivity"
 	              android:label="@string/activity_grades_detail">
 	    </activity>

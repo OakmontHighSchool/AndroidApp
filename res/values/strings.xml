@@ -15,4 +15,8 @@
 	<string name="time_left">Time Left</string>
 	<string name="goto_settings">Go to settings</string>
 	<string name="back">Back</string>
+	<string name="activity_debug_preferences">Debug Preferences</string>
+	<string name="version">Version</string>
+	<string name="clear_data">Clear all data</string>
+	<string name="clear_data_info">This will clear all data, permanently</string>
 </resources>
