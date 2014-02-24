@@ -19,4 +19,10 @@
 	<string name="version">Version</string>
 	<string name="clear_data">Clear all data</string>
 	<string name="clear_data_info">This will clear all data, permanently</string>
+
+    <string-array name="drawer_list_values">
+        <item>First</item>
+        <item>Second</item>
+        <item>Third</item>
+    </string-array>
 </resources>
