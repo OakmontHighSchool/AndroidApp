@@ -35,6 +35,7 @@ public class AeriesManager {
 
 	private static String CLASSES_FILENAME = "classes.json";
 	private static int CURRENT_FILE_VERSION = 1;
+	private long lastUpdate;
 
 	public HttpClient client = Tools.sslClient();
 	private Activity activity;
@@ -62,6 +63,7 @@ public class AeriesManager {
 				gradesJson.put(sc.toJSON());
 			}
 			json.put("version",CURRENT_FILE_VERSION);
+			json.put("lastUpdate",lastUpdate);
 			json.put("classes", gradesJson);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -70,7 +72,6 @@ public class AeriesManager {
 			FileOutputStream fos = context.openFileOutput(CLASSES_FILENAME, Context.MODE_PRIVATE);
 			fos.write(json.toString().getBytes());
 			fos.close();
-			Log.d("OutDragon",json.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -81,7 +82,6 @@ public class AeriesManager {
 			FileInputStream fis = context.openFileInput(CLASSES_FILENAME);
 			String input = Tools.convertStreamToString(fis);
 			fis.close();
-			Log.d("InDragon",input);
 			JSONObject json = new JSONObject(input);
 			parseData(json);
 		} catch (Exception e) {
@@ -99,6 +99,7 @@ public class AeriesManager {
 					for(int i=0;i<gradesJson.length();i++) {
 						grades.add(SchoolClass.fromJSON(gradesJson.getJSONObject(i)));
 					}
+					lastUpdate = json.getLong("lastUpdate");
 					break;
 			}
 		} catch (Exception e) {
@@ -137,7 +138,8 @@ public class AeriesManager {
 		return grades.get(id);
 	}
 
-	public void setSchoolClasses(ArrayList<SchoolClass> grades) {
+	public void setSchoolClasses(ArrayList<SchoolClass> grades){
+		lastUpdate = System.currentTimeMillis() / 1000L;
 		this.grades = grades;
 	}
 
@@ -160,7 +162,6 @@ public class AeriesManager {
 
 	public void destroyAll(Context context) {
 		grades = null;
-
 	}
 
 	public void inflateList(final Activity act) {
