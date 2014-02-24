@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void updateUI() {
-		ohspc.timeLeft();
+		//ohspc.timeLeft();
 	}
 
 	private Runnable UI_UPDATE = new Runnable() {
