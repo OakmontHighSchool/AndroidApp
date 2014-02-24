@@ -15,4 +15,10 @@
 	<string name="time_left">Time Left</string>
 	<string name="goto_settings">Go to settings</string>
 	<string name="back">Back</string>
+
+    <string-array name="drawer_list_values">
+        <item>First</item>
+        <item>Second</item>
+        <item>Third</item>
+    </string-array>
 </resources>

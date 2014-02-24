@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.*;
 import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
@@ -21,6 +24,8 @@ public class MainActivity extends Activity {
 	private TextView StaticText2;
 	private OHSPeriodClock ohspc;
 	private Timer timer;
+	private DrawerLayout drawerLayout;
+	private ListView drawerList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,8 @@ public class MainActivity extends Activity {
 		this.getAllByID();
 		OHSArticleHandler.setContext(this);
 		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailyScheduleEnum.INTERVENTION);
+
+		drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, getResources().getStringArray(R.array.drawer_list_values)));
 
 		timer = new Timer();
 		timer.schedule(new TimerTask() {
@@ -94,5 +101,8 @@ public class MainActivity extends Activity {
 		TimerText3 = (TextView) this.findViewById(R.id.main_time_left_text);
 		StaticText1 = (TextView) this.findViewById(R.id.main_time_left);
 		StaticText2 = (TextView) this.findViewById(R.id.main_current_period);
+
+		drawerLayout = (DrawerLayout) this.findViewById(R.id.drawer_layout);
+		drawerList = (ListView) this.findViewById(R.id.drawer_list);
 	}
 }
