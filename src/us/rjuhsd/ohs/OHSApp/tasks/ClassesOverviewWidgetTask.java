@@ -18,7 +18,7 @@ public class ClassesOverviewWidgetTask extends ClassesOverviewTask {
 	private RemoteViews views;
 
 	public ClassesOverviewWidgetTask(Context context, RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId) {
-		super(context, new AeriesManager());
+		super(context, new AeriesManager(context));
 		this.context = context;
 		this.views = views;
 		this.appWidgetManager = appWidgetManager;
@@ -40,6 +40,8 @@ public class ClassesOverviewWidgetTask extends ClassesOverviewTask {
 		inflateList();
 		views.setViewVisibility(R.id.appwidget_classes_progress, View.GONE);
 		appWidgetManager.updateAppWidget(appWidgetId, views);
+		aeriesManager.setSchoolClasses(grades);
+		aeriesManager.writeAllData(context);
 	}
 
 	public void inflateList() {

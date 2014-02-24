@@ -3,12 +3,7 @@ package us.rjuhsd.ohs.OHSApp.tasks;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -18,10 +13,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import us.rjuhsd.ohs.OHSApp.GradesArrayAdapter;
-import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
-import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 import java.io.IOException;
@@ -142,22 +134,8 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 			return;
 		}
 		aeriesManager.setSchoolClasses(grades);
-		inflateList((Activity)context);
+		aeriesManager.inflateList((Activity) context);
 		progressDialog.dismiss();
-	}
-
-	public void inflateList(final Activity act) {
-		final ArrayAdapter adapter = new GradesArrayAdapter(act, grades);
-		final ListView listview = (ListView) act.findViewById(R.id.classes_overview_list_view);
-		listview.setAdapter(adapter);
-		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				Intent gradeDetailIntent = new Intent(act, ClassDetailActivity.class);
-				gradeDetailIntent.putExtra("schoolClassId",arg2);
-				act.startActivity(gradeDetailIntent);
-			}
-
-		});
+		aeriesManager.writeAllData(context);
 	}
 }

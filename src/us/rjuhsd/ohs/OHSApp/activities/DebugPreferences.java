@@ -1,6 +1,5 @@
 package us.rjuhsd.ohs.OHSApp.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -22,7 +21,7 @@ public class DebugPreferences extends PreferenceActivity {
 		try {
 			String version = this.getPackageManager().getPackageInfo(this.getPackageName(),0).versionName;
 			findPreference("debug_version").setSummary(version);
-		} catch (PackageManager.NameNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -31,7 +30,7 @@ public class DebugPreferences extends PreferenceActivity {
 		clearAll.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				new AeriesManager().destroyAll(context);
+				new AeriesManager(context).destroyAll(context);
 				return true;
 			}
 		});

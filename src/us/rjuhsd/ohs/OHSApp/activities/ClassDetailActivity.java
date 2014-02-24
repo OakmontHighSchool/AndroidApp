@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import us.rjuhsd.ohs.OHSApp.OHSApplication;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassDetailTask;
 
 public class ClassDetailActivity extends Activity {
@@ -18,7 +18,7 @@ public class ClassDetailActivity extends Activity {
 		int id = getIntent().getIntExtra("schoolClassId", -1);
 		setContentView(R.layout.class_detail);
 		if(id != -1) {
-			sClass = ((OHSApplication)getApplication()).aeriesManager.getById(id);
+			sClass = new AeriesManager(this).getById(id);
 		}
 		updateAssignments(false);
 		fillViews();

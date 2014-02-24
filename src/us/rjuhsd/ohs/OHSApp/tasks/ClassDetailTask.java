@@ -38,7 +38,7 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 
 	public ClassDetailTask(Activity activity) {
 		this.activity = activity;
-		this.aeriesManager = ((OHSApplication)activity.getApplication()).aeriesManager;
+		this.aeriesManager = new AeriesManager(activity);
 	}
 
 	@Override
