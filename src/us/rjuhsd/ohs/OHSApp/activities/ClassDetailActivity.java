@@ -25,7 +25,7 @@ public class ClassDetailActivity extends Activity {
 	}
 
 	private void updateAssignments(boolean forceUpdate) {
-		if(sClass.assignments.isEmpty() || forceUpdate) {
+		if(sClass.assignments.isEmpty() && !forceUpdate) {
 			new ClassDetailTask(this).execute(sClass);
 		} else {
 			new ClassDetailTask(this).inflateList(this);

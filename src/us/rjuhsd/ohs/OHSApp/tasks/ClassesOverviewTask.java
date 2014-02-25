@@ -48,21 +48,9 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 		grades = new ArrayList<SchoolClass>();
 		try {
 			String[] loginData = AeriesManager.aeriesLoginData(context);
-			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-			nvps.add(new BasicNameValuePair("portalAccountUsername", loginData[0]));
-			nvps.add(new BasicNameValuePair("portalAccountPassword", loginData[1]));
-			nvps.add(new BasicNameValuePair("checkCookiesEnabled", "true"));
-			nvps.add(new BasicNameValuePair("checkSilverlightSupport", "true"));
-			nvps.add(new BasicNameValuePair("checkMobileDevice", "false"));
-			nvps.add(new BasicNameValuePair("checkStandaloneMode", "false"));
-			nvps.add(new BasicNameValuePair("checkTabletDevice", "false"));
+			HttpResponse response = aeriesManager.login(context);
 
-			HttpPost request = new HttpPost(AeriesManager.LOGIN_URL);
-			request.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
-			HttpResponse response = aeriesManager.client.execute(request);
-
-
-			Document doc = Jsoup.parse(response.getEntity().getContent(), null, request.getURI().toString());
+			Document doc = Jsoup.parse(response.getEntity().getContent(), null, AeriesManager.LOGIN_URL);
 			int rowCount = 1;
 			while (true) {
 				String trId = "tr#ctl00_MainContent_ctl19_DataDetails_ctl0" + rowCount + "_trGBKItem";

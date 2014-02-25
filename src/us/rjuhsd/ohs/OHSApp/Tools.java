@@ -21,7 +21,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 public class Tools {
-	private Tools() {} //No instantiate
+	private Tools() {} //No instantiate 4 u
 
 	public static boolean isConnected(Context context) {
 		try {

@@ -12,21 +12,27 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import us.rjuhsd.ohs.OHSApp.GradesArrayAdapter;
-import us.rjuhsd.ohs.OHSApp.R;
-import us.rjuhsd.ohs.OHSApp.SchoolClass;
-import us.rjuhsd.ohs.OHSApp.Tools;
+import us.rjuhsd.ohs.OHSApp.*;
 import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
 import us.rjuhsd.ohs.OHSApp.activities.Preferences;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.CookieStore;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AeriesManager {
 
@@ -37,17 +43,19 @@ public class AeriesManager {
 	private static int CURRENT_FILE_VERSION = 1;
 	private long lastUpdate;
 
-	public HttpClient client = Tools.sslClient();
+	public HttpClient client;
+	public CookieStore cookies;
 	private Activity activity;
 	private ClassesOverviewTask classesTask;
 	private ArrayList<SchoolClass> grades = new ArrayList<SchoolClass>();
 
 	public AeriesManager(Context context) {
 		readAllData(context);
+		client = Tools.sslClient();
+
 	}
 
 	public void getGradesOverview(Activity activity, boolean forceUpdate) {
-		Log.d("BoolDragon",(grades == null)+"");
 		if(grades != null && !forceUpdate) {
 			inflateList(activity);
 		} else {
@@ -177,5 +185,25 @@ public class AeriesManager {
 			}
 
 		});
+	}
+
+	public HttpResponse login(Context context) throws IOException {
+		String[] loginData = aeriesLoginData(context);
+		List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("portalAccountUsername", loginData[0]));
+		nvps.add(new BasicNameValuePair("portalAccountPassword", loginData[1]));
+		nvps.add(new BasicNameValuePair("checkCookiesEnabled", "true"));
+		nvps.add(new BasicNameValuePair("checkSilverlightSupport", "true"));
+		nvps.add(new BasicNameValuePair("checkMobileDevice", "false"));
+		nvps.add(new BasicNameValuePair("checkStandaloneMode", "false"));
+		nvps.add(new BasicNameValuePair("checkTabletDevice", "false"));
+
+		HttpPost request = new HttpPost(LOGIN_URL);
+		request.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
+		return client.execute(request);
+	}
+
+	public void setAssignments(int id, ArrayList<Assignment> assignments) {
+		grades.get(id).assignments = assignments;
 	}
 }
