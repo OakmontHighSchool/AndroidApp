@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,9 +28,9 @@ import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.CookieStore;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AeriesManager {
@@ -44,7 +43,6 @@ public class AeriesManager {
 	private long lastUpdate;
 
 	public HttpClient client;
-	public CookieStore cookies;
 	private Activity activity;
 	private ClassesOverviewTask classesTask;
 	private ArrayList<SchoolClass> grades = new ArrayList<SchoolClass>();
@@ -205,5 +203,9 @@ public class AeriesManager {
 
 	public void setAssignments(int id, ArrayList<Assignment> assignments) {
 		grades.get(id).assignments = assignments;
+	}
+
+	public String getLastUpdate() {
+		return new SimpleDateFormat("MM-dd hh:mm").format(new Date(lastUpdate*1000L));
 	}
 }

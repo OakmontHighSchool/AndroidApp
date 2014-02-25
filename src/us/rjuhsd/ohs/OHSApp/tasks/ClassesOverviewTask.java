@@ -5,20 +5,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.message.BasicNameValuePair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.activities.ClassesOverviewActivity;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 	protected Context context;
@@ -125,5 +121,6 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 		aeriesManager.inflateList((Activity) context);
 		progressDialog.dismiss();
 		aeriesManager.writeAllData(context);
+		((ClassesOverviewActivity)context).updateLastUpdate();
 	}
 }
