@@ -4,7 +4,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SchoolClass {
 	public String className;
@@ -17,6 +19,7 @@ public class SchoolClass {
 	public int ID;
 	public String aeriesID;
 	public ArrayList<Assignment> assignments;
+	public long lastGetUpdate;
 
 	public SchoolClass(int id) {
 		this.ID = id;
@@ -39,6 +42,7 @@ public class SchoolClass {
 			assignJson.put(assignment.toJSON());
 		}
 		scJson.put("assignments", assignJson);
+		scJson.put("lastGetUpdate", lastGetUpdate);
 		return scJson;
 	}
 
@@ -56,6 +60,11 @@ public class SchoolClass {
 		for(int i=0;i<assignJson.length();i++) {
 			sc.assignments.add(Assignment.fromJSON(assignJson.getJSONObject(i)));
 		}
+		sc.lastGetUpdate = scJSON.getLong("lastGetUpdate");
 		return sc;
+	}
+
+	public String getLastUpdate() {
+		return new SimpleDateFormat("MM-dd hh:mm").format(new Date(lastGetUpdate*1000L));
 	}
 }

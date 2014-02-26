@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -202,7 +203,11 @@ public class AeriesManager {
 	}
 
 	public void setAssignments(int id, ArrayList<Assignment> assignments) {
-		grades.get(id).assignments = assignments;
+		SchoolClass sClass = grades.get(id);
+		sClass.lastGetUpdate = (System.currentTimeMillis() / 1000L);
+		Log.d("AAHHDragon",(System.currentTimeMillis()/1000L)+"");
+		Log.d("AAHHDragon2",sClass.lastGetUpdate+"");
+		sClass.assignments = assignments;
 	}
 
 	public String getLastUpdate() {

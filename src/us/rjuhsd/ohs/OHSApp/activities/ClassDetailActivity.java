@@ -11,21 +11,28 @@ import us.rjuhsd.ohs.OHSApp.tasks.ClassDetailTask;
 
 public class ClassDetailActivity extends Activity {
 	public SchoolClass sClass;
+	int classId;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		int id = getIntent().getIntExtra("schoolClassId", -1);
+		classId = getIntent().getIntExtra("schoolClassId", -1);
 		setContentView(R.layout.class_detail);
-		if(id != -1) {
-			sClass = new AeriesManager(this).getById(id);
+		if(classId != -1) {
+			sClass = new AeriesManager(this).getById(classId);
 		}
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
 		updateAssignments(false);
 		fillViews();
+		updateLastUpdate();
 	}
 
 	private void updateAssignments(boolean forceUpdate) {
-		if(sClass.assignments.isEmpty() && !forceUpdate) {
+		if(sClass.assignments.isEmpty() || forceUpdate) {
 			new ClassDetailTask(this).execute(sClass);
 		} else {
 			new ClassDetailTask(this).inflateList(this);
@@ -45,5 +52,14 @@ public class ClassDetailActivity extends Activity {
 				updateAssignments(true);
 				break;
 		}
+	}
+
+	public void updateLastUpdate() {
+		reGet();
+		((TextView)findViewById(R.id.classes_detail_last_update)).setText("Last update: " + sClass.getLastUpdate());
+	}
+
+	public void reGet() {
+		sClass = new AeriesManager(this).getById(classId);
 	}
 }
