@@ -26,7 +26,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/time_left"
+                        android:text="@string/current_period"
                         android:id="@+id/main_current_period"
                         android:textColor="#000000"
                         android:textSize="18sp"
@@ -44,24 +44,6 @@
                         android:textColor="#000000"
                         android:textSize="18sp"/>
             </LinearLayout>
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/activity_grades"
-                    android:id="@+id/main_launch_grades"
-                    android:onClick="onClick"
-                    android:layout_alignParentRight="true"
-                    android:textSize="18sp"/>
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/activity_preferences"
-                    android:id="@+id/main_launch_preferences"
-                    android:onClick="onClick"
-                    android:layout_alignParentBottom="false"
-                    android:layout_below="@+id/main_launch_grades"
-                    android:layout_alignRight="@+id/main_launch_grades"
-                    android:textSize="18sp"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,6 +93,6 @@
             android:layout_gravity="right"
             android:choiceMode="singleChoice"
             android:divider="@android:color/transparent"
-            android:dividerHeight="0dp"
-            android:background="#111" />
+            android:dividerHeight="2dp"
+            android:background="@color/OHSLightBlue"/>
 </android.support.v4.widget.DrawerLayout>

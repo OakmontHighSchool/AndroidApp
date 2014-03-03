@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.*;
+import us.rjuhsd.ohs.OHSApp.DrawerListClasses.OHSDrawerList;
 import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
 
 import java.util.Timer;
@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 		OHSArticleHandler.setContext(this);
 		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailyScheduleEnum.INTERVENTION);
 
-		drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, getResources().getStringArray(R.array.drawer_list_values)));
+		new OHSDrawerList(this, drawerLayout, drawerList);
 
 		timer = new Timer();
 		timer.schedule(new TimerTask() {
@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
 
 	public static void updateHeadlines(Context context) {
 		OHSArticleHandler.clearNotifications();
-		if(Tools.isConnected(context)) {
+		if (Tools.isConnected(context)) {
 			new HeadlineTask().execute();
 		} else {
 			OHSArticleHandler.addArticle("Error loading articles", "Sorry, your device is not connected to the internet. Click to try again", OHSArticle.ERROR_MESSAGE);
@@ -80,17 +80,14 @@ public class MainActivity extends Activity {
 	public void onClick(View view) {
 		Intent myIntent = null;
 		switch (view.getId()) {
-			case R.id.main_launch_grades:
-				myIntent = new Intent(this,ClassesOverviewActivity.class );
-				break;
-			case R.id.main_launch_preferences:
-				myIntent = new Intent(this,Preferences.class );
-				break;
 			case R.id.main_refresh_button:
 				MainActivity.updateHeadlines(this);
 				break;
+			default:
+				myIntent = null;
+				break;
 		}
-		if(myIntent!=null) {
+		if(myIntent != null) {
 			startActivity(myIntent);
 		}
 	}
