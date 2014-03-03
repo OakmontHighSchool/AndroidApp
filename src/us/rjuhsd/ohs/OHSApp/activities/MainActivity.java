@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.*;
-import us.rjuhsd.ohs.OHSApp.DrawerListClasses.OHSDrawerList;
+import us.rjuhsd.ohs.OHSApp.DrawerList.OHSDrawerList;
 import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
 
 import java.util.Timer;
