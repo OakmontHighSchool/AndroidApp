@@ -12,8 +12,6 @@ public class CentricityManager {
 	private static MainActivity ma;
 	private static LinearLayout ll;
 
-	public CentricityManager(){}
-
 	public void captureArticle(ArticleWrapper article) {
 		ma.articleWrapperList.add(article);
 	}
