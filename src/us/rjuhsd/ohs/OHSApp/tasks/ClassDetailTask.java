@@ -18,7 +18,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import us.rjuhsd.ohs.OHSApp.*;
+import us.rjuhsd.ohs.OHSApp.Assignment;
+import us.rjuhsd.ohs.OHSApp.GradesDetailArrayAdapter;
+import us.rjuhsd.ohs.OHSApp.R;
+import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.activities.ClassAssignmentActivity;
 import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
@@ -38,7 +41,7 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 
 	public ClassDetailTask(Activity activity) {
 		this.activity = activity;
-		this.aeriesManager = ((OHSApplication)activity.getApplication()).aeriesManager;
+		this.aeriesManager = new AeriesManager(activity);
 	}
 
 	@Override
@@ -55,6 +58,7 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 	@Override
 	protected Void doInBackground(SchoolClass... schoolClasses) {
 		try {
+			aeriesManager.login(activity);
 			//Navigate to the class_detail page, used to rip the class IDs for further navigation
 			HttpResponse response_main = aeriesManager.client.execute(new HttpGet(AeriesManager.GRADES_DETAIL));
 
@@ -114,6 +118,7 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 
 						schoolClass.assignments.add(assign);
 					}
+					aeriesManager.setAssignments(schoolClass.ID, schoolClass.assignments);
 				}
 			}
 		} catch (IOException e) {
@@ -135,11 +140,14 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 			onCancelled();
 			return;
 		}
+		aeriesManager.writeAllData(activity);
 		inflateList(activity);
 		progressDialog.dismiss();
+		((ClassDetailActivity)activity).updateLastUpdate();
 	}
 
 	public void inflateList(final Activity act) {
+		((ClassDetailActivity)act).reGet();
 		final ArrayAdapter adapter = new GradesDetailArrayAdapter(activity, ((ClassDetailActivity)act).sClass.assignments);
 		final ListView listview = (ListView) act.findViewById(R.id.class_detail_assign_list);
 		listview.setAdapter(adapter);

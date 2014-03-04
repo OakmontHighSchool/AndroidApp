@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.Assignment;
-import us.rjuhsd.ohs.OHSApp.OHSApplication;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
-public class ClassAssignmentActivity extends Activity { //"Detail" down the rabbit hole
+public class ClassAssignmentActivity extends Activity {
 
 	private Assignment assign;
 
@@ -19,7 +19,7 @@ public class ClassAssignmentActivity extends Activity { //"Detail" down the rabb
 		int assignId = getIntent().getIntExtra("assignmentId", -1);
 		setContentView(R.layout.assignment_details);
 		if(sClassId != -1 && assignId != -1) {
-			SchoolClass sClass = ((OHSApplication)getApplication()).aeriesManager.getById(sClassId);
+			SchoolClass sClass = new AeriesManager(this).getById(sClassId);
 			assign = sClass.assignments.get(assignId);
 		}
 		fillViews();

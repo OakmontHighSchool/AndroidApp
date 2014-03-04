@@ -1,6 +1,5 @@
 package us.rjuhsd.ohs.OHSApp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -22,11 +21,11 @@ public class OHSArticle {
 	private TextView dtv;
 	private View horizontal;
 
-	public OHSArticle(String MainText, String DetailText, LinearLayout L, final Context c, final String url) {
-		this.ll = new LinearLayout(c);
-		this.horizontal = new View(c);
-		this.mtv = new TextView(c);
-		this.dtv = new TextView(c);
+	public OHSArticle(String MainText, String DetailText, LinearLayout L, final MainActivity ma, final String url) {
+		this.ll = new LinearLayout(ma);
+		this.horizontal = new View(ma);
+		this.mtv = new TextView(ma);
+		this.dtv = new TextView(ma);
 
 		ll.setOrientation(LinearLayout.VERTICAL);
 		ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -46,12 +45,12 @@ public class OHSArticle {
 			@Override
 			public void onClick(View view) {
 				if(url.equals(ERROR_MESSAGE)) {
-					MainActivity.updateHeadlines(c);
+					ma.updateHeadlines();
 				} else if(url.equals(LOADING_MESSAGE)) {
 					//Don't do anything for this
 				} else if(!url.equals("")) {
 					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-					c.startActivity(browserIntent);
+					ma.startActivity(browserIntent);
 				} else {
 					Log.d("HttpDragon", "There is no URL to be found here");
 				}

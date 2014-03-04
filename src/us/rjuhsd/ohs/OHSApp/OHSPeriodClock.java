@@ -26,6 +26,7 @@ public class OHSPeriodClock {
 		this.s2 = s2;
 		this.day = day;
 		findPeriod();
+		this.s1.setVisibility(View.INVISIBLE);
 	}
 
 	public void findPeriod() {
@@ -67,30 +68,30 @@ public class OHSPeriodClock {
 		}
 	}
 
-	public void timeLeft() {
-		if (!day.name().equals("OFF") && currPeriod != -1) {
-			Calendar c = Calendar.getInstance();
-			this.h = c.get(Calendar.HOUR_OF_DAY);
-			this.m = c.get(Calendar.MINUTE);
-			int targetH = day.originalInput[currPeriod][0];
-			int targetM = day.originalInput[currPeriod][1];
-			int hLeft = targetH - h;
-			int mLeft = targetM - m;
-
-			//TODO: Add exception for one hour and less than 10 minuets
-			if (mLeft >= 0) {
-				t3.setText(hLeft + ":" + mLeft);
-			} else {
-				int mult = hLeft * 60;
-				int output = mult + mLeft;
-				if(output < 10) {
-					t3.setText("0:0" + output);
-				} else {
-					t3.setText("0:" + output); //Shut up its legit
-				}
-			}
-		} else {
-			s1.setVisibility(View.INVISIBLE);
-		}
-	}
+//	public void timeLeft() {
+//		if (!day.name().equals("OFF") && currPeriod != -1) {
+//			Calendar c = Calendar.getInstance();
+//			this.h = c.get(Calendar.HOUR_OF_DAY);
+//			this.m = c.get(Calendar.MINUTE);
+//			int targetH = day.originalInput[currPeriod][0];
+//			int targetM = day.originalInput[currPeriod][1];
+//			int hLeft = targetH - h;
+//			int mLeft = targetM - m;
+//
+//			//TODO: Add exception for one hour and less than 10 minuets
+//			if (mLeft >= 0) {
+//				t3.setText(hLeft + ":" + mLeft);
+//			} else {
+//				int mult = hLeft * 60;
+//				int output = mult + mLeft;
+//				if(output < 10) {
+//					t3.setText("0:0" + output);
+//				} else {
+//					t3.setText("0:" + output); //Shut up its legit
+//				}
+//			}
+//		} else {
+//			s1.setVisibility(View.INVISIBLE);
+//		}
+//	}
 }

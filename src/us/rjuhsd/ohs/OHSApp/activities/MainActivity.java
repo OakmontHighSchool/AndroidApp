@@ -1,14 +1,19 @@
 package us.rjuhsd.ohs.OHSApp.activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.*;
+import us.rjuhsd.ohs.OHSApp.DrawerList.OHSDrawerList;
+import us.rjuhsd.ohs.OHSApp.managers.CentricityManager;
 import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,8 +24,10 @@ public class MainActivity extends Activity {
 	private TextView TimerText3;
 	private TextView StaticText1;
 	private TextView StaticText2;
-	private OHSPeriodClock ohspc;
 	private Timer timer;
+	private DrawerLayout drawerLayout;
+	private ListView drawerList;
+	public List<ArticleWrapper> articleWrapperList = new ArrayList<ArticleWrapper>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,8 +35,10 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 
 		this.getAllByID();
-		OHSArticleHandler.setContext(this);
-		this.ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailyScheduleEnum.INTERVENTION);
+		CentricityManager.setMainActivity(this);
+		new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailyScheduleEnum.INTERVENTION);
+
+		new OHSDrawerList(this, drawerLayout, drawerList);
 
 		timer = new Timer();
 		timer.schedule(new TimerTask() {
@@ -43,15 +52,15 @@ public class MainActivity extends Activity {
 	@Override
 	public void onStart() {
 		super.onStart();
-		updateHeadlines(this);
+		updateHeadlines();
 	}
 
-	public static void updateHeadlines(Context context) {
-		OHSArticleHandler.clearNotifications();
-		if(Tools.isConnected(context)) {
+	public void updateHeadlines() {
+		CentricityManager.clearNotifications();
+		if (Tools.isConnected(this)) {
 			new HeadlineTask().execute();
 		} else {
-			OHSArticleHandler.addArticle("Error loading articles", "Sorry, your device is not connected to the internet. Click to try again", OHSArticle.ERROR_MESSAGE);
+			CentricityManager.addArticle("Error loading articles", "Sorry, your device is not connected to the internet. Click to try again", OHSArticle.ERROR_MESSAGE);
 		}
 	}
 
@@ -60,7 +69,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void updateUI() {
-		ohspc.timeLeft();
+		//ohspc.timeLeft();
 	}
 
 	private Runnable UI_UPDATE = new Runnable() {
@@ -73,17 +82,14 @@ public class MainActivity extends Activity {
 	public void onClick(View view) {
 		Intent myIntent = null;
 		switch (view.getId()) {
-			case R.id.main_launch_grades:
-				myIntent = new Intent(this,ClassesOverviewActivity.class );
-				break;
-			case R.id.main_launch_preferences:
-				myIntent = new Intent(this,Preferences.class );
-				break;
 			case R.id.main_refresh_button:
-				MainActivity.updateHeadlines(this);
+				this.updateHeadlines();
+				break;
+			default:
+				myIntent = null;
 				break;
 		}
-		if(myIntent!=null) {
+		if(myIntent != null) {
 			startActivity(myIntent);
 		}
 	}
@@ -94,5 +100,8 @@ public class MainActivity extends Activity {
 		TimerText3 = (TextView) this.findViewById(R.id.main_time_left_text);
 		StaticText1 = (TextView) this.findViewById(R.id.main_time_left);
 		StaticText2 = (TextView) this.findViewById(R.id.main_current_period);
+
+		drawerLayout = (DrawerLayout) this.findViewById(R.id.drawer_layout);
+		drawerList = (ListView) this.findViewById(R.id.drawer_list);
 	}
 }
