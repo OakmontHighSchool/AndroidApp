@@ -22,13 +22,22 @@ public class ClassAssignmentActivity extends Activity {
 			SchoolClass sClass = new AeriesManager(this).getById(sClassId);
 			assign = sClass.assignments.get(assignId);
 		}
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
 		fillViews();
 	}
 
 	private void fillViews() {
-		final TextView classNameView = (TextView) findViewById(R.id.assignment_details_className);
-		classNameView.setText("Description: "+assign.description);
-		final TextView percentageView = (TextView) findViewById(R.id.assignment_details_percentage);
-		percentageView.setText("Percentage: "+assign.percent);
+		((TextView) findViewById(R.id.assignment_details_description)).setText("Description: " + assign.description);
+		((TextView) findViewById(R.id.assignment_details_percentage)).setText("Percentage: "+assign.percent);
+		((TextView) findViewById(R.id.assignment_details_type)).setText("Type: "+assign.type);
+		((TextView) findViewById(R.id.assignment_details_category)).setText("Category: "+assign.category);
+		((TextView) findViewById(R.id.assignment_details_score)).setText("Score: "+assign.score);
+		((TextView) findViewById(R.id.assignment_details_dateCompleted)).setText("Date Completed: "+assign.dateCompleted);
+		((TextView) findViewById(R.id.assignment_details_dateDue)).setText("Date Due: "+assign.dateDue);
+		((TextView) findViewById(R.id.assignment_details_gradingCompleted)).setText("Grading Completed: "+assign.gradingComplete);
 	}
 }
