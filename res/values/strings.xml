@@ -18,7 +18,9 @@
 	<string name="activity_debug_preferences">Debug Preferences</string>
 	<string name="version">Version</string>
 	<string name="clear_data">Clear all data</string>
-	<string name="clear_data_info">This will clear all data, permanently</string><string name="current_period">Current Period</string>
+	<string name="clear_data_info">This will clear all data, permanently</string>
+    <string name="current_period">Current Period</string>
+    <string name="menu_image">Image next to the Menu item.</string>
 
     <string-array name="drawer_list_values">
         <item>Grades</item>

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
         android:id="@+id/drawer_list_item_LinearLayout"
-        android:background="#fff">
+        android:background="#fff"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/drawer_list_item_ImageView"
+            android:contentDescription="@string/menu_image"
             />
     <TextView
             android:layout_width="fill_parent"
@@ -16,5 +17,6 @@
             android:id="@+id/drawer_list_item_TextView"
             android:textSize="25sp"
             android:textColor="#000"
-            />
-</LinearLayout>
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/drawer_list_item_ImageView"/>
+</RelativeLayout>
