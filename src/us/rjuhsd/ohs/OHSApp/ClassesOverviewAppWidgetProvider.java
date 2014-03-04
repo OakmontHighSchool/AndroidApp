@@ -6,7 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
-import us.rjuhsd.ohs.OHSApp.Tasks.ClassesOverviewWidgetTask;
+import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewWidgetTask;
 
 public class ClassesOverviewAppWidgetProvider extends AppWidgetProvider {
 

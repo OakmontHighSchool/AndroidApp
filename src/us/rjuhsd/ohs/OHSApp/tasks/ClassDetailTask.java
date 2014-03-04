@@ -19,7 +19,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.rjuhsd.ohs.OHSApp.Assignment;
-import us.rjuhsd.ohs.OHSApp.GradesDetailArrayAdapter;
+import us.rjuhsd.ohs.OHSApp.Grades.GradesDetailArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.activities.ClassAssignmentActivity;

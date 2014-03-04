@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import us.rjuhsd.ohs.OHSApp.Activities.ClassesOverviewActivity;
-import us.rjuhsd.ohs.OHSApp.Activities.Preferences;
+import us.rjuhsd.ohs.OHSApp.activities.ClassesOverviewActivity;
+import us.rjuhsd.ohs.OHSApp.activities.Preferences;
 import us.rjuhsd.ohs.OHSApp.R;
 
 @SuppressWarnings("Unused")

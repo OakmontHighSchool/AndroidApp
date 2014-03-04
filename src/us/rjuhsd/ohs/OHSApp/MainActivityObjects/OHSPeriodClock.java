@@ -3,7 +3,7 @@ package us.rjuhsd.ohs.OHSApp.MainActivityObjects;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import us.rjuhsd.ohs.OHSApp.Activities.MainActivity;
+import us.rjuhsd.ohs.OHSApp.activities.MainActivity;
 
 import java.util.Calendar;
 

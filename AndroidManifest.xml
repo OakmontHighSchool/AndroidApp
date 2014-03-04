@@ -11,26 +11,26 @@
 		    android:label="@string/app_name"
 		    android:icon="@drawable/icon"
 		    android:allowBackup="true">
-        <activity android:name=".Activities.MainActivity"
+        <activity android:name=".activities.MainActivity"
                   android:label="@string/app_name">
 	        <intent-filter>
 		        <action android:name="android.intent.action.MAIN"/>
 		        <category android:name="android.intent.category.LAUNCHER"/>
 	        </intent-filter>
         </activity>
-        <activity android:name=".Activities.ClassesOverviewActivity"
+        <activity android:name=".activities.ClassesOverviewActivity"
                   android:label="@string/activity_grades">
         </activity>
-        <activity android:name=".Activities.Preferences"
+        <activity android:name=".activities.Preferences"
                   android:label="@string/activity_preferences">
         </activity>
-	    <activity android:name=".Activities.DebugPreferences"
+	    <activity android:name=".activities.DebugPreferences"
 	              android:label="@string/activity_debug_preferences">
 	    </activity>
-	    <activity android:name=".Activities.ClassDetailActivity"
+	    <activity android:name=".activities.ClassDetailActivity"
 	              android:label="@string/activity_grades_detail">
 	    </activity>
-	    <activity android:name=".Activities.ClassAssignmentActivity"
+	    <activity android:name=".activities.ClassAssignmentActivity"
 	              android:label="@string/activity_grades_detail_detail">
 	    </activity>
 	    <receiver android:name=".https.WiFiStateReceiver">

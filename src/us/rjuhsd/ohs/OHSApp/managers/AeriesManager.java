@@ -22,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import us.rjuhsd.ohs.OHSApp.*;
+import us.rjuhsd.ohs.OHSApp.Grades.GradesArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
 import us.rjuhsd.ohs.OHSApp.activities.Preferences;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;

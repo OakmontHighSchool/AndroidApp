@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import us.rjuhsd.ohs.OHSApp.Activities.MainActivity;
+import us.rjuhsd.ohs.OHSApp.activities.MainActivity;
 
 public class OHSArticle {
 	public static final String ERROR_MESSAGE = "ERROR_LOADING";

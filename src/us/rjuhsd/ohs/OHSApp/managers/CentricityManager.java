@@ -1,8 +1,8 @@
 package us.rjuhsd.ohs.OHSApp.managers;
 
 import android.widget.LinearLayout;
-import us.rjuhsd.ohs.OHSApp.ArticleWrapper;
-import us.rjuhsd.ohs.OHSApp.OHSArticle;
+import us.rjuhsd.ohs.OHSApp.MainActivityObjects.ArticleWrapper;
+import us.rjuhsd.ohs.OHSApp.MainActivityObjects.OHSArticle;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.activities.MainActivity;
 
