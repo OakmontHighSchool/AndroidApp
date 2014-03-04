@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,8 +21,11 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import us.rjuhsd.ohs.OHSApp.*;
+import us.rjuhsd.ohs.OHSApp.Assignment;
 import us.rjuhsd.ohs.OHSApp.Grades.GradesArrayAdapter;
+import us.rjuhsd.ohs.OHSApp.R;
+import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.Tools;
 import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
 import us.rjuhsd.ohs.OHSApp.activities.Preferences;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;
@@ -66,20 +70,21 @@ public class AeriesManager {
 		JSONObject json = new JSONObject();
 		JSONArray gradesJson = new JSONArray();
 		try {
-			if(grades != null) {
-				for(SchoolClass sc: grades) {
-					gradesJson.put(sc.toJSON());
-				}
+			for(SchoolClass sc: grades) {
+				gradesJson.put(sc.toJSON());
 			}
 			json.put("version",CURRENT_FILE_VERSION);
 			json.put("lastUpdate",lastUpdate);
 			json.put("classes", gradesJson);
 		} catch (JSONException e) {
 			e.printStackTrace();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 		try {
 			FileOutputStream fos = context.openFileOutput(CLASSES_FILENAME, Context.MODE_PRIVATE);
 			fos.write(json.toString().getBytes());
+			Log.d("OutputDragon",json.toString());
 			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,6 +95,7 @@ public class AeriesManager {
 		try {
 			FileInputStream fis = context.openFileInput(CLASSES_FILENAME);
 			String input = Tools.convertStreamToString(fis);
+			Log.d("InputDragon",input);
 			fis.close();
 			JSONObject json = new JSONObject(input);
 			parseData(json);
