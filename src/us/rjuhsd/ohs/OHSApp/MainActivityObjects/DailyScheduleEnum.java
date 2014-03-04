@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp;
+package us.rjuhsd.ohs.OHSApp.MainActivityObjects;
 
 @SuppressWarnings("UnusedDeclaration")
 public enum DailyScheduleEnum {

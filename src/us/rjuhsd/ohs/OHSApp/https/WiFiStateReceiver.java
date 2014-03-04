@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
-import us.rjuhsd.ohs.OHSApp.tasks.WiFiAutoLoginTask;
+import us.rjuhsd.ohs.OHSApp.Tasks.WiFiAutoLoginTask;
 
 public class WiFiStateReceiver extends BroadcastReceiver {
 
