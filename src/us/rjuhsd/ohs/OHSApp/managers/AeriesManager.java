@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -67,8 +66,10 @@ public class AeriesManager {
 		JSONObject json = new JSONObject();
 		JSONArray gradesJson = new JSONArray();
 		try {
-			for(SchoolClass sc: grades) {
-				gradesJson.put(sc.toJSON());
+			if(grades != null) {
+				for(SchoolClass sc: grades) {
+					gradesJson.put(sc.toJSON());
+				}
 			}
 			json.put("version",CURRENT_FILE_VERSION);
 			json.put("lastUpdate",lastUpdate);
@@ -170,6 +171,7 @@ public class AeriesManager {
 
 	public void destroyAll(Context context) {
 		grades = null;
+		writeAllData(context);
 	}
 
 	public void inflateList(final Activity act) {
@@ -206,8 +208,6 @@ public class AeriesManager {
 	public void setAssignments(int id, ArrayList<Assignment> assignments) {
 		SchoolClass sClass = grades.get(id);
 		sClass.lastGetUpdate = (System.currentTimeMillis() / 1000L);
-		Log.d("AAHHDragon",(System.currentTimeMillis()/1000L)+"");
-		Log.d("AAHHDragon2",sClass.lastGetUpdate+"");
 		sClass.assignments = assignments;
 	}
 

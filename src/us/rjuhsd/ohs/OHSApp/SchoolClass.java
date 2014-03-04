@@ -1,5 +1,6 @@
 package us.rjuhsd.ohs.OHSApp;
 
+import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +28,7 @@ public class SchoolClass {
 	}
 
 	public JSONObject toJSON() throws JSONException {
+		Log.d("AssignDragon","Saving");
 		JSONObject scJson = new JSONObject();
 		scJson.put("className", className);
 		scJson.put("period", period);
@@ -39,6 +41,7 @@ public class SchoolClass {
 		scJson.put("aeriesID", aeriesID+"");
 		JSONArray assignJson = new JSONArray();
 		for(Assignment assignment : assignments) {
+			Log.d("AssignDragon",assignment.description);
 			assignJson.put(assignment.toJSON());
 		}
 		scJson.put("assignments", assignJson);
