@@ -27,7 +27,9 @@ public class MainActivity extends Activity {
 	private Timer timer;
 	private DrawerLayout drawerLayout;
 	private ListView drawerList;
+	private OHSPeriodClock ohspc;
 	public List<ArticleWrapper> articleWrapperList = new ArrayList<ArticleWrapper>();
+	public static final boolean timeLeft = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class MainActivity extends Activity {
 
 		this.getAllByID();
 		CentricityManager.setMainActivity(this);
-		new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailyScheduleEnum.INTERVENTION);
+		ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailyScheduleEnum.INTERVENTION);
 
 		new OHSDrawerList(this, drawerLayout, drawerList);
 
@@ -69,7 +71,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void updateUI() {
-		//ohspc.timeLeft();
+		ohspc.timeLeft();
 	}
 
 	private Runnable UI_UPDATE = new Runnable() {
