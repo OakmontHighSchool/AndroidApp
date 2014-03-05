@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp;
+package us.rjuhsd.ohs.OHSApp.Grades;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,16 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import us.rjuhsd.ohs.OHSApp.Assignment;
+import us.rjuhsd.ohs.OHSApp.R;
 
 import java.util.ArrayList;
 
-public class GradesArrayAdapter extends ArrayAdapter<SchoolClass>{
-
+public class GradesDetailArrayAdapter extends ArrayAdapter<Assignment> {
 	private final Context context;
 	private static final int layoutResourceId = R.layout.two_line_list_item;
-	private final ArrayList<SchoolClass> data;
+	private final ArrayList<Assignment> data;
 
-	public GradesArrayAdapter(Context context, ArrayList<SchoolClass> objects) {
+	public GradesDetailArrayAdapter(Context context, ArrayList<Assignment> objects) {
 		super(context, layoutResourceId, objects);
 		this.context = context;
 		this.data = objects;
@@ -25,32 +26,32 @@ public class GradesArrayAdapter extends ArrayAdapter<SchoolClass>{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View row = convertView;
-		GradesHolder holder;
+		GradesDetailHolder holder;
 
 		if(row == null)
 		{
 			LayoutInflater inflater = ((Activity)context).getLayoutInflater();
 			row = inflater.inflate(layoutResourceId, parent, false);
 
-			holder = new GradesHolder();
-			holder.txtSecond = (TextView)row.findViewById(R.id.txtSecond);
+			holder = new GradesDetailHolder();
 			holder.txtMain = (TextView)row.findViewById(R.id.txtMain);
+			holder.txtSecond = (TextView)row.findViewById(R.id.txtSecond);
 			row.setTag(holder);
 		}
 		else
 		{
-			holder = (GradesHolder)row.getTag();
+			holder = (GradesDetailHolder)row.getTag();
 		}
 
-		SchoolClass sClass = data.get(position);
-		holder.txtSecond.setText("Current Percentage: "+sClass.percentage+"%");
-		holder.txtMain.setText(sClass.className);
+		Assignment assign = data.get(position);
+		holder.txtMain.setText(assign.description);
+		holder.txtSecond.setText("Score: "+assign.score+", "+assign.percent);
 
 		return row;
 	}
 }
 
-class GradesHolder {
+class GradesDetailHolder {
 	TextView txtSecond;
 	TextView txtMain;
 }

@@ -7,12 +7,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.activities.ClassesOverviewActivity;
 import us.rjuhsd.ohs.OHSApp.activities.Preferences;
+import us.rjuhsd.ohs.OHSApp.R;
 
 @SuppressWarnings("Unused")
 public class OHSDrawerList {
+	@SuppressWarnings("UnusedParameters")
 	public OHSDrawerList(Context c, DrawerLayout drawerLayout, ListView drawerList) {
 		int[] imageSrcs = {R.drawable.icon, R.drawable.icon};
 

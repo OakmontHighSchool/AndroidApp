@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp;
+package us.rjuhsd.ohs.OHSApp.MainActivityObjects;
 
 import android.util.Log;
 import android.view.View;
@@ -7,6 +7,7 @@ import us.rjuhsd.ohs.OHSApp.activities.MainActivity;
 
 import java.util.Calendar;
 
+@SuppressWarnings({"PointlessBooleanExpression", "ConstantConditions"})
 public class OHSPeriodClock {
 	private TextView t1;
 	private TextView t2;

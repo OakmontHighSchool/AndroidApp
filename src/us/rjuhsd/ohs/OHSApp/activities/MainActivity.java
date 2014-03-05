@@ -9,6 +9,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.*;
 import us.rjuhsd.ohs.OHSApp.DrawerList.OHSDrawerList;
+import us.rjuhsd.ohs.OHSApp.MainActivityObjects.ArticleWrapper;
+import us.rjuhsd.ohs.OHSApp.MainActivityObjects.DailyScheduleEnum;
+import us.rjuhsd.ohs.OHSApp.MainActivityObjects.OHSArticle;
+import us.rjuhsd.ohs.OHSApp.MainActivityObjects.OHSPeriodClock;
 import us.rjuhsd.ohs.OHSApp.managers.CentricityManager;
 import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
 

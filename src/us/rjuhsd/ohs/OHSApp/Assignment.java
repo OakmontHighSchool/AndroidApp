@@ -26,7 +26,7 @@ public class Assignment {
 		json.put("status",status);
 		json.put("dateCompleted", dateCompleted);
 		json.put("dateDue",dateDue);
-		json.put("gradingComplete",gradingComplete);
+		json.put("gradingComplete", gradingComplete);
 		return json;
 	}
 

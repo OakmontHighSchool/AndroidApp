@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp;
+package us.rjuhsd.ohs.OHSApp.MainActivityObjects;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -46,13 +46,11 @@ public class OHSArticle {
 			public void onClick(View view) {
 				if(url.equals(ERROR_MESSAGE)) {
 					ma.updateHeadlines();
-				} else if(url.equals(LOADING_MESSAGE)) {
-					//Don't do anything for this
+				} else if(url.equals(LOADING_MESSAGE)){
+					Log.d("HttpDragon", "There is no URL to be found here");
 				} else if(!url.equals("")) {
 					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 					ma.startActivity(browserIntent);
-				} else {
-					Log.d("HttpDragon", "There is no URL to be found here");
 				}
 			}
 		});

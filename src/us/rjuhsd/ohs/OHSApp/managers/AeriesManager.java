@@ -21,7 +21,11 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import us.rjuhsd.ohs.OHSApp.*;
+import us.rjuhsd.ohs.OHSApp.Assignment;
+import us.rjuhsd.ohs.OHSApp.Grades.GradesArrayAdapter;
+import us.rjuhsd.ohs.OHSApp.R;
+import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.Tools;
 import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
 import us.rjuhsd.ohs.OHSApp.activities.Preferences;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;
@@ -74,10 +78,13 @@ public class AeriesManager {
 			json.put("classes", gradesJson);
 		} catch (JSONException e) {
 			e.printStackTrace();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 		try {
 			FileOutputStream fos = context.openFileOutput(CLASSES_FILENAME, Context.MODE_PRIVATE);
 			fos.write(json.toString().getBytes());
+			Log.d("OutputDragon",json.toString());
 			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,6 +95,7 @@ public class AeriesManager {
 		try {
 			FileInputStream fis = context.openFileInput(CLASSES_FILENAME);
 			String input = Tools.convertStreamToString(fis);
+			Log.d("InputDragon",input);
 			fis.close();
 			JSONObject json = new JSONObject(input);
 			parseData(json);
@@ -169,6 +177,7 @@ public class AeriesManager {
 
 	public void destroyAll(Context context) {
 		grades = null;
+		writeAllData(context);
 	}
 
 	public void inflateList(final Activity act) {
@@ -205,8 +214,6 @@ public class AeriesManager {
 	public void setAssignments(int id, ArrayList<Assignment> assignments) {
 		SchoolClass sClass = grades.get(id);
 		sClass.lastGetUpdate = (System.currentTimeMillis() / 1000L);
-		Log.d("AAHHDragon",(System.currentTimeMillis()/1000L)+"");
-		Log.d("AAHHDragon2",sClass.lastGetUpdate+"");
 		sClass.assignments = assignments;
 	}
 
