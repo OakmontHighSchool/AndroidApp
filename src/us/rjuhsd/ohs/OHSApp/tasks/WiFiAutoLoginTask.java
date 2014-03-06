@@ -30,11 +30,6 @@ public class WiFiAutoLoginTask extends AsyncTask<Context, Void, Void> {
 	protected Void doInBackground(Context... c) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c[0]);
 		try {
-			Notification n = new Notification(R.drawable.icon, "Oakmont WiFi detected, logging in...",System.currentTimeMillis());
-			Intent intent = new Intent();
-			n.setLatestEventInfo(c[0], "Oakmont WiFi", "Oakmont WiFi detected, attempting login.", PendingIntent.getActivity(c[0],1,intent,0));
-			NotificationManager mNotificationManager = (NotificationManager) c[0].getSystemService(Context.NOTIFICATION_SERVICE);
-			mNotificationManager.notify(3, n);
 			final String LOGIN_URL = "http://172.31.0.2/cgi-bin/nph-xauth";
 
 			HttpClient client = new DefaultHttpClient();
@@ -67,8 +62,8 @@ public class WiFiAutoLoginTask extends AsyncTask<Context, Void, Void> {
 			postRequest.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
 			client.execute(postRequest);
 			Notification n2 = new Notification(R.drawable.icon, "Logged into Oakmont WiFi.",System.currentTimeMillis());
-			n2.setLatestEventInfo(c[0], "Oakmont WiFi", "Logged into Oakmont WiFi.", PendingIntent.getActivity(c[0],1,intent,0));
-			mNotificationManager.cancel(3);
+			n2.setLatestEventInfo(c[0], "Oakmont WiFi", "Logged into Oakmont WiFi.", PendingIntent.getActivity(c[0],1,new Intent(),0));
+			NotificationManager mNotificationManager = (NotificationManager) c[0].getSystemService(Context.NOTIFICATION_SERVICE);
 			mNotificationManager.notify(3, n2);
 		} catch(IOException e) {
 			e.printStackTrace();
