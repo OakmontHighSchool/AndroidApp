@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -84,7 +83,6 @@ public class AeriesManager {
 		try {
 			FileOutputStream fos = context.openFileOutput(CLASSES_FILENAME, Context.MODE_PRIVATE);
 			fos.write(json.toString().getBytes());
-			Log.d("OutputDragon",json.toString());
 			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,7 +93,6 @@ public class AeriesManager {
 		try {
 			FileInputStream fis = context.openFileInput(CLASSES_FILENAME);
 			String input = Tools.convertStreamToString(fis);
-			Log.d("InputDragon",input);
 			fis.close();
 			JSONObject json = new JSONObject(input);
 			parseData(json);
