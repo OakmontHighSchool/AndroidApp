@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -66,7 +65,6 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 			Document doc_main = Jsoup.parse(response_main.getEntity().getContent(), null, AeriesManager.GRADES_DETAIL);
 			Elements options = doc_main.select("#ctl00_MainContent_subGBS_dlGN").first().children();
 			String viewState = doc_main.select("#__VIEWSTATE").val();
-			Log.d("VIEWDragon",viewState);
 
 			for(Element option: options) {
 				String stupidTitle = option.text();
