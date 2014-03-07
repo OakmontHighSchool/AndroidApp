@@ -38,7 +38,7 @@
 			    <action android:name="android.net.wifi.STATE_CHANGE" />
 		    </intent-filter>
 	    </receiver>
-	    <receiver android:name=".ClassesOverviewAppWidgetProvider" >
+	    <receiver android:name=".ClassesOverviewAppWidgetProvider" android:label="@string/classes_overview" >
 		    <intent-filter>
 			    <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
 			    <action android:name="us.rjuhsd.ohs.OHSApp.RELOAD_CLASSES_WIDGET" />
