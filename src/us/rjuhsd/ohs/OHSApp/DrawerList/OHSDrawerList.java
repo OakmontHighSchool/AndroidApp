@@ -2,6 +2,7 @@ package us.rjuhsd.ohs.OHSApp.DrawerList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,7 +16,7 @@ import us.rjuhsd.ohs.OHSApp.R;
 public class OHSDrawerList {
 	@SuppressWarnings("UnusedParameters")
 	public OHSDrawerList(Context c, DrawerLayout drawerLayout, ListView drawerList) {
-		int[] imageSrcs = {R.drawable.icon, R.drawable.icon};
+		int[] imageSrcs = {R.drawable.icon, R.drawable.icon, R.drawable.icon};
 
 		final ArrayAdapter<String> testAA = new DrawerListAdapter(c, R.layout.drawer_list_item, R.id.drawer_list_item_TextView, c.getResources().getStringArray(R.array.drawer_list_values), imageSrcs);
 		drawerList.setAdapter(testAA);
@@ -34,6 +35,9 @@ public class OHSDrawerList {
 							break;
 						case (1):
 							newIntent = new Intent(c, Preferences.class);
+							break;
+						case (2):
+							newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us/Page/2"));
 							break;
 					}
 				}
