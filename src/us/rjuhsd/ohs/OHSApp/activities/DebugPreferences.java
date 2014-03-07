@@ -1,8 +1,6 @@
 package us.rjuhsd.ohs.OHSApp.activities;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -14,9 +12,6 @@ public class DebugPreferences extends PreferenceActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.debug_preferences);
-
-		setTheme(R.style.WhiteBackground);
-		findViewById(android.R.id.list).setBackgroundColor(Color.WHITE);
 
 		try {
 			String version = this.getPackageManager().getPackageInfo(this.getPackageName(),0).versionName;

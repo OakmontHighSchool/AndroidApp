@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<us.rjuhsd.ohs.OHSApp.CustomPreferenceCategory
+	<PreferenceCategory
 			android:title="Aeries Info" >
 		<EditTextPreference
 				android:key="aeries_username"
@@ -11,8 +11,8 @@
 				android:key="aeries_password"
 				android:title="@string/aeries_password"
 				android:inputType="textPassword"/>
-	</us.rjuhsd.ohs.OHSApp.CustomPreferenceCategory>
-	<us.rjuhsd.ohs.OHSApp.CustomPreferenceCategory
+	</PreferenceCategory>
+	<PreferenceCategory
 			android:title="Oakmont Settings">
 		<EditTextPreference
 				android:key="school_username"
@@ -24,12 +24,21 @@
 		<CheckBoxPreference
 				android:key="school_wifi_login_flag"
 		        android:title="@string/auto_login" />
-	</us.rjuhsd.ohs.OHSApp.CustomPreferenceCategory>
-	<Preference
-			android:title="@string/activity_debug_preferences">
-			<intent
-				android:action="android.intent.action.VIEW"
-			    android:targetPackage="us.rjuhsd.ohs.OHSApp"
-			    android:targetClass="us.rjuhsd.ohs.OHSApp.activities.DebugPreferences" />
-	</Preference>
+	</PreferenceCategory>
+	<PreferenceCategory
+			android:title="Other Settings">
+		<Preference
+				android:title="@string/activity_debug_preferences">
+				<intent
+					android:action="android.intent.action.VIEW"
+			        android:targetPackage="us.rjuhsd.ohs.OHSApp"
+			        android:targetClass="us.rjuhsd.ohs.OHSApp.activities.DebugPreferences" />
+		</Preference>
+		<Preference
+				android:title="Created by"
+				android:summary="Jacob McPeak and Jon Janzen"/>
+		<Preference
+				android:title="Icon Pack by"
+				android:summary="svenkapudija on GitHub.com"/>
+	</PreferenceCategory>
 </PreferenceScreen>

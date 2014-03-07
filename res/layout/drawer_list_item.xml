@@ -10,7 +10,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/drawer_list_item_ImageView"
             android:contentDescription="@string/menu_image"
-            />
+            android:padding="12dp"/>
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

@@ -8,7 +8,7 @@
 	<string name="activity_grades_detail">Class Details</string>
 	<string name="school_password">School Password</string>
 	<string name="school_username">School Username</string>
-	<string name="auto_login">Automatically login to OHS wifi</string>
+	<string name="auto_login">Login to OHS WiFi</string>
 	<string name="activity_grades_detail_detail">Details of assignment</string>
 	<string name="refresh">Refresh</string>
 	<string name="error">An error occurred</string>
@@ -17,12 +17,13 @@
 	<string name="back">Back</string>
 	<string name="activity_debug_preferences">Debug Preferences</string>
 	<string name="version">Version</string>
-	<string name="clear_data">Clear all data</string>
-	<string name="clear_data_info">This will clear all data, permanently</string>
+	<string name="clear_data">Clear cache</string>
+	<string name="clear_data_info">This will clear the cache, permanently</string>
     <string name="current_period">Current Period</string>
     <string name="menu_image">Image next to the Menu item.</string>
 	<string name="classes_overview">Classes Overview</string>
 	<string name="activity_calendar">Calendar</string>
+	<string name="swipe_instructions">Swipe from the edge for nav </string>
 
 	<string-array name="drawer_list_values">
         <item>Grades</item>
