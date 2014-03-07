@@ -26,7 +26,8 @@
 
 	<string-array name="drawer_list_values">
         <item>Grades</item>
-        <item>Settings</item>
+		<item>Website</item>
 		<item>Calendar</item>
+		<item>Settings</item>
     </string-array>
 </resources>

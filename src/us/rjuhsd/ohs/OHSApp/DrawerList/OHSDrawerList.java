@@ -12,11 +12,10 @@ import us.rjuhsd.ohs.OHSApp.activities.ClassesOverviewActivity;
 import us.rjuhsd.ohs.OHSApp.activities.Preferences;
 import us.rjuhsd.ohs.OHSApp.R;
 
-@SuppressWarnings("Unused")
 public class OHSDrawerList {
 	@SuppressWarnings("UnusedParameters")
-	public OHSDrawerList(Context c, DrawerLayout drawerLayout, ListView drawerList) {
-		int[] imageSrcs = {R.drawable.icon, R.drawable.icon, R.drawable.icon};
+	public OHSDrawerList(Context c, final DrawerLayout drawerLayout, final ListView drawerList) {
+		int[] imageSrcs = {R.drawable.icon, R.drawable.icon, R.drawable.icon, R.drawable.icon};
 
 		final ArrayAdapter<String> testAA = new DrawerListAdapter(c, R.layout.drawer_list_item, R.id.drawer_list_item_TextView, c.getResources().getStringArray(R.array.drawer_list_values), imageSrcs);
 		drawerList.setAdapter(testAA);
@@ -30,20 +29,25 @@ public class OHSDrawerList {
 				Intent newIntent = null;
 				if (c != null) {
 					switch (position) {
-						case (0):
+						case 0:
 							newIntent = new Intent(c, ClassesOverviewActivity.class);
 							break;
-						case (1):
-							newIntent = new Intent(c, Preferences.class);
+						case 1:
+							newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us"));
 							break;
-						case (2):
+						case 2:
 							newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us/Page/2"));
+							break;
+						case 3:
+							newIntent = new Intent(c, Preferences.class);
 							break;
 					}
 				}
 				if (newIntent != null) {
 					c.startActivity(newIntent);
 				}
+
+				drawerLayout.closeDrawer(drawerList);
 			}
 		});
 
