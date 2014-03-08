@@ -15,7 +15,7 @@ import us.rjuhsd.ohs.OHSApp.activities.Preferences;
 public class OHSDrawerList {
 	@SuppressWarnings("UnusedParameters")
 	public OHSDrawerList(Context c, final DrawerLayout drawerLayout, final ListView drawerList) {
-		int[] imageSrcs = {R.drawable.ic_accept, R.drawable.ic_date, R.drawable.ic_web, R.drawable.ic_cog};
+		int[] imageSrcs = {R.drawable.ic_accept, R.drawable.ic_web, R.drawable.ic_date, R.drawable.ic_cog};
 
 		final ArrayAdapter<String> testAA = new DrawerListAdapter(c, R.layout.drawer_list_item, R.id.drawer_list_item_TextView, c.getResources().getStringArray(R.array.drawer_list_values), imageSrcs);
 		drawerList.setAdapter(testAA);
