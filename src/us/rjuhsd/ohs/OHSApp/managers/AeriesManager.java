@@ -44,28 +44,42 @@ public class AeriesManager {
 
 	private static String CLASSES_FILENAME = "classes.json";
 	private static int CURRENT_FILE_VERSION = 1;
+	private final Context context;
 	private long lastUpdate;
 
 	public HttpClient client;
 	private Activity activity;
-	private ClassesOverviewTask classesTask;
 	private ArrayList<SchoolClass> grades = new ArrayList<SchoolClass>();
 
 	public AeriesManager(Context context) {
-		readAllData(context);
+		this.context = context;
+		readAllData();
 		client = Tools.sslClient();
-
 	}
 
-	public void getGradesOverview(Activity activity, boolean forceUpdate) {
+	public void getGradesOverview(final Activity activity, boolean forceUpdate) {
 		if(!grades.isEmpty() && !forceUpdate) {
 			inflateList(activity);
 		} else {
-			getGradesOverview(activity);
+			if(!Tools.isConnected(activity)) {
+				AlertDialog.Builder adb = new AlertDialog.Builder(activity);
+				adb.setTitle("No internet!");
+				adb.setMessage("Your phone is not connected to the internet. Please try again when you are connected");
+				adb.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						activity.finish();
+					}
+				});
+				adb.show();
+
+			} else {
+				this.activity = activity;
+				new ClassesOverviewTask(activity, this).execute();
+			}
 		}
 	}
 
-	public void writeAllData(Context context) {
+	public void writeAllData() {
 		JSONObject json = new JSONObject();
 		JSONArray gradesJson = new JSONArray();
 		try {
@@ -89,56 +103,33 @@ public class AeriesManager {
 		}
 	}
 
-	public void readAllData(Context context) {
+	public void readAllData() {
 		try {
 			FileInputStream fis = context.openFileInput(CLASSES_FILENAME);
 			String input = Tools.convertStreamToString(fis);
 			fis.close();
 			JSONObject json = new JSONObject(input);
-			parseData(json);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void parseData(JSONObject json) {
-		int jsonVersion;
-		try {
-			jsonVersion = json.getInt("version");
-			switch(jsonVersion) {
-				case 1:
-					JSONArray gradesJson = json.getJSONArray("classes");
-					for(int i=0;i<gradesJson.length();i++) {
-						grades.add(SchoolClass.fromJSON(gradesJson.getJSONObject(i)));
-					}
-					lastUpdate = json.getLong("lastUpdate");
-					break;
+			int jsonVersion;
+			try {
+				jsonVersion = json.getInt("version");
+				switch(jsonVersion) {
+					case 1:
+						JSONArray gradesJson = json.getJSONArray("classes");
+						for(int i=0;i<gradesJson.length();i++) {
+							grades.add(SchoolClass.fromJSON(gradesJson.getJSONObject(i)));
+						}
+						lastUpdate = json.getLong("lastUpdate");
+						break;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void getGradesOverview(final Activity activity) {
-		if(!Tools.isConnected(activity)) {
-			AlertDialog.Builder adb = new AlertDialog.Builder(activity);
-			adb.setTitle("No internet!");
-			adb.setMessage("Your phone is not connected to the internet. Please try again when you are connected");
-			adb.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					activity.finish();
-				}
-			});
-			adb.show();
-
-		} else {
-			this.activity = activity;
-			classesTask = new ClassesOverviewTask(activity, this);
-			classesTask.execute();
-		}
-	}
-
-	public static String[] aeriesLoginData(Context context) {
+	public String[] aeriesLoginData() {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		String[] toReturn = new String[2];
 		toReturn[0] = prefs.getString("aeries_username", "");
@@ -161,7 +152,7 @@ public class AeriesManager {
 				.setMessage(errorText)
 				.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						activity.finish();
+						//Do nothing
 					}
 				})
 				.setPositiveButton(R.string.goto_settings, new DialogInterface.OnClickListener() {
@@ -172,9 +163,9 @@ public class AeriesManager {
 		adb.show();
 	}
 
-	public void destroyAll(Context context) {
+	public void destroyAll() {
 		grades = new ArrayList<SchoolClass>();
-		writeAllData(context);
+		writeAllData();
 	}
 
 	public void inflateList(final Activity act) {
@@ -192,8 +183,8 @@ public class AeriesManager {
 		});
 	}
 
-	public HttpResponse login(Context context) throws IOException {
-		String[] loginData = aeriesLoginData(context);
+	public HttpResponse login() throws IOException {
+		String[] loginData = aeriesLoginData();
 		List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 		nvps.add(new BasicNameValuePair("portalAccountUsername", loginData[0]));
 		nvps.add(new BasicNameValuePair("portalAccountPassword", loginData[1]));

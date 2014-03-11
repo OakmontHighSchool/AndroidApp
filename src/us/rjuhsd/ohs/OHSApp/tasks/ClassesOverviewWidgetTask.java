@@ -53,7 +53,7 @@ public class ClassesOverviewWidgetTask extends ClassesOverviewTask {
 		views.setViewVisibility(R.id.appwidget_classes_progress, View.GONE);
 		appWidgetManager.updateAppWidget(appWidgetId, views);
 		aeriesManager.setSchoolClasses(grades);
-		aeriesManager.writeAllData(context);
+		aeriesManager.writeAllData();
 	}
 
 	public void inflateList() {

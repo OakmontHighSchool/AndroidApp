@@ -58,7 +58,7 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 	@Override
 	protected Void doInBackground(SchoolClass... schoolClasses) {
 		try {
-			aeriesManager.login(activity);
+			aeriesManager.login();
 			//Navigate to the class_detail page, used to rip the class IDs for further navigation
 			HttpResponse response_main = aeriesManager.client.execute(new HttpGet(AeriesManager.GRADES_DETAIL));
 
@@ -140,7 +140,7 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 			onCancelled();
 			return;
 		}
-		aeriesManager.writeAllData(activity);
+		aeriesManager.writeAllData();
 		inflateList(activity);
 		progressDialog.dismiss();
 		((ClassDetailActivity)activity).updateLastUpdate();

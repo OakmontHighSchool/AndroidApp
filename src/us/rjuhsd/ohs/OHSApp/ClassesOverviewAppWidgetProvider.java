@@ -26,6 +26,7 @@ public class ClassesOverviewAppWidgetProvider extends AppWidgetProvider {
 	private void doUpdate(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 		RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.classes_overview_appwidget);
 
+		views.setInt(R.id.appwidget_top, "setBackgroundResource", R.color.OHSDarkBlue);
 		Intent intent = new Intent(context,getClass());
 		intent.setAction(RELOAD_CLASSES_WIDGET);
 		intent.putExtra("appWidgetID",appWidgetId);

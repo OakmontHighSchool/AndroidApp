@@ -1,11 +1,15 @@
 package us.rjuhsd.ohs.OHSApp.activities;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DebugPreferences extends PreferenceActivity {
 	@Override
@@ -14,8 +18,11 @@ public class DebugPreferences extends PreferenceActivity {
 		addPreferencesFromResource(R.xml.debug_preferences);
 
 		try {
-			String version = this.getPackageManager().getPackageInfo(this.getPackageName(),0).versionName;
+			PackageInfo apk = this.getPackageManager().getPackageInfo(this.getPackageName(),0);
+			String version = apk.versionName;
 			findPreference("debug_version").setSummary(version);
+			long buildDate = apk.lastUpdateTime;
+			findPreference("debug_build_date").setSummary(new SimpleDateFormat("MMM dd yyyy").format(new Date(buildDate)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -25,7 +32,7 @@ public class DebugPreferences extends PreferenceActivity {
 		clearAll.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				new AeriesManager(context).destroyAll(context);
+				new AeriesManager(context).destroyAll();
 				return true;
 			}
 		});

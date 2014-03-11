@@ -24,6 +24,7 @@
 	<string name="classes_overview">Classes Overview</string>
 	<string name="activity_calendar">Calendar</string>
 	<string name="swipe_instructions">Swipe from the edge for nav </string>
+	<string name="build_date">Build Date</string>
 
 	<string-array name="drawer_list_values">
         <item>Grades</item>

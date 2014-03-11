@@ -43,8 +43,8 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 	protected Void doInBackground(Void... voids) {
 		grades = new ArrayList<SchoolClass>();
 		try {
-			String[] loginData = AeriesManager.aeriesLoginData(context);
-			HttpResponse response = aeriesManager.login(context);
+			String[] loginData = aeriesManager.aeriesLoginData();
+			HttpResponse response = aeriesManager.login();
 
 			Document doc = Jsoup.parse(response.getEntity().getContent(), null, AeriesManager.LOGIN_URL);
 			int rowCount = 1;
@@ -55,7 +55,7 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 					if (rowCount == 1) {
 						//No data was loaded, calling it quits here and posting a dialog explaining why
 						if(loginData[0].equals("") || loginData[1].equals("")) {
-							error = "Please check that you have entered your Aeries information in preferences correctly";
+							error = "Please check that you have entered your Aeries information correctly";
 						} else {
 							error = "Either the grades system is unavailable or your login is incorrect";
 						}
@@ -107,6 +107,7 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 	@Override
 	protected void onCancelled() {
 		super.onCancelled();
+		progressDialog.dismiss();
 		aeriesManager.errorLoadingGrades(error);
 	}
 
@@ -120,7 +121,7 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 		aeriesManager.setSchoolClasses(grades);
 		aeriesManager.inflateList((Activity) context);
 		progressDialog.dismiss();
-		aeriesManager.writeAllData(context);
+		aeriesManager.writeAllData();
 		((ClassesOverviewActivity)context).updateLastUpdate();
 	}
 }
