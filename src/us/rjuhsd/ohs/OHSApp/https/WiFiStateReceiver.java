@@ -15,14 +15,20 @@ public class WiFiStateReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		if(prefs.getBoolean("school_wifi_login_flag", false)) {
-			final String action = intent.getAction();
-			if (action != null) {
-				WifiManager wfMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-				if(wfMgr.isWifiEnabled()) {
+		WifiManager wfMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+		Log.d("A", "1");
+		if (wfMgr.isWifiEnabled()) {
+			Log.d("A", "2");
+			if (prefs.getBoolean("school_wifi_login_flag", false)) {
+				Log.d("A", "3");
+				final String action = intent.getAction();
+				if (action != null) {
+					Log.d("A", "4");
 					WifiInfo wfInfo = wfMgr.getConnectionInfo();
-					if(wfInfo.getSSID() != null) {
-						if(wfInfo.getSSID().contains("Ohs-Guest")) {
+					if (wfInfo.getSSID() != null) {
+						Log.d("A", "5");
+						if (wfInfo.getSSID().contains("Ohs-Guest")) {
+							Log.d("A", "6");
 							new WiFiAutoLoginTask().execute(context);
 						}
 					}
