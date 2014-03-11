@@ -39,6 +39,10 @@
 				android:summary="Jacob McPeak and Jon Janzen"/>
 		<Preference
 				android:title="Icon Pack by"
-				android:summary="svenkapudija on GitHub.com"/>
+				android:summary="svenkapudija on GitHub.com">
+			<intent
+					android:action="android.intent.action.VIEW"
+					android:data="https://github.com/svenkapudija/Androton-Action-Bar-Icons" />
+		</Preference>
 	</PreferenceCategory>
 </PreferenceScreen>

@@ -58,7 +58,7 @@ public class AeriesManager {
 	}
 
 	public void getGradesOverview(Activity activity, boolean forceUpdate) {
-		if(grades != null && !forceUpdate) {
+		if(!grades.isEmpty() && !forceUpdate) {
 			inflateList(activity);
 		} else {
 			getGradesOverview(activity);
@@ -173,7 +173,7 @@ public class AeriesManager {
 	}
 
 	public void destroyAll(Context context) {
-		grades = null;
+		grades = new ArrayList<SchoolClass>();
 		writeAllData(context);
 	}
 
