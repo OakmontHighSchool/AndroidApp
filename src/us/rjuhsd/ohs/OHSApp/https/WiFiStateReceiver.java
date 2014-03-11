@@ -11,35 +11,34 @@ import android.util.Log;
 import us.rjuhsd.ohs.OHSApp.tasks.WiFiAutoLoginTask;
 
 public class WiFiStateReceiver extends BroadcastReceiver {
+	private static int ipAdress = 0;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		WifiManager wfMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-		Log.d("A", "1");
 		if (wfMgr.isWifiEnabled()) {
-			Log.d("A", "2");
 			if (prefs.getBoolean("school_wifi_login_flag", false)) {
-				Log.d("A", "3");
-				final String action = intent.getAction();
-				if (action != null) {
-					Log.d("A", "4");
-					WifiInfo wfInfo = wfMgr.getConnectionInfo();
-					if (wfInfo.getSSID() == null) {
-						while(wfInfo.getSSID() == null) {
-							Log.d("WhileLoop", "Go");
-							wfInfo = wfMgr.getConnectionInfo();
-							try {
-								Thread.currentThread().sleep(3000);
-							} catch(InterruptedException ie) {
-								Log.d("Interrupting Cow", "MOO");
+			WifiInfo wfInfo = wfMgr.getConnectionInfo();
+			if(wfInfo.getSupplicantState().name() == "COMPLETED" && wfInfo.getIpAddress() != ipAdress) {
+					final String action = intent.getAction();
+					if (action != null) {
+						if (wfInfo.getSSID() == null) {
+							while(wfInfo.getSSID() == null) {
+								Log.d("WhileLoop", "Go");
+								wfInfo = wfMgr.getConnectionInfo();
+								try {
+									Thread.currentThread().sleep(3000);
+								} catch(InterruptedException ie) {
+									Log.d("Interrupting Cow", "MOO, I INTERRUPTED YOUR SLEEP THREAD.");
+								}
 							}
+							Log.d("WifiAutoLogin", wfInfo.getSSID());
+							startTask(wfInfo.getSSID(), context);
+						} else {
+							Log.d("WifiAutoLogin", wfInfo.getSSID());
+							startTask(wfInfo.getSSID(), context);
 						}
-						Log.d("WifiAutoLogin", wfInfo.getSSID());
-						startTask(wfInfo.getSSID(), context);
-					} else {
-						Log.d("WifiAutoLogin", wfInfo.getSSID());
-						startTask(wfInfo.getSSID(), context);
 					}
 				}
 			}
