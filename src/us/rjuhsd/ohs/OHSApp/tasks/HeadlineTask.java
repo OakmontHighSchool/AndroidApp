@@ -1,7 +1,6 @@
 package us.rjuhsd.ohs.OHSApp.tasks;
 
 import android.os.AsyncTask;
-import android.util.Log;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -19,20 +18,20 @@ import java.io.IOException;
 public class HeadlineTask extends AsyncTask<Void, ArticleWrapper, Void> {
 	private static Document doc;
 	private static CentricityManager cm;
+	public static boolean forceUpdate;
 
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
 		cm = new CentricityManager();
-		if(cm.listLength() == 0) {
+		if(cm.listLength() == 0 || forceUpdate) {
 			CentricityManager.addArticle("Loading articles...", "Please wait while articles are loaded from the OHS website", OHSArticle.LOADING_MESSAGE);
 		}
 	}
 
 	@Override
 	protected Void doInBackground(Void... unused) {
-		Log.d("ArticleDragon", cm.listLength()+"");
-		if (cm.listLength() > 0) {
+		if (cm.listLength() > 0 && !forceUpdate) {
 			cm.reAddArticles();
 		} else {
 			try {

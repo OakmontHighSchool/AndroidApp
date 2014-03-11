@@ -45,7 +45,7 @@ public class OHSArticle {
 			@Override
 			public void onClick(View view) {
 				if(url.equals(ERROR_MESSAGE)) {
-					ma.updateHeadlines();
+					ma.updateHeadlines(false);
 				} else if(url.equals(LOADING_MESSAGE)){
 					Log.d("HttpDragon", "There is no URL to be found here");
 				} else if(!url.equals("")) {

@@ -58,12 +58,13 @@ public class MainActivity extends Activity {
 	@Override
 	public void onStart() {
 		super.onStart();
-		updateHeadlines();
+		updateHeadlines(false);
 	}
 
-	public void updateHeadlines() {
+	public void updateHeadlines(boolean htBool) {
 		CentricityManager.clearNotifications();
 		if (Tools.isConnected(this)) {
+			HeadlineTask.forceUpdate = htBool;
 			new HeadlineTask().execute();
 		} else {
 			CentricityManager.addArticle("Error loading articles", "Sorry, your device is not connected to the internet. Click to try again", OHSArticle.ERROR_MESSAGE);
@@ -89,7 +90,7 @@ public class MainActivity extends Activity {
 		Intent myIntent = null;
 		switch (view.getId()) {
 			case R.id.main_refresh_button:
-				this.updateHeadlines();
+				this.updateHeadlines(true);
 				break;
 			default:
 				myIntent = null;
