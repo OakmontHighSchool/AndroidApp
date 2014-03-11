@@ -25,15 +25,32 @@ public class WiFiStateReceiver extends BroadcastReceiver {
 				if (action != null) {
 					Log.d("A", "4");
 					WifiInfo wfInfo = wfMgr.getConnectionInfo();
-					if (wfInfo.getSSID() != null) {
-						Log.d("A", "5");
-						if (wfInfo.getSSID().contains("Ohs-Guest")) {
-							Log.d("A", "6");
-							new WiFiAutoLoginTask().execute(context);
+					if (wfInfo.getSSID() == null) {
+						while(wfInfo.getSSID() == null) {
+							Log.d("WhileLoop", "Go");
+							wfInfo = wfMgr.getConnectionInfo();
+							try {
+								Thread.currentThread().sleep(3000);
+							} catch(InterruptedException ie) {
+								Log.d("Interrupting Cow", "MOO");
+							}
 						}
+						Log.d("WifiAutoLogin", wfInfo.getSSID());
+						startTask(wfInfo.getSSID(), context);
+					} else {
+						Log.d("WifiAutoLogin", wfInfo.getSSID());
+						startTask(wfInfo.getSSID(), context);
 					}
 				}
 			}
+		}
+	}
+
+	public void startTask(String ssid, Context context) {
+		Log.d("A", "5");
+		if (ssid.contains("Ohs-Guest")) {
+			Log.d("A", "6");
+			new WiFiAutoLoginTask().execute(context);
 		}
 	}
 }

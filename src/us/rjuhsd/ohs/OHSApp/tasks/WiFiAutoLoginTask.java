@@ -83,6 +83,8 @@ public class WiFiAutoLoginTask extends AsyncTask<Context, Void, Void> {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} else {
+			Log.d("A", "Timeout");
 		}
 		return null;
 	}
