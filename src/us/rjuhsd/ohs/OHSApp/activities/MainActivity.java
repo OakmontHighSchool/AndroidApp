@@ -31,9 +31,9 @@ public class MainActivity extends Activity {
 	private Timer timer;
 	private DrawerLayout drawerLayout;
 	private ListView drawerList;
-	private OHSPeriodClock ohspc;
+	//private OHSPeriodClock ohspc;
 	public List<ArticleWrapper> articleWrapperList = new ArrayList<ArticleWrapper>();
-	public static final boolean timeLeft = false;
+	//public static final boolean timeLeft = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 
 		this.getAllByID();
 		CentricityManager.setMainActivity(this);
-		ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailyScheduleEnum.INTERVENTION);
+		//ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailyScheduleEnum.INTERVENTION);
 
 		new OHSDrawerList(this, drawerLayout, drawerList);
 
@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void updateUI() {
-		ohspc.timeLeft();
+		//ohspc.timeLeft();
 	}
 
 	private Runnable UI_UPDATE = new Runnable() {
@@ -106,7 +106,9 @@ public class MainActivity extends Activity {
 		TimerText2 = (TextView) this.findViewById(R.id.main_time_text_2);
 		TimerText3 = (TextView) this.findViewById(R.id.main_time_left_text);
 		StaticText1 = (TextView) this.findViewById(R.id.main_time_left);
+		StaticText1.setVisibility(TextView.INVISIBLE);
 		StaticText2 = (TextView) this.findViewById(R.id.main_current_period);
+		StaticText2.setVisibility(TextView.INVISIBLE);
 
 		drawerLayout = (DrawerLayout) this.findViewById(R.id.drawer_layout);
 		drawerList = (ListView) this.findViewById(R.id.drawer_list);

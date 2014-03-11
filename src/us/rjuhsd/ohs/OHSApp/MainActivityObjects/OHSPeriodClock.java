@@ -28,9 +28,9 @@ public class OHSPeriodClock {
 		this.s2 = s2;
 		this.day = day;
 		findPeriod();
-		if(!MainActivity.timeLeft) {
+		//if(!MainActivity.timeLeft) {
 			this.s1.setVisibility(View.INVISIBLE);
-		}
+		//}
 	}
 
 	public void findPeriod() {
@@ -73,7 +73,7 @@ public class OHSPeriodClock {
 	}
 
 	public void timeLeft() {
-		if (!day.name().equals("OFF") && currPeriod != -1 && MainActivity.timeLeft) {
+		//if (!day.name().equals("OFF") && currPeriod != -1 && MainActivity.timeLeft) {
 			Calendar c = Calendar.getInstance();
 			this.h = c.get(Calendar.HOUR_OF_DAY);
 			this.m = c.get(Calendar.MINUTE);
@@ -96,4 +96,4 @@ public class OHSPeriodClock {
 			}
 		}
 	}
-}
+//}
