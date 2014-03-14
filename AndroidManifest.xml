@@ -12,6 +12,7 @@
 		    android:icon="@drawable/icon"
 		    android:allowBackup="true">
         <activity android:name=".activities.MainActivity"
+				  android:screenOrientation="portrait"
                   android:label="@string/app_name">
 	        <intent-filter>
 		        <action android:name="android.intent.action.MAIN"/>
@@ -19,18 +20,23 @@
 	        </intent-filter>
         </activity>
         <activity android:name=".activities.ClassesOverviewActivity"
+				  android:screenOrientation="portrait"
                   android:label="@string/activity_grades">
         </activity>
         <activity android:name=".activities.Preferences"
+				  android:screenOrientation="portrait"
                   android:label="@string/activity_preferences">
         </activity>
 	    <activity android:name=".activities.DebugPreferences"
+				  android:screenOrientation="portrait"
 	              android:label="@string/activity_debug_preferences">
 	    </activity>
 	    <activity android:name=".activities.ClassDetailActivity"
+				  android:screenOrientation="portrait"
 	              android:label="@string/activity_grades_detail">
 	    </activity>
 	    <activity android:name=".activities.ClassAssignmentActivity"
+				  android:screenOrientation="portrait"
 	              android:label="@string/activity_grades_detail_detail">
 	    </activity>
 	    <receiver android:name=".https.WiFiStateReceiver">

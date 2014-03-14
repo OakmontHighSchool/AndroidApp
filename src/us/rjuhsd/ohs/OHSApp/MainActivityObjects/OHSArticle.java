@@ -33,10 +33,11 @@ public class OHSArticle {
 		mtv.setTextColor(Color.BLACK);
 		mtv.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float) Math.floor((50 / MainText.length()) * 5) + 20);
 		mtv.setTypeface(null, Typeface.BOLD);
+		mtv.setPadding(20, 0, 20, 0);
 		dtv.setText(DetailText);
 		dtv.setTextColor(Color.BLACK);
 		dtv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-		dtv.setPadding(5, 0, 0, 0);
+		dtv.setPadding(20, 0, 20, 0);
 		horizontal.setBackgroundColor(Color.GRAY);
 		horizontal.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 2));
 
@@ -45,7 +46,7 @@ public class OHSArticle {
 			@Override
 			public void onClick(View view) {
 				if(url.equals(ERROR_MESSAGE)) {
-					ma.updateHeadlines(false);
+					MainActivity.updateHeadlines(ma, false);
 				} else if(url.equals(LOADING_MESSAGE)){
 					Log.d("HttpDragon", "There is no URL to be found here");
 				} else if(!url.equals("")) {

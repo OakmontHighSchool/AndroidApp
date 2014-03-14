@@ -70,12 +70,20 @@ public class WiFiAutoLoginTask extends AsyncTask<Context, Void, Void> {
 
 					HttpPost postRequest = new HttpPost(LOGIN_URL);
 					postRequest.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
-					client.execute(postRequest);
+					HttpResponse response = client.execute(postRequest);
+					Document rDoc = Jsoup.parse(response.getEntity().getContent().toString());
 
-					Notification n2 = new Notification(R.drawable.icon, "Logged into Oakmont WiFi.", System.currentTimeMillis());
-					n2.setLatestEventInfo(c[0], "Oakmont WiFi", "Logged into Oakmont WiFi.", PendingIntent.getActivity(c[0], 1, new Intent(), 0));
-					NotificationManager mNotificationManager = (NotificationManager) c[0].getSystemService(Context.NOTIFICATION_SERVICE); //m?
-					mNotificationManager.notify(3, n2);
+					if(rDoc.baseUri().contains("FAIL")) {
+						Notification n2 = new Notification(R.drawable.icon, "Failed to log into the Oakmont WiFi.", System.currentTimeMillis());
+						n2.setLatestEventInfo(c[0], "Oakmont WiFi", "Failed to log into Oakmont WiFi, it's most likely that your login credentials are invalid.", PendingIntent.getActivity(c[0], 1, new Intent(), 0));
+						NotificationManager mNotificationManager = (NotificationManager) c[0].getSystemService(Context.NOTIFICATION_SERVICE); //m?
+						mNotificationManager.notify(3, n2);
+					} else {
+						Notification n2 = new Notification(R.drawable.icon, "Logged into Oakmont WiFi.", System.currentTimeMillis());
+						n2.setLatestEventInfo(c[0], "Oakmont WiFi", "Logged into Oakmont WiFi.", PendingIntent.getActivity(c[0], 1, new Intent(), 0));
+						NotificationManager mNotificationManager = (NotificationManager) c[0].getSystemService(Context.NOTIFICATION_SERVICE); //m?
+						mNotificationManager.notify(3, n2);
+					}
 				} catch (SocketException e) {
 					timeOuts++;
 					new WiFiAutoLoginTask().execute(c);

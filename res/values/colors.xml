@@ -2,4 +2,5 @@
 <resources>
 	<color name="OHSLightBlue">#C4D8E2</color>
 	<color name="OHSDarkBlue">#000066</color>
+	<color name="White">#ffffff</color>
 </resources>

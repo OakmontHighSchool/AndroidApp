@@ -1,39 +1,31 @@
 package us.rjuhsd.ohs.OHSApp.activities;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.*;
 import us.rjuhsd.ohs.OHSApp.DrawerList.OHSDrawerList;
 import us.rjuhsd.ohs.OHSApp.MainActivityObjects.ArticleWrapper;
-import us.rjuhsd.ohs.OHSApp.MainActivityObjects.DailyScheduleEnum;
 import us.rjuhsd.ohs.OHSApp.MainActivityObjects.OHSArticle;
-import us.rjuhsd.ohs.OHSApp.MainActivityObjects.OHSPeriodClock;
 import us.rjuhsd.ohs.OHSApp.managers.CentricityManager;
 import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class MainActivity extends Activity {
 	//Variables:
-	private TextView TimerText1;
-	private TextView TimerText2;
-	private TextView TimerText3;
 	private TextView StaticText1;
 	private TextView StaticText2;
-	private Timer timer;
+	private LinearLayout linearLayout;
 	private DrawerLayout drawerLayout;
 	private ListView drawerList;
-	//private OHSPeriodClock ohspc;
 	public List<ArticleWrapper> articleWrapperList = new ArrayList<ArticleWrapper>();
-	//public static final boolean timeLeft = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,28 +34,35 @@ public class MainActivity extends Activity {
 
 		this.getAllByID();
 		CentricityManager.setMainActivity(this);
-		//ohspc = new OHSPeriodClock(TimerText1, TimerText2, TimerText3, StaticText1, StaticText2, DailyScheduleEnum.INTERVENTION);
 
 		new OHSDrawerList(this, drawerLayout, drawerList);
 
-		timer = new Timer();
-		timer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				update();
-			}
-		}, 0, 1000);
+		AlphaAnimation anim = new AlphaAnimation(6.0f, 0.0f);
+			anim.setDuration(6000);
+			anim.setAnimationListener(new Animation.AnimationListener() {
+				@Override
+				public void onAnimationStart(Animation animation) {}
+				@Override
+				public void onAnimationRepeat(Animation animation) {}
+
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					linearLayout.removeView(StaticText1);
+					StaticText2.setPadding(0, 0, 0, 5);
+				}
+			});
+		StaticText1.startAnimation(anim);
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
-		updateHeadlines(false);
+		updateHeadlines(this, false);
 	}
 
-	public void updateHeadlines(boolean htBool) {
+	public static void updateHeadlines(Context c, boolean htBool) {
 		CentricityManager.clearNotifications();
-		if (Tools.isConnected(this)) {
+		if (Tools.isConnected(c)) {
 			HeadlineTask.forceUpdate = htBool;
 			new HeadlineTask().execute();
 		} else {
@@ -71,44 +70,10 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	private void update() {
-		this.runOnUiThread(UI_UPDATE);
-	}
-
-	private void updateUI() {
-		//ohspc.timeLeft();
-	}
-
-	private Runnable UI_UPDATE = new Runnable() {
-		@Override
-		public void run() {
-			updateUI();
-		}
-	};
-
-	public void onClick(View view) {
-		Intent myIntent = null;
-		switch (view.getId()) {
-			case R.id.main_refresh_button:
-				this.updateHeadlines(true);
-				break;
-			default:
-				myIntent = null;
-				break;
-		}
-		if(myIntent != null) {
-			startActivity(myIntent);
-		}
-	}
-
 	public void getAllByID() {
-		TimerText1 = (TextView) this.findViewById(R.id.main_time_text_1);
-		TimerText2 = (TextView) this.findViewById(R.id.main_time_text_2);
-		TimerText3 = (TextView) this.findViewById(R.id.main_time_left_text);
-		StaticText1 = (TextView) this.findViewById(R.id.main_time_left);
-		StaticText1.setVisibility(TextView.INVISIBLE);
-		StaticText2 = (TextView) this.findViewById(R.id.main_current_period);
-		StaticText2.setVisibility(TextView.INVISIBLE);
+		StaticText1 = (TextView) this.findViewById(R.id.main_swipe_instructions);
+		StaticText2 = (TextView) this.findViewById(R.id.main_title);
+		linearLayout = (LinearLayout) this.findViewById(R.id.main_linear_layout);
 
 		drawerLayout = (DrawerLayout) this.findViewById(R.id.drawer_layout);
 		drawerList = (ListView) this.findViewById(R.id.drawer_list);
