@@ -7,9 +7,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -26,7 +28,6 @@ import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.Tools;
 import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
-import us.rjuhsd.ohs.OHSApp.activities.Preferences;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;
 
 import java.io.FileInputStream;
@@ -155,9 +156,35 @@ public class AeriesManager {
 						//Do nothing
 					}
 				})
-				.setPositiveButton(R.string.goto_settings, new DialogInterface.OnClickListener() {
+				.setPositiveButton(R.string.goto_login, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						activity.startActivity(new Intent(activity, Preferences.class));
+						LayoutInflater factory = LayoutInflater.from(activity);
+						final View loginView = factory.inflate(R.layout.login_dialog, null);
+						final EditText aeriesUsernameView = ((EditText)loginView.findViewById(R.id.aeries_username));
+						final EditText aeriesPasswordView = ((EditText)loginView.findViewById(R.id.aeries_password));
+						final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+						aeriesUsernameView.setText(prefs.getString("aeries_username",""));
+						aeriesPasswordView.setText(prefs.getString("aeries_password",""));
+						AlertDialog.Builder modLogin = new AlertDialog.Builder(activity)
+								.setTitle("Login Information")
+								.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialogInterface, int i) {
+										//Do nothing
+									}
+								})
+								.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialogInterface, int i) {
+										SharedPreferences.Editor edit = prefs.edit();
+										edit.putString("aeries_username", aeriesUsernameView.getText().toString());
+										edit.putString("aeries_password", aeriesPasswordView.getText().toString());
+										edit.commit();
+										getGradesOverview(activity, true);
+									}
+								})
+								.setView(loginView);
+						modLogin.show();
 					}
 				});
 		adb.show();
