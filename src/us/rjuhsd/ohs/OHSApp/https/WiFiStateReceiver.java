@@ -11,7 +11,7 @@ import android.util.Log;
 import us.rjuhsd.ohs.OHSApp.tasks.WiFiAutoLoginTask;
 
 public class WiFiStateReceiver extends BroadcastReceiver {
-	private static int ipAdress = 0;
+	private static int ipAddress = 0;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -20,7 +20,7 @@ public class WiFiStateReceiver extends BroadcastReceiver {
 		if (wfMgr.isWifiEnabled()) {
 			if (prefs.getBoolean("school_wifi_login_flag", false)) {
 			WifiInfo wfInfo = wfMgr.getConnectionInfo();
-			if(wfInfo.getSupplicantState().name().equals("COMPLETED") && wfInfo.getIpAddress() != ipAdress) {
+			if(wfInfo.getSupplicantState().name().equals("COMPLETED") && wfInfo.getIpAddress() != ipAddress) {
 					final String action = intent.getAction();
 					if (action != null) {
 						if (wfInfo.getSSID() == null) {

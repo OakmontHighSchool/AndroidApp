@@ -99,7 +99,7 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 					if (row.className().equals("SubHeaderRow")) {
 						continue; //Skip the header row
 					}
-					if (row.children().size() >= 3) { //Avoids stupidhead invisible table children
+					if (row.children().size() >= 3) {
 						Assignment assign = new Assignment();
 						row.children().get(2).children().remove();
 						assign.description = row.children().get(2).text();
