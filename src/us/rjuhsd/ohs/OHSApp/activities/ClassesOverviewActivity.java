@@ -11,7 +11,7 @@ import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 public class ClassesOverviewActivity extends Activity {
 
-	private AeriesManager aeriesManager;
+	public AeriesManager aeriesManager;
 	private DrawerLayout drawerLayout;
 	private ListView drawerList;
 
@@ -31,10 +31,6 @@ public class ClassesOverviewActivity extends Activity {
 		super.onResume();
 		aeriesManager.getGradesOverview(this, false);
 		updateLastUpdate();
-	}
-
-	public void refresh() {
-		aeriesManager.getGradesOverview(this, true);
 	}
 
 	public void updateLastUpdate() {

@@ -1,7 +1,6 @@
 package us.rjuhsd.ohs.OHSApp.activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.animation.AlphaAnimation;
@@ -59,12 +58,12 @@ public class MainActivity extends Activity {
 	@Override
 	public void onStart() {
 		super.onStart();
-		updateHeadlines(this, false);
+		updateHeadlines(false);
 	}
 
-	public static void updateHeadlines(Context c, boolean htBool) {
+	public void updateHeadlines(boolean htBool) {
 		CentricityManager.clearNotifications();
-		if (Tools.isConnected(c)) {
+		if (Tools.isConnected(this)) {
 			HeadlineTask.forceUpdate = htBool;
 			new HeadlineTask().execute();
 		} else {
