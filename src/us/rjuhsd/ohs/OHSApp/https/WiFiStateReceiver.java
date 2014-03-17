@@ -20,7 +20,7 @@ public class WiFiStateReceiver extends BroadcastReceiver {
 		if (wfMgr.isWifiEnabled()) {
 			if (prefs.getBoolean("school_wifi_login_flag", false)) {
 			WifiInfo wfInfo = wfMgr.getConnectionInfo();
-			if(wfInfo.getSupplicantState().name() == "COMPLETED" && wfInfo.getIpAddress() != ipAdress) {
+			if(wfInfo.getSupplicantState().name().equals("COMPLETED") && wfInfo.getIpAddress() != ipAdress) {
 					final String action = intent.getAction();
 					if (action != null) {
 						if (wfInfo.getSSID() == null) {
@@ -45,7 +45,7 @@ public class WiFiStateReceiver extends BroadcastReceiver {
 		}
 	}
 
-	public void startTask(String ssid, Context context) {
+	void startTask(String ssid, Context context) {
 		Log.d("A", "5");
 		if (ssid.contains("Ohs-Guest")) {
 			Log.d("A", "6");

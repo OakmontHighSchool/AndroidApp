@@ -13,9 +13,7 @@ import us.rjuhsd.ohs.OHSApp.tasks.ClassDetailTask;
 
 public class ClassDetailActivity extends Activity {
 	public SchoolClass sClass;
-	int classId;
-	private DrawerLayout drawerLayout;
-	private ListView drawerList;
+	private int classId;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -25,8 +23,8 @@ public class ClassDetailActivity extends Activity {
 		if(classId != -1) {
 			sClass = new AeriesManager(this).getById(classId);
 		}
-		drawerLayout = (DrawerLayout) this.findViewById(R.id.class_detail_drawer_layout);
-		drawerList = (ListView) this.findViewById(R.id.class_detail_drawer_list);
+		DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.class_detail_drawer_layout);
+		ListView drawerList = (ListView) this.findViewById(R.id.class_detail_drawer_list);
 		new OHSDrawerList(this, drawerLayout, drawerList, true);
 	}
 

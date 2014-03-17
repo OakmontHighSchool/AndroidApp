@@ -12,17 +12,13 @@
 	<string name="activity_grades_detail_detail">Details of assignment</string>
 	<string name="refresh">Refresh</string>
 	<string name="error">An error occurred</string>
-	<string name="time_left">Time Left</string>
 	<string name="goto_login">Edit login info</string>
-	<string name="back">Back</string>
 	<string name="activity_debug_preferences">Debug Preferences</string>
 	<string name="version">Version</string>
 	<string name="clear_data">Clear cache</string>
 	<string name="clear_data_info">This will clear the cache, permanently</string>
-    <string name="current_period">Current Period</string>
     <string name="menu_image">Image next to the Menu item.</string>
 	<string name="classes_overview">Classes Overview</string>
-	<string name="activity_calendar">Calendar</string>
 	<string name="swipe_instructions">Swipe from the right edge for navigation menu.</string>
 	<string name="build_date">Build Date</string>
 	<string name="main_title">OHS Upcoming Events</string>

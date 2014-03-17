@@ -16,16 +16,11 @@ public class OHSArticle {
 	public static final String ERROR_MESSAGE = "ERROR_LOADING";
 	public static final String LOADING_MESSAGE = "LOADING";
 
-	private LinearLayout ll;
-	private TextView mtv;
-	private TextView dtv;
-	private View horizontal;
-
 	public OHSArticle(String MainText, String DetailText, LinearLayout L, final MainActivity ma, final String url) {
-		this.ll = new LinearLayout(ma);
-		this.horizontal = new View(ma);
-		this.mtv = new TextView(ma);
-		this.dtv = new TextView(ma);
+		LinearLayout ll = new LinearLayout(ma);
+		View horizontal = new View(ma);
+		TextView mtv = new TextView(ma);
+		TextView dtv = new TextView(ma);
 
 		ll.setOrientation(LinearLayout.VERTICAL);
 		ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -45,11 +40,11 @@ public class OHSArticle {
 		ll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				if(url.equals(ERROR_MESSAGE)) {
-					MainActivity.updateHeadlines(ma, false);
-				} else if(url.equals(LOADING_MESSAGE)){
+				if (url.equals(ERROR_MESSAGE)) {
+					ma.updateHeadlines(false);
+				} else if (url.equals(LOADING_MESSAGE)) {
 					Log.d("HttpDragon", "There is no URL to be found here");
-				} else if(!url.equals("")) {
+				} else if (!url.equals("")) {
 					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 					ma.startActivity(browserIntent);
 				}

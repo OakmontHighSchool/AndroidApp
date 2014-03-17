@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.R;
 
-public class DrawerListAdapter extends ArrayAdapter<String>{
+class DrawerListAdapter extends ArrayAdapter<String>{
 	private static class ViewHolder {
 		private TextView text;
 		private ImageView image;
@@ -18,9 +18,12 @@ public class DrawerListAdapter extends ArrayAdapter<String>{
 	}
 
 	private final LayoutInflater inflater;
-	private int[] imgSrcs;
+	private final int[] imgSrcs;
 
-	public DrawerListAdapter(Context context, int resource, int textViewResourceId, String[] textObjects, int[] imgObjects) {
+	private static int resource = R.layout.drawer_list_item;
+	private static final int textViewResourceId = R.id.drawer_list_item_TextView;
+
+	public DrawerListAdapter(Context context, String[] textObjects, int[] imgObjects) {
 		super(context, resource, textViewResourceId, textObjects);
 
 		this.imgSrcs = imgObjects;

@@ -19,6 +19,13 @@
 			<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
+					android:text="@string/classes_overview"
+					android:textColor="#000000"
+					android:textStyle="bold"
+					android:textSize="30sp"/>
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:id="@+id/classes_overview_last_update"
 					android:textColor="@android:color/black"/>
 		</LinearLayout>

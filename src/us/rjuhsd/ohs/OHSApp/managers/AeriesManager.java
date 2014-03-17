@@ -40,15 +40,14 @@ import java.util.List;
 
 public class AeriesManager {
 
-	public static String LOGIN_URL = "https://homelink.rjuhsd.us/LoginParent.aspx";
-	public static String GRADES_DETAIL = "https://homelink.rjuhsd.us/GradebookDetails.aspx";
+	public static final String LOGIN_URL = "https://homelink.rjuhsd.us/LoginParent.aspx";
+	public static final String GRADES_DETAIL = "https://homelink.rjuhsd.us/GradebookDetails.aspx";
 
-	private static String CLASSES_FILENAME = "classes.json";
-	private static int CURRENT_FILE_VERSION = 1;
+	private static final String CLASSES_FILENAME = "classes.json";
 	private final Context context;
 	private long lastUpdate;
 
-	public HttpClient client;
+	public final HttpClient client;
 	private Activity activity;
 	private ArrayList<SchoolClass> grades = new ArrayList<SchoolClass>();
 
@@ -87,7 +86,8 @@ public class AeriesManager {
 			for(SchoolClass sc: grades) {
 				gradesJson.put(sc.toJSON());
 			}
-			json.put("version",CURRENT_FILE_VERSION);
+			int CURRENT_FILE_VERSION = 1;
+			json.put("version", CURRENT_FILE_VERSION);
 			json.put("lastUpdate",lastUpdate);
 			json.put("classes", gradesJson);
 		} catch (JSONException e) {
@@ -104,7 +104,7 @@ public class AeriesManager {
 		}
 	}
 
-	public void readAllData() {
+	void readAllData() {
 		try {
 			FileInputStream fis = context.openFileInput(CLASSES_FILENAME);
 			String input = Tools.convertStreamToString(fis);

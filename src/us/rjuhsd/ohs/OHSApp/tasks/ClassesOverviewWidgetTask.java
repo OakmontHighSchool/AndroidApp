@@ -15,7 +15,7 @@ public class ClassesOverviewWidgetTask extends ClassesOverviewTask {
 
 	private final int appWidgetId;
 	private final AppWidgetManager appWidgetManager;
-	private RemoteViews views;
+	private final RemoteViews views;
 
 	public ClassesOverviewWidgetTask(Context context, RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId) {
 		super(context, new AeriesManager(context));
@@ -56,7 +56,7 @@ public class ClassesOverviewWidgetTask extends ClassesOverviewTask {
 		aeriesManager.writeAllData();
 	}
 
-	public void inflateList() {
+	void inflateList() {
 		for(SchoolClass sc: grades) {
 			RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.two_line_list_item);
 			rv.setTextViewText(R.id.txtMain, sc.className);

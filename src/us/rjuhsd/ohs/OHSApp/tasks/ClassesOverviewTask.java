@@ -17,10 +17,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
-	protected Context context;
+	Context context;
 	private ProgressDialog progressDialog;
-	protected AeriesManager aeriesManager;
-	protected ArrayList<SchoolClass> grades;
+	final AeriesManager aeriesManager;
+	ArrayList<SchoolClass> grades;
 	private String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
 
 	public ClassesOverviewTask(Context context, AeriesManager aeriesManager) {

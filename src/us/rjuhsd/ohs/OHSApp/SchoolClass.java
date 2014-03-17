@@ -16,7 +16,7 @@ public class SchoolClass {
 	public String mark;
 	public String missingAssign;
 	public String lastUpdate;
-	public int ID;
+	public final int ID;
 	public String aeriesID;
 	public ArrayList<Assignment> assignments;
 	public long lastGetUpdate;

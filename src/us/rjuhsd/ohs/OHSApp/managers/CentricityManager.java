@@ -6,20 +6,16 @@ import us.rjuhsd.ohs.OHSApp.MainActivityObjects.OHSArticle;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.activities.MainActivity;
 
-import java.util.Iterator;
-
 public class CentricityManager {
 	private static MainActivity ma;
 	private static LinearLayout ll;
 
-	public void captureArticle(ArticleWrapper article) {
+	void captureArticle(ArticleWrapper article) {
 		ma.articleWrapperList.add(article);
 	}
 
 	public void reAddArticles() {
-		Iterator<ArticleWrapper> iaw = ma.articleWrapperList.iterator();
-		while(iaw.hasNext()) {
-			ArticleWrapper aw = iaw.next();
+		for (ArticleWrapper aw : ma.articleWrapperList) {
 			addArticle(aw, false);
 		}
 	}

@@ -16,7 +16,7 @@ import us.rjuhsd.ohs.OHSApp.activities.MainActivity;
 import us.rjuhsd.ohs.OHSApp.activities.Preferences;
 
 public class OHSDrawerList {
-	Activity activity;
+	private final Activity activity;
 
 	public OHSDrawerList(Activity a, final DrawerLayout drawerLayout, final ListView drawerList, boolean useRefresh) {
 		activity = a;
@@ -32,7 +32,7 @@ public class OHSDrawerList {
 			stringSrcs = stringSrcs2;
 		}
 
-		final ArrayAdapter<String> testAA = new DrawerListAdapter(a, R.layout.drawer_list_item, R.id.drawer_list_item_TextView, stringSrcs, imageSrcs);
+		final ArrayAdapter<String> testAA = new DrawerListAdapter(a, stringSrcs, imageSrcs);
 		drawerList.setAdapter(testAA);
 
 		drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

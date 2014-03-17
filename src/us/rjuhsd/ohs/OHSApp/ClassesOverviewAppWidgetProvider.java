@@ -10,7 +10,7 @@ import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewWidgetTask;
 
 public class ClassesOverviewAppWidgetProvider extends AppWidgetProvider {
 
-	public static final String RELOAD_CLASSES_WIDGET = "us.rjuhsd.ohs.OHSApp.RELOAD_CLASSES_WIDGET";
+	private static final String RELOAD_CLASSES_WIDGET = "us.rjuhsd.ohs.OHSApp.RELOAD_CLASSES_WIDGET";
 
 	@Override
 	public void onReceive(Context context, Intent intent) {

@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 	private LinearLayout linearLayout;
 	private DrawerLayout drawerLayout;
 	private ListView drawerList;
-	public List<ArticleWrapper> articleWrapperList = new ArrayList<ArticleWrapper>();
+	public final List<ArticleWrapper> articleWrapperList = new ArrayList<ArticleWrapper>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	public void getAllByID() {
+	void getAllByID() {
 		StaticText1 = (TextView) this.findViewById(R.id.main_swipe_instructions);
 		StaticText2 = (TextView) this.findViewById(R.id.main_title);
 		linearLayout = (LinearLayout) this.findViewById(R.id.main_linear_layout);

@@ -12,8 +12,6 @@ import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 public class ClassesOverviewActivity extends Activity {
 
 	public AeriesManager aeriesManager;
-	private DrawerLayout drawerLayout;
-	private ListView drawerList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -21,8 +19,8 @@ public class ClassesOverviewActivity extends Activity {
 		setContentView(R.layout.classes_overview);
 		aeriesManager = new AeriesManager(this);
 
-		drawerLayout = (DrawerLayout) this.findViewById(R.id.classes_overview_drawer_layout);
-		drawerList = (ListView) this.findViewById(R.id.classes_overview_drawer_list);
+		DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.classes_overview_drawer_layout);
+		ListView drawerList = (ListView) this.findViewById(R.id.classes_overview_drawer_list);
 		new OHSDrawerList(this, drawerLayout, drawerList, true);
 	}
 

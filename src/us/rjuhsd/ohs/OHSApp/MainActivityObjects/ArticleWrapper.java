@@ -4,9 +4,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class ArticleWrapper {
-	public Elements articleHeader;
-	public Elements articleText;
-	public String urlString;
+	public final Elements articleHeader;
+	public final Elements articleText;
+	public final String urlString;
 
 	public ArticleWrapper(Element el) {
 		articleHeader = el.select("h1.ui-article-title span");
