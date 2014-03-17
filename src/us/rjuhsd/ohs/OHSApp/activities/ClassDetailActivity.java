@@ -2,8 +2,10 @@ package us.rjuhsd.ohs.OHSApp.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v4.widget.DrawerLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import us.rjuhsd.ohs.OHSApp.DrawerList.OHSDrawerList;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
@@ -12,6 +14,8 @@ import us.rjuhsd.ohs.OHSApp.tasks.ClassDetailTask;
 public class ClassDetailActivity extends Activity {
 	public SchoolClass sClass;
 	int classId;
+	private DrawerLayout drawerLayout;
+	private ListView drawerList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -21,6 +25,9 @@ public class ClassDetailActivity extends Activity {
 		if(classId != -1) {
 			sClass = new AeriesManager(this).getById(classId);
 		}
+		drawerLayout = (DrawerLayout) this.findViewById(R.id.class_detail_drawer_layout);
+		drawerList = (ListView) this.findViewById(R.id.class_detail_drawer_list);
+		new OHSDrawerList(this, drawerLayout, drawerList, true);
 	}
 
 	@Override
@@ -31,7 +38,7 @@ public class ClassDetailActivity extends Activity {
 		updateLastUpdate();
 	}
 
-	private void updateAssignments(boolean forceUpdate) {
+	public void updateAssignments(boolean forceUpdate) {
 		if(sClass.assignments.isEmpty() || forceUpdate) {
 			new ClassDetailTask(this).execute(sClass);
 		} else {
@@ -44,14 +51,6 @@ public class ClassDetailActivity extends Activity {
 		classNameView.setText("Class: "+sClass.className);
 		final TextView percentageView = (TextView) findViewById(R.id.class_detail_percentage);
 		percentageView.setText("Percentage: "+sClass.percentage+"%");
-	}
-
-	public void onClick(View view) {
-		switch (view.getId()) {
-			case R.id.class_detail_refresh_button:
-				updateAssignments(true);
-				break;
-		}
 	}
 
 	public void updateLastUpdate() {

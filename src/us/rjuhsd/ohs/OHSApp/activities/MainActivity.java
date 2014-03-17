@@ -9,14 +9,16 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import us.rjuhsd.ohs.OHSApp.*;
 import us.rjuhsd.ohs.OHSApp.DrawerList.OHSDrawerList;
 import us.rjuhsd.ohs.OHSApp.MainActivityObjects.ArticleWrapper;
 import us.rjuhsd.ohs.OHSApp.MainActivityObjects.OHSArticle;
+import us.rjuhsd.ohs.OHSApp.R;
+import us.rjuhsd.ohs.OHSApp.Tools;
 import us.rjuhsd.ohs.OHSApp.managers.CentricityManager;
 import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends Activity {
 	//Variables:
@@ -35,7 +37,7 @@ public class MainActivity extends Activity {
 		this.getAllByID();
 		CentricityManager.setMainActivity(this);
 
-		new OHSDrawerList(this, drawerLayout, drawerList);
+		new OHSDrawerList(this, drawerLayout, drawerList, true);
 
 		AlphaAnimation anim = new AlphaAnimation(6.0f, 0.0f);
 			anim.setDuration(6000);
@@ -75,7 +77,7 @@ public class MainActivity extends Activity {
 		StaticText2 = (TextView) this.findViewById(R.id.main_title);
 		linearLayout = (LinearLayout) this.findViewById(R.id.main_linear_layout);
 
-		drawerLayout = (DrawerLayout) this.findViewById(R.id.drawer_layout);
-		drawerList = (ListView) this.findViewById(R.id.drawer_list);
+		drawerLayout = (DrawerLayout) this.findViewById(R.id.main_drawer_layout);
+		drawerList = (ListView) this.findViewById(R.id.main_drawer_list);
 	}
 }

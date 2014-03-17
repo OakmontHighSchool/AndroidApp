@@ -30,6 +30,7 @@
 	<string name="aeries_password_label">Password:</string>
 
 	<string-array name="drawer_list_values">
+		<item>Headlines</item>
         <item>Grades</item>
 		<item>Website</item>
 		<item>Calendar</item>
