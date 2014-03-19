@@ -19,24 +19,21 @@ public class WiFiStateReceiver extends BroadcastReceiver {
 		WifiManager wfMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 		if (wfMgr.isWifiEnabled()) {
 			if (prefs.getBoolean("school_wifi_login_flag", false)) {
-			WifiInfo wfInfo = wfMgr.getConnectionInfo();
-			if(wfInfo.getSupplicantState().name().equals("COMPLETED") && wfInfo.getIpAddress() != ipAddress) {
+				WifiInfo wfInfo = wfMgr.getConnectionInfo();
+				if (wfInfo.getSupplicantState().name().equals("COMPLETED") && wfInfo.getIpAddress() != ipAddress) {
 					final String action = intent.getAction();
 					if (action != null) {
 						if (wfInfo.getSSID() == null) {
-							while(wfInfo.getSSID() == null) {
-								Log.d("WhileLoop", "Go");
+							while (wfInfo.getSSID() == null) {
 								wfInfo = wfMgr.getConnectionInfo();
 								try {
 									Thread.currentThread().sleep(3000);
-								} catch(InterruptedException ie) {
-									Log.d("Interrupting Cow", "MOO, I INTERRUPTED YOUR SLEEP THREAD.");
+								} catch (InterruptedException ie) {
+									Log.d("Interrupting Cow", "MOO, I INTERRUPTED YOUR THREAD.");
 								}
 							}
-							Log.d("WifiAutoLogin", wfInfo.getSSID());
 							startTask(wfInfo.getSSID(), context);
 						} else {
-							Log.d("WifiAutoLogin", wfInfo.getSSID());
 							startTask(wfInfo.getSSID(), context);
 						}
 					}
@@ -46,9 +43,7 @@ public class WiFiStateReceiver extends BroadcastReceiver {
 	}
 
 	void startTask(String ssid, Context context) {
-		Log.d("A", "5");
 		if (ssid.contains("Ohs-Guest")) {
-			Log.d("A", "6");
 			new WiFiAutoLoginTask().execute(context);
 		}
 	}
