@@ -51,13 +51,29 @@ public class AeriesManager {
 	private Activity activity;
 	private ArrayList<SchoolClass> grades = new ArrayList<SchoolClass>();
 
+	public AeriesManager(Activity activity) {
+		this.activity = activity;
+		this.context = activity;
+		client = Tools.sslClient();
+		readAllData();
+	}
+
 	public AeriesManager(Context context) {
 		this.context = context;
 		readAllData();
 		client = Tools.sslClient();
 	}
 
-	public void getGradesOverview(final Activity activity, boolean forceUpdate) {
+	public void getGradesOverview(boolean forceUpdate) {
+		if(activity != null) {
+			String FIRST_RUN_DONE = "firstRunGradesDone";
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+			if(!prefs.getBoolean(FIRST_RUN_DONE, false)) {
+				getLoginDialog().show();
+				prefs.edit().putBoolean(FIRST_RUN_DONE, true).commit();
+				return;
+			}
+		}
 		if(!grades.isEmpty() && !forceUpdate) {
 			inflateList(activity);
 		} else {
@@ -73,7 +89,6 @@ public class AeriesManager {
 				adb.show();
 
 			} else {
-				this.activity = activity;
 				new ClassesOverviewTask(activity, this).execute();
 			}
 		}
@@ -148,7 +163,7 @@ public class AeriesManager {
 	}
 
 	public void errorLoadingGrades(String errorText) {
-		AlertDialog.Builder adb = new AlertDialog.Builder(activity)
+		AlertDialog.Builder adb = new AlertDialog.Builder(context)
 				.setTitle("Login Failure!")
 				.setMessage(errorText)
 				.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -158,32 +173,7 @@ public class AeriesManager {
 				})
 				.setPositiveButton(R.string.goto_login, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						LayoutInflater factory = LayoutInflater.from(activity);
-						final View loginView = factory.inflate(R.layout.login_dialog, null);
-						final EditText aeriesUsernameView = ((EditText)loginView.findViewById(R.id.aeries_username));
-						final EditText aeriesPasswordView = ((EditText)loginView.findViewById(R.id.aeries_password));
-						final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-						aeriesUsernameView.setText(prefs.getString("aeries_username",""));
-						aeriesPasswordView.setText(prefs.getString("aeries_password",""));
-						AlertDialog.Builder modLogin = new AlertDialog.Builder(activity)
-								.setTitle("Login Information")
-								.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-									@Override
-									public void onClick(DialogInterface dialogInterface, int i) {
-										//Do nothing
-									}
-								})
-								.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-									@Override
-									public void onClick(DialogInterface dialogInterface, int i) {
-										SharedPreferences.Editor edit = prefs.edit();
-										edit.putString("aeries_username", aeriesUsernameView.getText().toString());
-										edit.putString("aeries_password", aeriesPasswordView.getText().toString());
-										edit.commit();
-										getGradesOverview(activity, true);
-									}
-								})
-								.setView(loginView);
+						AlertDialog.Builder modLogin = getLoginDialog();
 						modLogin.show();
 					}
 				});
@@ -234,5 +224,34 @@ public class AeriesManager {
 
 	public String getLastUpdate() {
 		return new SimpleDateFormat("MM-dd hh:mm").format(new Date(lastUpdate*1000L));
+	}
+
+	private AlertDialog.Builder getLoginDialog() {
+		LayoutInflater factory = LayoutInflater.from(context);
+		final View loginView = factory.inflate(R.layout.login_dialog, null);
+		final EditText aeriesUsernameView = ((EditText)loginView.findViewById(R.id.aeries_username));
+		final EditText aeriesPasswordView = ((EditText)loginView.findViewById(R.id.aeries_password));
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		aeriesUsernameView.setText(prefs.getString("aeries_username",""));
+		aeriesPasswordView.setText(prefs.getString("aeries_password",""));
+		return new AlertDialog.Builder(context)
+				.setTitle("Please Login:")
+				.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialogInterface, int i) {
+						//Do nothing
+					}
+				})
+				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialogInterface, int i) {
+						SharedPreferences.Editor edit = prefs.edit();
+						edit.putString("aeries_username", aeriesUsernameView.getText().toString());
+						edit.putString("aeries_password", aeriesPasswordView.getText().toString());
+						edit.commit();
+						getGradesOverview(true);
+					}
+				})
+				.setView(loginView);
 	}
 }

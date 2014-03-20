@@ -27,7 +27,7 @@ public class ClassesOverviewActivity extends Activity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		aeriesManager.getGradesOverview(this, false);
+		aeriesManager.getGradesOverview(false);
 		updateLastUpdate();
 	}
 

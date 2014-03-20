@@ -119,7 +119,7 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 			return;
 		}
 		aeriesManager.setSchoolClasses(grades);
-		aeriesManager.inflateList((Activity) context);
+		aeriesManager.inflateList((Activity)context);
 		progressDialog.dismiss();
 		aeriesManager.writeAllData();
 		((ClassesOverviewActivity)context).updateLastUpdate();

@@ -64,7 +64,7 @@ public class OHSDrawerList {
 							if(cl == MainActivity.class) {
 								((MainActivity)activity).updateHeadlines(true);
 							} else if(cl == ClassesOverviewActivity.class) {
-								((ClassesOverviewActivity) activity).aeriesManager.getGradesOverview(activity, true);
+								((ClassesOverviewActivity) activity).aeriesManager.getGradesOverview(true);
 							} else if(cl == ClassDetailActivity.class) {
 								((ClassDetailActivity) activity).updateAssignments(true);
 							}

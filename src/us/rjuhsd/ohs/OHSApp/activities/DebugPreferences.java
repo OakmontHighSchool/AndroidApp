@@ -1,6 +1,6 @@
 package us.rjuhsd.ohs.OHSApp.activities;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -27,12 +27,12 @@ public class DebugPreferences extends PreferenceActivity {
 			e.printStackTrace();
 		}
 
-		final Context context = this;
+		final Activity activity = this;
 		Preference clearAll = findPreference("debug_clear_everything");
 		clearAll.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				new AeriesManager(context).destroyAll();
+				new AeriesManager(activity).destroyAll();
 				return true;
 			}
 		});
