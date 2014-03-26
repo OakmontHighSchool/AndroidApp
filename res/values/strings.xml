@@ -13,7 +13,7 @@
 	<string name="refresh">Refresh</string>
 	<string name="error">An error occurred</string>
 	<string name="goto_login">Edit login info</string>
-	<string name="activity_debug_preferences">Debug Preferences</string>
+	<string name="activity_debug_preferences">Debug</string>
 	<string name="version">Version</string>
 	<string name="clear_data">Clear cache</string>
 	<string name="clear_data_info">This will clear the cache, permanently</string>
