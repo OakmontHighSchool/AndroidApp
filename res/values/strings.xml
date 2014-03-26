@@ -24,11 +24,13 @@
 	<string name="main_title">OHS Upcoming Events</string>
 	<string name="aeries_username_label">Aeries Email:</string>
 	<string name="aeries_password_label">Aeries Password:</string>
+	<string name="activity_map_view">Map</string>
 
 	<string-array name="drawer_list_values">
 		<item>Headlines</item>
         <item>Grades</item>
 		<item>Website</item>
+		<item>School Map</item>
 		<item>Calendar</item>
 		<item>Settings</item>
 		<item>Refresh</item>

@@ -44,5 +44,12 @@
 					android:action="android.intent.action.VIEW"
 					android:data="https://github.com/svenkapudija/Androton-Action-Bar-Icons" />
 		</Preference>
+		<Preference
+				android:title="Zoomable Image View by"
+				android:summary="MikeOrtiz on GitHub.com">
+			<intent
+					android:action="android.intent.action.VIEW"
+					android:data="https://github.com/MikeOrtiz/TouchImageView" />
+		</Preference>
 	</PreferenceCategory>
 </PreferenceScreen>

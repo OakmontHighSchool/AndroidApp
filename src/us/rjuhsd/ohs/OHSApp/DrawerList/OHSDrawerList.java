@@ -10,17 +10,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import us.rjuhsd.ohs.OHSApp.R;
-import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
-import us.rjuhsd.ohs.OHSApp.activities.ClassesOverviewActivity;
-import us.rjuhsd.ohs.OHSApp.activities.MainActivity;
-import us.rjuhsd.ohs.OHSApp.activities.Preferences;
+import us.rjuhsd.ohs.OHSApp.activities.*;
 
 public class OHSDrawerList {
 	private final Activity activity;
 
 	public OHSDrawerList(Activity a, final DrawerLayout drawerLayout, final ListView drawerList, boolean useRefresh) {
 		activity = a;
-		int[] imageSrcs = {R.drawable.ic_home, R.drawable.ic_accept, R.drawable.ic_web, R.drawable.ic_date, R.drawable.ic_cog, R.drawable.ic_refresh};
+		int[] imageSrcs = {R.drawable.ic_home, R.drawable.ic_accept, R.drawable.ic_web, R.drawable.ic_map, R.drawable.ic_date, R.drawable.ic_cog, R.drawable.ic_refresh};
 		String[] stringSrcs = a.getResources().getStringArray(R.array.drawer_list_values);
 
 		if(!useRefresh) {
@@ -54,12 +51,15 @@ public class OHSDrawerList {
 							newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us"));
 							break;
 						case 3:
-							newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us/Page/2"));
+							newIntent = new Intent(c, MapViewActivity.class);
 							break;
 						case 4:
-							newIntent = new Intent(c, Preferences.class);
+							newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us/Page/2"));
 							break;
 						case 5:
+							newIntent = new Intent(c, Preferences.class);
+							break;
+						case 6:
 							Class cl = c.getClass();
 							if(cl == MainActivity.class) {
 								((MainActivity)activity).updateHeadlines(true);
