@@ -49,7 +49,7 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 			Document doc = Jsoup.parse(response.getEntity().getContent(), null, AeriesManager.LOGIN_URL);
 			int rowCount = 1;
 			while (true) {
-				String trId = "tr#ctl00_MainContent_ctl19_DataDetails_ctl0" + rowCount + "_trGBKItem";
+				String trId = "tr#ctl00_MainContent_ctl25_DataDetails_ctl0" + rowCount + "_trGBKItem";
 				Element tr = doc.select(trId).first();
 				if (tr == null) {
 					if (rowCount == 1) {
