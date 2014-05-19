@@ -14,30 +14,26 @@
         <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-				android:orientation="vertical"
+				android:orientation="horizontal"
 				android:id="@+id/news_linear_layout"
                 android:background="@color/OHSLightBlue">
 			<TextView
-					android:layout_width="wrap_content"
+					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
+					android:layout_weight="1"
 					android:text="@string/news_title"
-					android:layout_gravity="center_horizontal"
 					android:textStyle="bold"
 					android:textColor="#000"
 					android:textSize="30sp"
 					android:id="@+id/news_title"
 					/>
-	        <TextView
+	        <ImageButton
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:text="@string/swipe_instructions"
-					android:layout_gravity="center_horizontal"
-			        android:textColor="@color/OHSDarkBlue"
-			        android:gravity="right|bottom"
-			        android:padding="4dp"
-			        android:id="@+id/news_swipe_instructions"
-					/>
-		</LinearLayout>
+			        android:id="@+id/news_refresh_button"
+			        android:src="@drawable/ic_refresh"
+			        android:onClick="onClick"/>
+        </LinearLayout>
         <ScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"

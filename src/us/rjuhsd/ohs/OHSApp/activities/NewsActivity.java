@@ -3,8 +3,7 @@ package us.rjuhsd.ohs.OHSApp.activities;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,7 +20,6 @@ import java.util.List;
 
 public class NewsActivity extends Activity {
 	//Variables:
-	private TextView StaticText1;
 	private TextView StaticText2;
 	private LinearLayout linearLayout;
 	private DrawerLayout drawerLayout;
@@ -36,29 +34,19 @@ public class NewsActivity extends Activity {
 		this.getAllByID();
 		CentricityManager.setMainActivity(this);
 
-		new OHSDrawerList(this, drawerLayout, drawerList, true);
-
-		AlphaAnimation anim = new AlphaAnimation(6.0f, 0.0f);
-			anim.setDuration(6000);
-			anim.setAnimationListener(new Animation.AnimationListener() {
-				@Override
-				public void onAnimationStart(Animation animation) {}
-				@Override
-				public void onAnimationRepeat(Animation animation) {}
-
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					linearLayout.removeView(StaticText1);
-					StaticText2.setPadding(0, 0, 0, 5);
-				}
-			});
-		StaticText1.startAnimation(anim);
+		new OHSDrawerList(this, drawerLayout, drawerList, false);
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
 		updateHeadlines(false);
+	}
+
+	public void onClick(View v) {
+		if(v.getId() == R.id.news_refresh_button) {
+			updateHeadlines(true);
+		}
 	}
 
 	public void updateHeadlines(boolean htBool) {
@@ -72,7 +60,6 @@ public class NewsActivity extends Activity {
 	}
 
 	void getAllByID() {
-		StaticText1 = (TextView) this.findViewById(R.id.news_swipe_instructions);
 		StaticText2 = (TextView) this.findViewById(R.id.news_title);
 		linearLayout = (LinearLayout) this.findViewById(R.id.news_linear_layout);
 
