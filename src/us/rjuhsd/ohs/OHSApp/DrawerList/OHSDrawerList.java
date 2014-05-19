@@ -61,9 +61,7 @@ public class OHSDrawerList {
 							break;
 						case 6:
 							Class cl = c.getClass();
-							if(cl == ClassesOverviewActivity.class) {
-								((ClassesOverviewActivity) activity).aeriesManager.getGradesOverview(true);
-							} else if(cl == ClassDetailActivity.class) {
+							if(cl == ClassDetailActivity.class) {
 								((ClassDetailActivity) activity).updateAssignments(true);
 							}
 							break;

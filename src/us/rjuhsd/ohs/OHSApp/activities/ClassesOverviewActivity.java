@@ -31,7 +31,7 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 
 		DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.classes_overview_drawer_layout);
 		ListView drawerList = (ListView) this.findViewById(R.id.classes_overview_drawer_list);
-		new OHSDrawerList(this, drawerLayout, drawerList, true);
+		new OHSDrawerList(this, drawerLayout, drawerList, false);
 	}
 
 	@Override
@@ -46,6 +46,12 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 
 	public void updateLastUpdate() {
 
+	}
+
+	public void onClick(View v) {
+		if(v.getId() == R.id.classes_overview_refresh_button) {
+			aeriesManager.getGradesOverview(true);
+		}
 	}
 
 	@Override
