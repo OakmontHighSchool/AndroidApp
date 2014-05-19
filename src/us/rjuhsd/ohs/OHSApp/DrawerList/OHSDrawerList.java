@@ -17,7 +17,7 @@ public class OHSDrawerList {
 
 	public OHSDrawerList(Activity a, final DrawerLayout drawerLayout, final ListView drawerList, boolean useRefresh) {
 		activity = a;
-		int[] imageSrcs = {R.drawable.ic_home, R.drawable.ic_accept, R.drawable.ic_web, R.drawable.ic_map, R.drawable.ic_date, R.drawable.ic_cog, R.drawable.ic_refresh};
+		int[] imageSrcs = {R.drawable.ic_rss, R.drawable.ic_accept, R.drawable.ic_web, R.drawable.ic_map, R.drawable.ic_date, R.drawable.ic_cog, R.drawable.ic_refresh};
 		String[] stringSrcs = a.getResources().getStringArray(R.array.drawer_list_values);
 
 		if(!useRefresh) {
