@@ -4,7 +4,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_drawer_layout">
+        android:id="@+id/news_drawer_layout">
     <!-- Main Content View -->
     <LinearLayout
             android:orientation="vertical"
@@ -15,17 +15,17 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
 				android:orientation="vertical"
-				android:id="@+id/main_linear_layout"
+				android:id="@+id/news_linear_layout"
                 android:background="@color/OHSLightBlue">
 			<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="@string/main_title"
+					android:text="@string/news_title"
 					android:layout_gravity="center_horizontal"
 					android:textStyle="bold"
 					android:textColor="#000"
 					android:textSize="30sp"
-					android:id="@+id/main_title"
+					android:id="@+id/news_title"
 					/>
 	        <TextView
 			        android:layout_width="wrap_content"
@@ -35,24 +35,24 @@
 			        android:textColor="@color/OHSDarkBlue"
 			        android:gravity="right|bottom"
 			        android:padding="4dp"
-			        android:id="@+id/main_swipe_instructions"
+			        android:id="@+id/news_swipe_instructions"
 					/>
 		</LinearLayout>
         <ScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/main_scroll_view">
+                android:id="@+id/news_scroll_view">
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@id/main_article_list_view">
+                    android:id="@+id/news_article_list_view">
             </LinearLayout>
         </ScrollView>
 	</LinearLayout>
     <!-- Drawer View -->
     <ListView
-            android:id="@+id/main_drawer_list"
+            android:id="@+id/news_drawer_list"
             android:layout_width="240dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"

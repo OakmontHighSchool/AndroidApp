@@ -21,7 +21,7 @@
 	<string name="classes_overview">Classes Overview</string>
 	<string name="swipe_instructions">Swipe from the right edge for navigation menu.</string>
 	<string name="build_date">Build Date</string>
-	<string name="main_title">Oakmont News</string>
+	<string name="news_title">Oakmont News</string>
 	<string name="aeries_username_label">Aeries Email:</string>
 	<string name="aeries_password_label">Aeries Password:</string>
 	<string name="activity_map_view">Map</string>

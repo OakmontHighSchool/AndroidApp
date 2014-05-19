@@ -72,11 +72,11 @@ public class NewsActivity extends Activity {
 	}
 
 	void getAllByID() {
-		StaticText1 = (TextView) this.findViewById(R.id.main_swipe_instructions);
-		StaticText2 = (TextView) this.findViewById(R.id.main_title);
-		linearLayout = (LinearLayout) this.findViewById(R.id.main_linear_layout);
+		StaticText1 = (TextView) this.findViewById(R.id.news_swipe_instructions);
+		StaticText2 = (TextView) this.findViewById(R.id.news_title);
+		linearLayout = (LinearLayout) this.findViewById(R.id.news_linear_layout);
 
-		drawerLayout = (DrawerLayout) this.findViewById(R.id.main_drawer_layout);
-		drawerList = (ListView) this.findViewById(R.id.main_drawer_list);
+		drawerLayout = (DrawerLayout) this.findViewById(R.id.news_drawer_layout);
+		drawerList = (ListView) this.findViewById(R.id.news_drawer_list);
 	}
 }

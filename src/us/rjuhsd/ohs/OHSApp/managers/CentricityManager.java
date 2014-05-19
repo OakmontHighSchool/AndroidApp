@@ -46,7 +46,7 @@ public class CentricityManager {
 
 	public static void setMainActivity(NewsActivity ac) {
 		ma = ac;
-		ll = (LinearLayout) ma.findViewById(R.id.main_article_list_view);
+		ll = (LinearLayout) ma.findViewById(R.id.news_article_list_view);
 	}
 
 	public static void clearNotifications() {
