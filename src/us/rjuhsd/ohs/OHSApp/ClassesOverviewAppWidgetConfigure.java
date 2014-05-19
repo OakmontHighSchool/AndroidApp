@@ -74,6 +74,16 @@ public class ClassesOverviewAppWidgetConfigure extends Activity implements Class
 				classes = "all";
 			} else {
 				SparseBooleanArray checkedItems = classes_list.getCheckedItemPositions();
+				if(checkedItems.size() > 5) {
+					AlertDialog.Builder adb = new AlertDialog.Builder(this)
+							.setTitle("Too many items!")
+							.setMessage("There are too many classes for this widget, please select fewer classes to display in the widget.")
+							.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {
+									finish();
+								}
+							});
+				}
 				int size = classes_list.getCount();
 				for(int i=0;i<size;i++) {
 					if(checkedItems.get(i)) {
