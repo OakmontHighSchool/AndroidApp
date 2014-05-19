@@ -3,6 +3,7 @@ package us.rjuhsd.ohs.OHSApp.activities;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.DrawerList.OHSDrawerList;
@@ -25,7 +26,7 @@ public class ClassDetailActivity extends Activity {
 		}
 		DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.class_detail_drawer_layout);
 		ListView drawerList = (ListView) this.findViewById(R.id.class_detail_drawer_list);
-		new OHSDrawerList(this, drawerLayout, drawerList, true);
+		new OHSDrawerList(this, drawerLayout, drawerList);
 	}
 
 	@Override
@@ -34,6 +35,12 @@ public class ClassDetailActivity extends Activity {
 		updateAssignments(false);
 		fillViews();
 		updateLastUpdate();
+	}
+
+	public void onClick(View v) {
+		if(v.getId() == R.id.class_detail_refresh_button) {
+			updateAssignments(true);
+		}
 	}
 
 	public void updateAssignments(boolean forceUpdate) {

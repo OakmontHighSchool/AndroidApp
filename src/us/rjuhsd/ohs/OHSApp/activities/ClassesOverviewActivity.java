@@ -31,7 +31,7 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 
 		DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.classes_overview_drawer_layout);
 		ListView drawerList = (ListView) this.findViewById(R.id.classes_overview_drawer_list);
-		new OHSDrawerList(this, drawerLayout, drawerList, false);
+		new OHSDrawerList(this, drawerLayout, drawerList);
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public class ClassAssignmentActivity extends Activity {
 		}
 		DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.assignment_details_drawer_layout);
 		ListView drawerList = (ListView) this.findViewById(R.id.assignment_details_drawer_list);
-		new OHSDrawerList(this, drawerLayout, drawerList, false);
+		new OHSDrawerList(this, drawerLayout, drawerList);
 	}
 
 	@Override

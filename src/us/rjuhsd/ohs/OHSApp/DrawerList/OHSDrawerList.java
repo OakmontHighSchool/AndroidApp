@@ -10,24 +10,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import us.rjuhsd.ohs.OHSApp.R;
-import us.rjuhsd.ohs.OHSApp.activities.*;
+import us.rjuhsd.ohs.OHSApp.activities.ClassesOverviewActivity;
+import us.rjuhsd.ohs.OHSApp.activities.MapViewActivity;
+import us.rjuhsd.ohs.OHSApp.activities.NewsActivity;
+import us.rjuhsd.ohs.OHSApp.activities.Preferences;
 
 public class OHSDrawerList {
 	private final Activity activity;
 
-	public OHSDrawerList(Activity a, final DrawerLayout drawerLayout, final ListView drawerList, boolean useRefresh) {
+	public OHSDrawerList(Activity a, final DrawerLayout drawerLayout, final ListView drawerList) {
 		activity = a;
-		int[] imageSrcs = {R.drawable.ic_rss, R.drawable.ic_accept, R.drawable.ic_web, R.drawable.ic_map, R.drawable.ic_date, R.drawable.ic_cog, R.drawable.ic_refresh};
+		int[] imageSrcs = {R.drawable.ic_rss, R.drawable.ic_accept, R.drawable.ic_web, R.drawable.ic_map, R.drawable.ic_date, R.drawable.ic_cog};
 		String[] stringSrcs = a.getResources().getStringArray(R.array.drawer_list_values);
-
-		if(!useRefresh) {
-			int[] imageSrcs2 = new int[imageSrcs.length-1];
-			String[] stringSrcs2 = new String[stringSrcs.length-1];
-			System.arraycopy(imageSrcs, 0, imageSrcs2, 0, imageSrcs.length-1);
-			System.arraycopy(stringSrcs, 0, stringSrcs2, 0, stringSrcs.length-1);
-			imageSrcs = imageSrcs2;
-			stringSrcs = stringSrcs2;
-		}
 
 		final ArrayAdapter<String> testAA = new DrawerListAdapter(a, stringSrcs, imageSrcs);
 		drawerList.setAdapter(testAA);
@@ -58,12 +52,6 @@ public class OHSDrawerList {
 							break;
 						case 5:
 							newIntent = new Intent(c, Preferences.class);
-							break;
-						case 6:
-							Class cl = c.getClass();
-							if(cl == ClassDetailActivity.class) {
-								((ClassDetailActivity) activity).updateAssignments(true);
-							}
 							break;
 					}
 				}

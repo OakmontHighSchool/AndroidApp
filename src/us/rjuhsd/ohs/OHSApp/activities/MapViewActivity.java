@@ -18,6 +18,6 @@ public class MapViewActivity extends Activity {
 
 		DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.map_view_drawer_layout);
 		ListView drawerList = (ListView) this.findViewById(R.id.map_view_drawer_list);
-		new OHSDrawerList(this, drawerLayout, drawerList, false);
+		new OHSDrawerList(this, drawerLayout, drawerList);
 	}
 }

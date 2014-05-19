@@ -34,7 +34,7 @@ public class NewsActivity extends Activity {
 		this.getAllByID();
 		CentricityManager.setMainActivity(this);
 
-		new OHSDrawerList(this, drawerLayout, drawerList, false);
+		new OHSDrawerList(this, drawerLayout, drawerList);
 	}
 
 	@Override
