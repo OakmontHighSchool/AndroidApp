@@ -4,7 +4,6 @@ import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 import us.rjuhsd.ohs.OHSApp.R;
@@ -36,7 +35,6 @@ public class ClassesOverviewTaskWidget implements ClassesOverviewTaskReceiver {
 	}
 
 	private void processIDs(String ids) {
-		Log.d("DragonInput", ids);
 		if(ids.equals("all")) {
 			showAll = true;
 		} else if(!ids.equals("")) {
@@ -78,9 +76,7 @@ public class ClassesOverviewTaskWidget implements ClassesOverviewTaskReceiver {
 			if(!showAll) {
 				boolean showThisOne = false;
 				for(int i=0;i<IDs.size();i++) {
-					Log.d("DragonCount", i+"");
 					Integer id = IDs.get(i);
-					Log.d("Dragon", id+"=="+sc.ID);
 					if(id == sc.ID) {
 						showThisOne = true;
 						break;
