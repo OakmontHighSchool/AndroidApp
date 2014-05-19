@@ -31,7 +31,7 @@ public class NewsActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.news);
 
 		this.getAllByID();
 		CentricityManager.setMainActivity(this);
