@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class GradesArrayAdapter extends ArrayAdapter<SchoolClass>{
 
 	private final Context context;
-	private static final int layoutResourceId = R.layout.two_line_list_item;
+	protected static final int layoutResourceId = R.layout.two_line_list_item;
 	private final ArrayList<SchoolClass> data;
 
 	public GradesArrayAdapter(Context context, ArrayList<SchoolClass> objects) {
@@ -45,8 +45,8 @@ public class GradesArrayAdapter extends ArrayAdapter<SchoolClass>{
 		}
 
 		SchoolClass sClass = data.get(position);
-		holder.txtSecond.setText("Current Percentage: "+sClass.percentage+"%");
 		holder.txtMain.setText(sClass.className);
+		holder.txtSecond.setText("Current Percentage: "+sClass.percentage+"%");
 
 		return row;
 	}

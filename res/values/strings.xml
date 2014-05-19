@@ -25,6 +25,9 @@
 	<string name="aeries_username_label">Aeries Email:</string>
 	<string name="aeries_password_label">Aeries Password:</string>
 	<string name="activity_map_view">Map</string>
+	<string name="classes_widget_config_done">Done</string>
+	<string name="classes_widget_configure_radio_show_some">Choose classes</string>
+	<string name="classes_widget_configure_radio_show_all">Show all classes</string>
 
 	<string-array name="drawer_list_values">
 		<item>Headlines</item>

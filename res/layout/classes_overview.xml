@@ -29,7 +29,7 @@
 					android:id="@+id/classes_overview_last_update"
 					android:textColor="@android:color/black"/>
 		</LinearLayout>
-		<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+		<ListView
 			android:id="@+id/classes_overview_list_view"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"

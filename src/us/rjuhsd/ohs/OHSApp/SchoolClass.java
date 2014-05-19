@@ -64,6 +64,11 @@ public class SchoolClass {
 		return sc;
 	}
 
+	@Override
+	public String toString() {
+		return this.className;
+	}
+
 	public String getLastUpdate() {
 		return new SimpleDateFormat("MM-dd hh:mm").format(new Date(lastGetUpdate*1000L));
 	}

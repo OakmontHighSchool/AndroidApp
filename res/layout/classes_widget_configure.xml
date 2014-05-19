@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+	<Button
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:paddingBottom="0dp"
+			android:text="@string/classes_widget_config_done"
+			android:id="@+id/classes_widget_configure_done"
+			android:layout_gravity="center_horizontal"
+			android:onClick="onClick"/>
+	<RadioGroup
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/classes_widget_configure_radio_group">
+		<RadioButton
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/classes_widget_configure_radio_show_all"
+				android:checked="true"
+				android:id="@+id/classes_widget_configure_radio_show_all"/>
+		<RadioButton
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/classes_widget_configure_radio_show_some"
+				android:checked="false"
+				android:id="@+id/classes_widget_configure_radio_show_some"/>
+	</RadioGroup>
+	<ListView
+			android:id="@+id/classes_widget_configure_list_view"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:visibility="gone"
+			android:choiceMode="multipleChoice"/>
+</LinearLayout>

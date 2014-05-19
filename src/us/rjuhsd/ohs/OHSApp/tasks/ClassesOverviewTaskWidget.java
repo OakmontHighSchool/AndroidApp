@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 import us.rjuhsd.ohs.OHSApp.R;
@@ -11,23 +12,45 @@ import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.activities.ClassesOverviewActivity;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
-public class ClassesOverviewWidgetTask extends ClassesOverviewTask {
+import java.util.ArrayList;
 
-	private final int appWidgetId;
-	private final AppWidgetManager appWidgetManager;
-	private final RemoteViews views;
+public class ClassesOverviewTaskWidget implements ClassesOverviewTaskReceiver {
 
-	public ClassesOverviewWidgetTask(Context context, RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId) {
-		super(context, new AeriesManager(context));
+
+	private AppWidgetManager appWidgetManager;
+	private RemoteViews views;
+	private int appWidgetId;
+	private AeriesManager aeriesManager;
+	private Context context;
+	private ArrayList<Integer> IDs = new ArrayList<Integer>();
+	private boolean showAll = false;
+
+	public ClassesOverviewTaskWidget(Context context, RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId, String ids) {
 		this.context = context;
 		this.views = views;
 		this.appWidgetManager = appWidgetManager;
 		this.appWidgetId = appWidgetId;
+		this.aeriesManager = new AeriesManager(context);
+		processIDs(ids);
+		new ClassesOverviewTask(context,aeriesManager,this).execute();
+	}
+
+	private void processIDs(String ids) {
+		Log.d("DragonInput", ids);
+		if(ids.equals("all")) {
+			showAll = true;
+		} else if(!ids.equals("")) {
+			String[] classes = ids.split(",");
+
+			for (String i: classes) {
+				Integer id = Integer.parseInt(i);
+				this.IDs.add(id);
+			}
+		}
 	}
 
 	@Override
-	protected void onPreExecute() {
-		//Override to not inherit the progress dialog
+	public void onGradesStart() {
 		views.removeAllViews(R.id.appwidget_classes_view);
 
 		views.setViewVisibility(R.id.appwidget_classes_progress, View.VISIBLE);
@@ -37,27 +60,36 @@ public class ClassesOverviewWidgetTask extends ClassesOverviewTask {
 	}
 
 	@Override
-	protected void onCancelled() {
+	public void onGradesError(String errorMsg) {
 		views.setViewVisibility(R.id.appwidget_classes_error, View.VISIBLE);
 		views.setViewVisibility(R.id.appwidget_classes_progress, View.GONE);
 		appWidgetManager.updateAppWidget(appWidgetId, views);
 	}
 
 	@Override
-	protected void onPostExecute(Void v) {
-		if(isCancelled()) {
-			onCancelled();
-			return;
-		}
-		inflateList();
+	public void onGradesDone() {
 		views.setViewVisibility(R.id.appwidget_classes_progress, View.GONE);
+		inflateList();
 		appWidgetManager.updateAppWidget(appWidgetId, views);
-		aeriesManager.setSchoolClasses(grades);
-		aeriesManager.writeAllData();
 	}
 
 	void inflateList() {
-		for(SchoolClass sc: grades) {
+		for(SchoolClass sc: aeriesManager.grades) {
+			if(!showAll) {
+				boolean showThisOne = false;
+				for(int i=0;i<IDs.size();i++) {
+					Log.d("DragonCount", i+"");
+					Integer id = IDs.get(i);
+					Log.d("Dragon", id+"=="+sc.ID);
+					if(id == sc.ID) {
+						showThisOne = true;
+						break;
+					}
+				}
+				if(!showThisOne) {
+					continue;
+				}
+			}
 			RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.two_line_list_item);
 			rv.setTextViewText(R.id.txtMain, sc.className);
 			rv.setTextViewText(R.id.txtSecond, "Percent: "+sc.percentage+"%");
@@ -66,7 +98,7 @@ public class ClassesOverviewWidgetTask extends ClassesOverviewTask {
 			PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 			views.setOnClickPendingIntent(R.id.appwidget_classes_view, pendingIntent);
 
-			views.addView(R.id.appwidget_classes_view,rv);
+			views.addView(R.id.appwidget_classes_view, rv);
 		}
 	}
 }

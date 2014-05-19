@@ -1,7 +1,5 @@
 package us.rjuhsd.ohs.OHSApp.tasks;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import org.apache.http.HttpResponse;
@@ -10,20 +8,20 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
-import us.rjuhsd.ohs.OHSApp.activities.ClassesOverviewActivity;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
+	private final ClassesOverviewTaskReceiver layer;
 	Context context;
-	private ProgressDialog progressDialog;
 	final AeriesManager aeriesManager;
 	ArrayList<SchoolClass> grades;
 	private String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
 
-	public ClassesOverviewTask(Context context, AeriesManager aeriesManager) {
+	public ClassesOverviewTask(Context context, AeriesManager aeriesManager, ClassesOverviewTaskReceiver layer) {
+		this.layer = layer;
 		this.context = context;
 		this.aeriesManager = aeriesManager;
 	}
@@ -31,12 +29,7 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		progressDialog = new ProgressDialog(context);
-		progressDialog.setMessage("Loading your classes. Please Wait");
-		progressDialog.setIndeterminate(false);
-		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		progressDialog.setCancelable(true);
-		progressDialog.show();
+		layer.onGradesStart();
 	}
 
 	@Override
@@ -107,8 +100,7 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 	@Override
 	protected void onCancelled() {
 		super.onCancelled();
-		progressDialog.dismiss();
-		aeriesManager.errorLoadingGrades(error);
+		layer.onGradesError(error);
 	}
 
 	@Override
@@ -119,9 +111,7 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 			return;
 		}
 		aeriesManager.setSchoolClasses(grades);
-		aeriesManager.inflateList((Activity)context);
-		progressDialog.dismiss();
+		layer.onGradesDone();
 		aeriesManager.writeAllData();
-		((ClassesOverviewActivity)context).updateLastUpdate();
 	}
 }

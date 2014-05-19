@@ -4,15 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -23,11 +19,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import us.rjuhsd.ohs.OHSApp.Assignment;
-import us.rjuhsd.ohs.OHSApp.Grades.GradesArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.Tools;
-import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
+import us.rjuhsd.ohs.OHSApp.activities.ClassesOverviewActivity;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;
 
 import java.io.FileInputStream;
@@ -49,7 +44,7 @@ public class AeriesManager {
 
 	public final HttpClient client;
 	private Activity activity;
-	private ArrayList<SchoolClass> grades = new ArrayList<SchoolClass>();
+	public ArrayList<SchoolClass> grades = new ArrayList<SchoolClass>();
 
 	public AeriesManager(Activity activity) {
 		this.activity = activity;
@@ -74,23 +69,19 @@ public class AeriesManager {
 				return;
 			}
 		}
-		if(!grades.isEmpty() && !forceUpdate) {
-			inflateList(activity);
-		} else {
-			if(!Tools.isConnected(activity)) {
-				AlertDialog.Builder adb = new AlertDialog.Builder(activity);
-				adb.setTitle("No internet!");
-				adb.setMessage("Your phone is not connected to the internet. Please try again when you are connected");
-				adb.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						activity.finish();
-					}
-				});
-				adb.show();
+		if(!Tools.isConnected(activity)) {
+			AlertDialog.Builder adb = new AlertDialog.Builder(activity);
+			adb.setTitle("No internet!");
+			adb.setMessage("Your phone is not connected to the internet. Please try again when you are connected");
+			adb.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					activity.finish();
+				}
+			});
+			adb.show();
 
-			} else {
-				new ClassesOverviewTask(activity, this).execute();
-			}
+		} else {
+			new ClassesOverviewTask(activity, this, (ClassesOverviewActivity)activity).execute();
 		}
 	}
 
@@ -185,21 +176,6 @@ public class AeriesManager {
 		writeAllData();
 	}
 
-	public void inflateList(final Activity act) {
-		final ArrayAdapter adapter = new GradesArrayAdapter(act, grades);
-		final ListView listview = (ListView) act.findViewById(R.id.classes_overview_list_view);
-		listview.setAdapter(adapter);
-		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				Intent gradeDetailIntent = new Intent(act, ClassDetailActivity.class);
-				gradeDetailIntent.putExtra("schoolClassId",arg2);
-				act.startActivity(gradeDetailIntent);
-			}
-
-		});
-	}
-
 	public HttpResponse login() throws IOException {
 		String[] loginData = aeriesLoginData();
 		List<NameValuePair> nvps = new ArrayList<NameValuePair>();
@@ -226,7 +202,7 @@ public class AeriesManager {
 		return new SimpleDateFormat("MM-dd hh:mm").format(new Date(lastUpdate*1000L));
 	}
 
-	private AlertDialog.Builder getLoginDialog() {
+	public AlertDialog.Builder getLoginDialog() {
 		LayoutInflater factory = LayoutInflater.from(context);
 		final View loginView = factory.inflate(R.layout.login_dialog, null);
 		final EditText aeriesUsernameView = ((EditText)loginView.findViewById(R.id.aeries_username));
