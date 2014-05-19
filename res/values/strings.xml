@@ -28,6 +28,7 @@
 	<string name="classes_widget_config_done">Done</string>
 	<string name="classes_widget_configure_radio_show_some">Choose classes</string>
 	<string name="classes_widget_configure_radio_show_all">Show all classes</string>
+	<string name="activity_news">News</string>
 
 	<string-array name="drawer_list_values">
 		<item>News</item>

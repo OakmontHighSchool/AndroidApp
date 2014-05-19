@@ -11,13 +11,17 @@
 		    android:label="@string/app_name"
 		    android:icon="@drawable/icon"
 		    android:allowBackup="true">
+	    <activity android:name=".activities.MainActivity"
+	              android:screenOrientation="portrait"
+	              android:label="@string/app_name">
+		    <intent-filter>
+			    <action android:name="android.intent.action.MAIN"/>
+			    <category android:name="android.intent.category.LAUNCHER"/>
+		    </intent-filter>
+	    </activity>
         <activity android:name=".activities.NewsActivity"
 				  android:screenOrientation="portrait"
-                  android:label="@string/app_name">
-	        <intent-filter>
-		        <action android:name="android.intent.action.MAIN"/>
-		        <category android:name="android.intent.category.LAUNCHER"/>
-	        </intent-filter>
+                  android:label="@string/activity_news">
         </activity>
         <activity android:name=".activities.ClassesOverviewActivity"
 				  android:screenOrientation="portrait"
