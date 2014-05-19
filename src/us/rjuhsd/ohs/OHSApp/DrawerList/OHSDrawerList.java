@@ -42,7 +42,7 @@ public class OHSDrawerList {
 					c = view.getContext();
 					switch (position) {
 						case 0:
-							newIntent = new Intent(c, MainActivity.class);
+							newIntent = new Intent(c, NewsActivity.class);
 							break;
 						case 1:
 							newIntent = new Intent(c, ClassesOverviewActivity.class);
@@ -61,8 +61,8 @@ public class OHSDrawerList {
 							break;
 						case 6:
 							Class cl = c.getClass();
-							if(cl == MainActivity.class) {
-								((MainActivity)activity).updateHeadlines(true);
+							if(cl == NewsActivity.class) {
+								((NewsActivity)activity).updateHeadlines(true);
 							} else if(cl == ClassesOverviewActivity.class) {
 								((ClassesOverviewActivity) activity).aeriesManager.getGradesOverview(true);
 							} else if(cl == ClassDetailActivity.class) {

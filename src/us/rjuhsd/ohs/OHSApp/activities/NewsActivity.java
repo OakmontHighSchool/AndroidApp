@@ -19,7 +19,7 @@ import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class NewsActivity extends Activity {
 	//Variables:
 	private TextView StaticText1;
 	private TextView StaticText2;

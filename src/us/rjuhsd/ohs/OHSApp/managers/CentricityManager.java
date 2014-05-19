@@ -4,10 +4,10 @@ import android.widget.LinearLayout;
 import us.rjuhsd.ohs.OHSApp.MainActivityObjects.ArticleWrapper;
 import us.rjuhsd.ohs.OHSApp.MainActivityObjects.OHSArticle;
 import us.rjuhsd.ohs.OHSApp.R;
-import us.rjuhsd.ohs.OHSApp.activities.MainActivity;
+import us.rjuhsd.ohs.OHSApp.activities.NewsActivity;
 
 public class CentricityManager {
-	private static MainActivity ma;
+	private static NewsActivity ma;
 	private static LinearLayout ll;
 
 	void captureArticle(ArticleWrapper article) {
@@ -44,7 +44,7 @@ public class CentricityManager {
 		}
 	}
 
-	public static void setMainActivity(MainActivity ac) {
+	public static void setMainActivity(NewsActivity ac) {
 		ma = ac;
 		ll = (LinearLayout) ma.findViewById(R.id.main_article_list_view);
 	}
