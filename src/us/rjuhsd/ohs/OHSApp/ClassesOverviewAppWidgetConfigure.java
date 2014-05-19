@@ -1,7 +1,10 @@
 package us.rjuhsd.ohs.OHSApp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.appwidget.AppWidgetManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -107,14 +110,35 @@ public class ClassesOverviewAppWidgetConfigure extends Activity implements Class
 		}
 	}
 
-	@Override
-	public void onGradesStart() {}
+	ProgressDialog progressDialog;
 
 	@Override
-	public void onGradesError(String errorMsg) {}
+	public void onGradesStart() {
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("Loading your classes. Please Wait");
+		progressDialog.setIndeterminate(false);
+		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		progressDialog.setCancelable(true);
+		progressDialog.show();
+	}
+
+	@Override
+	public void onGradesError(String errorMsg) {
+		progressDialog.dismiss();
+		AlertDialog.Builder adb = new AlertDialog.Builder(this)
+				.setTitle("Login Failure!")
+				.setMessage(errorMsg)
+				.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						finish();
+					}
+				});
+		adb.show();
+	}
 
 	@Override
 	public void onGradesDone() {
+		progressDialog.dismiss();
 		final ClassesWidgetAdapter adapter = new ClassesWidgetAdapter(this, aeriesManager.grades);
 		classes_list.setAdapter(adapter);
 	}
