@@ -3,8 +3,8 @@ package us.rjuhsd.ohs.OHSApp.managers;
 import android.widget.LinearLayout;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.activities.NewsActivity;
+import us.rjuhsd.ohs.OHSApp.news.Article;
 import us.rjuhsd.ohs.OHSApp.news.ArticleWrapper;
-import us.rjuhsd.ohs.OHSApp.news.OHSArticle;
 
 public class CentricityManager {
 	private static NewsActivity ma;
@@ -32,7 +32,7 @@ public class CentricityManager {
 		ma.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				new OHSArticle(text1, text2, ll, ma, url);
+				new Article(text1, text2, ll, ma, url);
 			}
 		});
 	}

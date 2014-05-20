@@ -10,8 +10,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.rjuhsd.ohs.OHSApp.managers.CentricityManager;
+import us.rjuhsd.ohs.OHSApp.news.Article;
 import us.rjuhsd.ohs.OHSApp.news.ArticleWrapper;
-import us.rjuhsd.ohs.OHSApp.news.OHSArticle;
 
 import java.io.IOException;
 
@@ -25,7 +25,7 @@ public class HeadlineTask extends AsyncTask<Void, ArticleWrapper, Void> {
 		super.onPreExecute();
 		cm = new CentricityManager();
 		if(cm.listLength() == 0 || forceUpdate) {
-			CentricityManager.addArticle("Loading articles...", "Please wait while articles are loaded from the OHS website", OHSArticle.LOADING_MESSAGE);
+			CentricityManager.addArticle("Loading articles...", "Please wait while articles are loaded from the OHS website", Article.LOADING_MESSAGE);
 		}
 	}
 

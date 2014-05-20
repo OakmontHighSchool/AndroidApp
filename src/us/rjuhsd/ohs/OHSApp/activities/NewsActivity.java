@@ -12,8 +12,8 @@ import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.Tools;
 import us.rjuhsd.ohs.OHSApp.drawer.OHSDrawerList;
 import us.rjuhsd.ohs.OHSApp.managers.CentricityManager;
+import us.rjuhsd.ohs.OHSApp.news.Article;
 import us.rjuhsd.ohs.OHSApp.news.ArticleWrapper;
-import us.rjuhsd.ohs.OHSApp.news.OHSArticle;
 import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
 
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class NewsActivity extends Activity {
 			HeadlineTask.forceUpdate = htBool;
 			new HeadlineTask().execute();
 		} else {
-			CentricityManager.addArticle("Error loading articles", "Sorry, your device is not connected to the internet. Click to try again", OHSArticle.ERROR_MESSAGE);
+			CentricityManager.addArticle("Error loading articles", "Sorry, your device is not connected to the internet. Click to try again", Article.ERROR_MESSAGE);
 		}
 	}
 
