@@ -1,13 +1,7 @@
 package us.rjuhsd.ohs.OHSApp.tasks;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.Context;
 import android.os.AsyncTask;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -19,11 +13,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.rjuhsd.ohs.OHSApp.Assignment;
-import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
-import us.rjuhsd.ohs.OHSApp.activities.ClassAssignmentActivity;
-import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
-import us.rjuhsd.ohs.OHSApp.grades.GradesDetailArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 import java.io.IOException;
@@ -31,25 +21,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
-	private ProgressDialog progressDialog;
-	private final Activity activity;
+	private final ClassDetailTaskReceiver layer;
 	private String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
 	private final AeriesManager aeriesManager;
 
-	public ClassDetailTask(Activity activity) {
-		this.activity = activity;
-		this.aeriesManager = new AeriesManager(activity);
+	public ClassDetailTask(Context context, ClassDetailTaskReceiver layer) {
+		this.layer = layer;
+		this.aeriesManager = new AeriesManager(context);
 	}
 
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		progressDialog = new ProgressDialog(activity);
-		progressDialog.setMessage("Loading class details. Please Wait");
-		progressDialog.setIndeterminate(false);
-		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		progressDialog.setCancelable(true);
-		progressDialog.show();
+		layer.onGradesStart();
 	}
 
 	@Override
@@ -127,7 +111,7 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 	@Override
 	protected void onCancelled() {
 		super.onCancelled();
-		aeriesManager.errorLoadingGrades(error);
+		layer.onGradesError(error);
 	}
 
 	@Override
@@ -138,25 +122,6 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 			return;
 		}
 		aeriesManager.writeAllData();
-		inflateList(activity);
-		progressDialog.dismiss();
-		((ClassDetailActivity)activity).updateLastUpdate();
-	}
-
-	public void inflateList(final Activity act) {
-		((ClassDetailActivity)act).reGet();
-		final ArrayAdapter adapter = new GradesDetailArrayAdapter(activity, ((ClassDetailActivity)act).sClass.assignments);
-		final ListView listview = (ListView) act.findViewById(R.id.class_detail_assign_list);
-		listview.setAdapter(adapter);
-		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				Intent gradeDetailIntent = new Intent(act, ClassAssignmentActivity.class);
-				gradeDetailIntent.putExtra("schoolClassId",((ClassDetailActivity)act).sClass.ID);
-				gradeDetailIntent.putExtra("assignmentId",arg2);
-				act.startActivity(gradeDetailIntent);
-			}
-
-		});
+		layer.onGradesDone();
 	}
 }

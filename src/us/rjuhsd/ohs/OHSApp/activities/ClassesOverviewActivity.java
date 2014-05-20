@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,12 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.R;
+import us.rjuhsd.ohs.OHSApp.Tools;
 import us.rjuhsd.ohs.OHSApp.drawer.DrawerList;
 import us.rjuhsd.ohs.OHSApp.grades.GradesArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
+import us.rjuhsd.ohs.OHSApp.managers.LoginSetupImpl;
+import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTaskReceiver;
 
-public class ClassesOverviewActivity extends Activity implements ClassesOverviewTaskReceiver {
+public class ClassesOverviewActivity extends Activity implements ClassesOverviewTaskReceiver, LoginSetupImpl {
 
 	public AeriesManager aeriesManager;
 	private ProgressDialog progressDialog;
@@ -40,8 +45,32 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 		if(!aeriesManager.grades.isEmpty()) {
 			inflateList();
 		}
-		aeriesManager.getGradesOverview(false);
+		getGradesOverview(false);
 		updateLastUpdate();
+	}
+
+	public void getGradesOverview(boolean forceUpdate) {
+		String FIRST_RUN_DONE = "firstRunGradesDone";
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if(!prefs.getBoolean(FIRST_RUN_DONE, false)) {
+			aeriesManager.getLoginDialog(this).show();
+			prefs.edit().putBoolean(FIRST_RUN_DONE, true).commit();
+			return;
+		}
+		if(!Tools.isConnected(this)) {
+			AlertDialog.Builder adb = new AlertDialog.Builder(this);
+			adb.setTitle("No internet!");
+			adb.setMessage("Your phone is not connected to the internet. Please try again when you are connected");
+			adb.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					finish();
+				}
+			});
+			adb.show();
+
+		} else {
+			new ClassesOverviewTask(this, aeriesManager, this).execute();
+		}
 	}
 
 	public void updateLastUpdate() {
@@ -50,7 +79,7 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 
 	public void onClick(View v) {
 		if(v.getId() == R.id.classes_overview_refresh_button) {
-			aeriesManager.getGradesOverview(true);
+			getGradesOverview(true);
 		}
 	}
 
@@ -67,6 +96,7 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 	@Override
 	public void onGradesError(String errorMsg) {
 		progressDialog.dismiss();
+		final ClassesOverviewActivity parent = this;
 		AlertDialog.Builder adb = new AlertDialog.Builder(this)
 				.setTitle("Login Failure!")
 				.setMessage(errorMsg)
@@ -77,7 +107,7 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 				})
 				.setPositiveButton(R.string.goto_login, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						AlertDialog.Builder modLogin = aeriesManager.getLoginDialog();
+						AlertDialog.Builder modLogin = aeriesManager.getLoginDialog(parent);
 						modLogin.show();
 					}
 				});
@@ -105,5 +135,10 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 
 		});
 		((TextView)findViewById(R.id.classes_overview_last_update)).setText("Last update: " + aeriesManager.getLastUpdate());
+	}
+
+	@Override
+	public void loginSetupDone() {
+		getGradesOverview(true);
 	}
 }

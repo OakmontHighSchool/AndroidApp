@@ -22,8 +22,6 @@ import us.rjuhsd.ohs.OHSApp.Assignment;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.Tools;
-import us.rjuhsd.ohs.OHSApp.activities.ClassesOverviewActivity;
-import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -43,11 +41,9 @@ public class AeriesManager {
 	private long lastUpdate;
 
 	public final HttpClient client;
-	private Activity activity;
 	public ArrayList<SchoolClass> grades = new ArrayList<SchoolClass>();
 
 	public AeriesManager(Activity activity) {
-		this.activity = activity;
 		this.context = activity;
 		client = Tools.sslClient();
 		readAllData();
@@ -57,32 +53,6 @@ public class AeriesManager {
 		this.context = context;
 		readAllData();
 		client = Tools.sslClient();
-	}
-
-	public void getGradesOverview(boolean forceUpdate) {
-		if(activity != null) {
-			String FIRST_RUN_DONE = "firstRunGradesDone";
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-			if(!prefs.getBoolean(FIRST_RUN_DONE, false)) {
-				getLoginDialog().show();
-				prefs.edit().putBoolean(FIRST_RUN_DONE, true).commit();
-				return;
-			}
-		}
-		if(!Tools.isConnected(activity)) {
-			AlertDialog.Builder adb = new AlertDialog.Builder(activity);
-			adb.setTitle("No internet!");
-			adb.setMessage("Your phone is not connected to the internet. Please try again when you are connected");
-			adb.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					activity.finish();
-				}
-			});
-			adb.show();
-
-		} else {
-			new ClassesOverviewTask(activity, this, (ClassesOverviewActivity)activity).execute();
-		}
 	}
 
 	public void writeAllData() {
@@ -153,24 +123,6 @@ public class AeriesManager {
 		this.grades = grades;
 	}
 
-	public void errorLoadingGrades(String errorText) {
-		AlertDialog.Builder adb = new AlertDialog.Builder(context)
-				.setTitle("Login Failure!")
-				.setMessage(errorText)
-				.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						//Do nothing
-					}
-				})
-				.setPositiveButton(R.string.goto_login, new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						AlertDialog.Builder modLogin = getLoginDialog();
-						modLogin.show();
-					}
-				});
-		adb.show();
-	}
-
 	public void destroyAll() {
 		grades = new ArrayList<SchoolClass>();
 		writeAllData();
@@ -202,7 +154,7 @@ public class AeriesManager {
 		return new SimpleDateFormat("MM-dd hh:mm").format(new Date(lastUpdate*1000L));
 	}
 
-	public AlertDialog.Builder getLoginDialog() {
+	public AlertDialog.Builder getLoginDialog(final LoginSetupImpl setup) {
 		LayoutInflater factory = LayoutInflater.from(context);
 		final View loginView = factory.inflate(R.layout.login_dialog, null);
 		final EditText aeriesUsernameView = ((EditText)loginView.findViewById(R.id.aeries_username));
@@ -225,7 +177,7 @@ public class AeriesManager {
 						edit.putString("aeries_username", aeriesUsernameView.getText().toString());
 						edit.putString("aeries_password", aeriesPasswordView.getText().toString());
 						edit.commit();
-						getGradesOverview(true);
+						setup.loginSetupDone();
 					}
 				})
 				.setView(loginView);
