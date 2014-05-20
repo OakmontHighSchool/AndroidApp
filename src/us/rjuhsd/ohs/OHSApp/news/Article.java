@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +41,7 @@ public class Article {
 			public void onClick(View view) {
 				if (url.equals(ERROR_MESSAGE)) {
 					ma.updateHeadlines(false);
-				} else if (url.equals(LOADING_MESSAGE)) {
-					Log.d("HttpDragon", "There is no URL to be found here");
-				} else if (!url.equals("")) {
+				} else if (!url.equals(LOADING_MESSAGE) && !url.equals("")) {
 					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 					ma.startActivity(browserIntent);
 				}
