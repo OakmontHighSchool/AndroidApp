@@ -15,8 +15,10 @@
 	<string name="goto_login">Edit login info</string>
 	<string name="activity_debug_preferences">Debug</string>
 	<string name="version">Version</string>
-	<string name="clear_data">Clear cache</string>
-	<string name="clear_data_info">This will clear the cache, permanently</string>
+	<string name="clear_cache">Clear cache</string>
+	<string name="clear_settings">Clear settings</string>
+	<string name="clear_cache_info">This will clear the cache</string>
+	<string name="clear_settings_info">This will clear the cache</string>
     <string name="menu_image">Image next to the Menu item.</string>
 	<string name="classes_overview">Classes Overview</string>
 	<string name="swipe_instructions">Swipe from the right edge for navigation menu.</string>

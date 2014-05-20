@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
@@ -28,11 +29,19 @@ public class DebugPreferences extends PreferenceActivity {
 		}
 
 		final Activity activity = this;
-		Preference clearAll = findPreference("debug_clear_everything");
-		clearAll.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+		Preference clearCache = findPreference("debug_clear_cache");
+		clearCache.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 				new AeriesManager(activity).destroyAll();
+				return true;
+			}
+		});
+		Preference clearSettings = findPreference("debug_clear_settings");
+		clearSettings.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				PreferenceManager.getDefaultSharedPreferences(activity).edit().clear().commit();
 				return true;
 			}
 		});
