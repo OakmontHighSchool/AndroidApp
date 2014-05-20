@@ -167,7 +167,7 @@ public class AeriesManager {
 				.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialogInterface, int i) {
-						//Do nothing
+						setup.loginSetupCanceled();
 					}
 				})
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {

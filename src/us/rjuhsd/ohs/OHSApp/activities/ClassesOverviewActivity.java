@@ -27,6 +27,7 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 
 	public AeriesManager aeriesManager;
 	private ProgressDialog progressDialog;
+	private final static String FIRST_RUN_DONE = "firstRunGradesDone";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -50,11 +51,9 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 	}
 
 	public void getGradesOverview(boolean forceUpdate) {
-		String FIRST_RUN_DONE = "firstRunGradesDone";
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		if(!prefs.getBoolean(FIRST_RUN_DONE, false)) {
 			aeriesManager.getLoginDialog(this).show();
-			prefs.edit().putBoolean(FIRST_RUN_DONE, true).commit();
 			return;
 		}
 		if(!Tools.isConnected(this)) {
@@ -140,5 +139,11 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 	@Override
 	public void loginSetupDone() {
 		getGradesOverview(true);
+		PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean(FIRST_RUN_DONE, true).commit();
+	}
+
+	@Override
+	public void loginSetupCanceled() {
+		finish();
 	}
 }

@@ -142,4 +142,9 @@ public class ClassDetailActivity extends Activity implements ClassDetailTaskRece
 	public void loginSetupDone() {
 		updateAssignments(true);
 	}
+
+	@Override
+	public void loginSetupCanceled() {
+		finish();
+	}
 }
