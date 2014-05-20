@@ -10,17 +10,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import us.rjuhsd.ohs.OHSApp.R;
-import us.rjuhsd.ohs.OHSApp.activities.ClassesOverviewActivity;
-import us.rjuhsd.ohs.OHSApp.activities.MapViewActivity;
-import us.rjuhsd.ohs.OHSApp.activities.NewsActivity;
-import us.rjuhsd.ohs.OHSApp.activities.Preferences;
+import us.rjuhsd.ohs.OHSApp.activities.*;
 
-public class OHSDrawerList {
-	private final Activity activity;
+public class DrawerList {
 
-	public OHSDrawerList(Activity a, final DrawerLayout drawerLayout, final ListView drawerList) {
-		activity = a;
-		int[] imageSrcs = {R.drawable.ic_rss, R.drawable.ic_accept, R.drawable.ic_web, R.drawable.ic_map, R.drawable.ic_date, R.drawable.ic_cog};
+	public DrawerList(Activity a, final DrawerLayout drawerLayout, final ListView drawerList) {
+		int[] imageSrcs = {R.drawable.ic_home, R.drawable.ic_rss, R.drawable.ic_accept, R.drawable.ic_web, R.drawable.ic_map, R.drawable.ic_date, R.drawable.ic_cog};
 		String[] stringSrcs = a.getResources().getStringArray(R.array.drawer_list_values);
 
 		final ArrayAdapter<String> testAA = new DrawerListAdapter(a, stringSrcs, imageSrcs);
@@ -36,21 +31,24 @@ public class OHSDrawerList {
 					c = view.getContext();
 					switch (position) {
 						case 0:
-							newIntent = new Intent(c, NewsActivity.class);
+							newIntent = new Intent(c, MainActivity.class);
 							break;
 						case 1:
-							newIntent = new Intent(c, ClassesOverviewActivity.class);
+							newIntent = new Intent(c, NewsActivity.class);
 							break;
 						case 2:
-							newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us"));
+							newIntent = new Intent(c, ClassesOverviewActivity.class);
 							break;
 						case 3:
-							newIntent = new Intent(c, MapViewActivity.class);
+							newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us"));
 							break;
 						case 4:
-							newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us/Page/2"));
+							newIntent = new Intent(c, MapViewActivity.class);
 							break;
 						case 5:
+							newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us/Page/2"));
+							break;
+						case 6:
 							newIntent = new Intent(c, Preferences.class);
 							break;
 					}

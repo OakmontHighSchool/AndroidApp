@@ -31,6 +31,7 @@
 	<string name="activity_news">News</string>
 
 	<string-array name="drawer_list_values">
+		<item>Home</item>
 		<item>News</item>
         <item>Grades</item>
 		<item>Website</item>

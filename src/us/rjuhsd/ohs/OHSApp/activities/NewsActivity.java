@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.Tools;
-import us.rjuhsd.ohs.OHSApp.drawer.OHSDrawerList;
+import us.rjuhsd.ohs.OHSApp.drawer.DrawerList;
 import us.rjuhsd.ohs.OHSApp.managers.CentricityManager;
 import us.rjuhsd.ohs.OHSApp.news.Article;
 import us.rjuhsd.ohs.OHSApp.news.ArticleWrapper;
@@ -34,7 +34,7 @@ public class NewsActivity extends Activity {
 		this.getAllByID();
 		CentricityManager.setMainActivity(this);
 
-		new OHSDrawerList(this, drawerLayout, drawerList);
+		new DrawerList(this, drawerLayout, drawerList);
 	}
 
 	@Override

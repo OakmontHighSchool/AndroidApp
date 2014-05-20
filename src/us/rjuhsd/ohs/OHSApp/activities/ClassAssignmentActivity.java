@@ -8,7 +8,7 @@ import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.Assignment;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
-import us.rjuhsd.ohs.OHSApp.drawer.OHSDrawerList;
+import us.rjuhsd.ohs.OHSApp.drawer.DrawerList;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 public class ClassAssignmentActivity extends Activity {
@@ -27,7 +27,7 @@ public class ClassAssignmentActivity extends Activity {
 		}
 		DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.assignment_details_drawer_layout);
 		ListView drawerList = (ListView) this.findViewById(R.id.assignment_details_drawer_list);
-		new OHSDrawerList(this, drawerLayout, drawerList);
+		new DrawerList(this, drawerLayout, drawerList);
 	}
 
 	@Override

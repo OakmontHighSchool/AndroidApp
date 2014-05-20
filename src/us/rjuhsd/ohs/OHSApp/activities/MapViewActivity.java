@@ -6,7 +6,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ListView;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.TouchImageView;
-import us.rjuhsd.ohs.OHSApp.drawer.OHSDrawerList;
+import us.rjuhsd.ohs.OHSApp.drawer.DrawerList;
 
 public class MapViewActivity extends Activity {
 	@Override
@@ -18,6 +18,6 @@ public class MapViewActivity extends Activity {
 
 		DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.map_view_drawer_layout);
 		ListView drawerList = (ListView) this.findViewById(R.id.map_view_drawer_list);
-		new OHSDrawerList(this, drawerLayout, drawerList);
+		new DrawerList(this, drawerLayout, drawerList);
 	}
 }

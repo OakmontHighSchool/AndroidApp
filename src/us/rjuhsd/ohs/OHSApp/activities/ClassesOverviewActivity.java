@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.R;
-import us.rjuhsd.ohs.OHSApp.drawer.OHSDrawerList;
+import us.rjuhsd.ohs.OHSApp.drawer.DrawerList;
 import us.rjuhsd.ohs.OHSApp.grades.GradesArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTaskReceiver;
@@ -31,7 +31,7 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 
 		DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.classes_overview_drawer_layout);
 		ListView drawerList = (ListView) this.findViewById(R.id.classes_overview_drawer_list);
-		new OHSDrawerList(this, drawerLayout, drawerList);
+		new DrawerList(this, drawerLayout, drawerList);
 	}
 
 	@Override
