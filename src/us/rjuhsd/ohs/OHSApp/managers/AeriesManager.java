@@ -9,7 +9,6 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -128,7 +127,7 @@ public class AeriesManager {
 		writeAllData();
 	}
 
-	public HttpResponse login() throws IOException {
+	public HttpPost getLoginRequest() throws IOException {
 		String[] loginData = aeriesLoginData();
 		List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 		nvps.add(new BasicNameValuePair("portalAccountUsername", loginData[0]));
@@ -141,7 +140,7 @@ public class AeriesManager {
 
 		HttpPost request = new HttpPost(LOGIN_URL);
 		request.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
-		return client.execute(request);
+		return request;
 	}
 
 	public void setAssignments(int id, ArrayList<Assignment> assignments) {

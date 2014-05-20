@@ -39,7 +39,7 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 	@Override
 	protected Void doInBackground(SchoolClass... schoolClasses) {
 		try {
-			aeriesManager.login();
+			aeriesManager.client.execute(aeriesManager.getLoginRequest());
 			//Navigate to the class_detail page, used to rip the class IDs for further navigation
 			HttpResponse response_main = aeriesManager.client.execute(new HttpGet(AeriesManager.GRADES_DETAIL));
 

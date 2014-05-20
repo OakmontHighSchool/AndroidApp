@@ -37,7 +37,7 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 		grades = new ArrayList<SchoolClass>();
 		try {
 			String[] loginData = aeriesManager.aeriesLoginData();
-			HttpResponse response = aeriesManager.login();
+			HttpResponse response = aeriesManager.client.execute(aeriesManager.getLoginRequest());
 
 			Document doc = Jsoup.parse(response.getEntity().getContent(), null, AeriesManager.LOGIN_URL);
 			int rowCount = 1;
