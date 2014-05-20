@@ -8,12 +8,12 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import us.rjuhsd.ohs.OHSApp.DrawerList.OHSDrawerList;
-import us.rjuhsd.ohs.OHSApp.MainActivityObjects.ArticleWrapper;
-import us.rjuhsd.ohs.OHSApp.MainActivityObjects.OHSArticle;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.Tools;
+import us.rjuhsd.ohs.OHSApp.drawer.OHSDrawerList;
 import us.rjuhsd.ohs.OHSApp.managers.CentricityManager;
+import us.rjuhsd.ohs.OHSApp.news.ArticleWrapper;
+import us.rjuhsd.ohs.OHSApp.news.OHSArticle;
 import us.rjuhsd.ohs.OHSApp.tasks.HeadlineTask;
 
 import java.util.ArrayList;

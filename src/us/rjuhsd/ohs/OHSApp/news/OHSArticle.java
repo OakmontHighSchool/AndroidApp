@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp.MainActivityObjects;
+package us.rjuhsd.ohs.OHSApp.news;
 
 import android.content.Intent;
 import android.graphics.Color;

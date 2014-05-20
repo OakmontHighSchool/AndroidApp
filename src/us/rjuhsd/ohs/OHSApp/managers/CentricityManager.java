@@ -1,10 +1,10 @@
 package us.rjuhsd.ohs.OHSApp.managers;
 
 import android.widget.LinearLayout;
-import us.rjuhsd.ohs.OHSApp.MainActivityObjects.ArticleWrapper;
-import us.rjuhsd.ohs.OHSApp.MainActivityObjects.OHSArticle;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.activities.NewsActivity;
+import us.rjuhsd.ohs.OHSApp.news.ArticleWrapper;
+import us.rjuhsd.ohs.OHSApp.news.OHSArticle;
 
 public class CentricityManager {
 	private static NewsActivity ma;

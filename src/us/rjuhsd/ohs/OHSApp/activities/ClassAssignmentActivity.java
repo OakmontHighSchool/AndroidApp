@@ -6,9 +6,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.Assignment;
-import us.rjuhsd.ohs.OHSApp.DrawerList.OHSDrawerList;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.drawer.OHSDrawerList;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 public class ClassAssignmentActivity extends Activity {

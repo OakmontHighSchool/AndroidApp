@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp.DrawerList;
+package us.rjuhsd.ohs.OHSApp.drawer;
 
 import android.content.Context;
 import android.view.LayoutInflater;

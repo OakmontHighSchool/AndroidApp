@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp.MainActivityObjects;
+package us.rjuhsd.ohs.OHSApp.news;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

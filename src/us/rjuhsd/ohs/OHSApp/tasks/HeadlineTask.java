@@ -9,9 +9,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import us.rjuhsd.ohs.OHSApp.MainActivityObjects.ArticleWrapper;
-import us.rjuhsd.ohs.OHSApp.MainActivityObjects.OHSArticle;
 import us.rjuhsd.ohs.OHSApp.managers.CentricityManager;
+import us.rjuhsd.ohs.OHSApp.news.ArticleWrapper;
+import us.rjuhsd.ohs.OHSApp.news.OHSArticle;
 
 import java.io.IOException;
 
