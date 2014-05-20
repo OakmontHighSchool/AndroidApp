@@ -12,9 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import us.rjuhsd.ohs.OHSApp.DrawerList.OHSDrawerList;
-import us.rjuhsd.ohs.OHSApp.Grades.GradesArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.R;
+import us.rjuhsd.ohs.OHSApp.drawer.OHSDrawerList;
+import us.rjuhsd.ohs.OHSApp.grades.GradesArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTaskReceiver;
 

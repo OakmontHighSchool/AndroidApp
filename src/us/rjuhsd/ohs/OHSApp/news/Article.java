@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp.MainActivityObjects;
+package us.rjuhsd.ohs.OHSApp.news;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,11 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.activities.NewsActivity;
 
-public class OHSArticle {
+public class Article {
 	public static final String ERROR_MESSAGE = "ERROR_LOADING";
 	public static final String LOADING_MESSAGE = "LOADING";
 
-	public OHSArticle(String MainText, String DetailText, LinearLayout L, final NewsActivity ma, final String url) {
+	public Article(String MainText, String DetailText, LinearLayout L, final NewsActivity ma, final String url) {
 		LinearLayout ll = new LinearLayout(ma);
 		View horizontal = new View(ma);
 		TextView mtv = new TextView(ma);

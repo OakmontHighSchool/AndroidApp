@@ -1,4 +1,4 @@
-package us.rjuhsd.ohs.OHSApp.Grades;
+package us.rjuhsd.ohs.OHSApp.grades;
 
 import android.app.Activity;
 import android.content.Context;

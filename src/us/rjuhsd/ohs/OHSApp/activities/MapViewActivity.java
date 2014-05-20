@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ListView;
-import us.rjuhsd.ohs.OHSApp.DrawerList.OHSDrawerList;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.TouchImageView;
+import us.rjuhsd.ohs.OHSApp.drawer.OHSDrawerList;
 
 public class MapViewActivity extends Activity {
 	@Override

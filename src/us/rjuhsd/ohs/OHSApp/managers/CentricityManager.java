@@ -1,10 +1,10 @@
 package us.rjuhsd.ohs.OHSApp.managers;
 
 import android.widget.LinearLayout;
-import us.rjuhsd.ohs.OHSApp.MainActivityObjects.ArticleWrapper;
-import us.rjuhsd.ohs.OHSApp.MainActivityObjects.OHSArticle;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.activities.NewsActivity;
+import us.rjuhsd.ohs.OHSApp.news.Article;
+import us.rjuhsd.ohs.OHSApp.news.ArticleWrapper;
 
 public class CentricityManager {
 	private static NewsActivity ma;
@@ -32,7 +32,7 @@ public class CentricityManager {
 		ma.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				new OHSArticle(text1, text2, ll, ma, url);
+				new Article(text1, text2, ll, ma, url);
 			}
 		});
 	}

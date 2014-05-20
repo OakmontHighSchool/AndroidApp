@@ -19,11 +19,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.rjuhsd.ohs.OHSApp.Assignment;
-import us.rjuhsd.ohs.OHSApp.Grades.GradesDetailArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.activities.ClassAssignmentActivity;
 import us.rjuhsd.ohs.OHSApp.activities.ClassDetailActivity;
+import us.rjuhsd.ohs.OHSApp.grades.GradesDetailArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 import java.io.IOException;
