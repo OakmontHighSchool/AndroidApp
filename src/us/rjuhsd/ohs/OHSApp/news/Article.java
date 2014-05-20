@@ -15,7 +15,7 @@ public class Article {
 	public static final String ERROR_MESSAGE = "ERROR_LOADING";
 	public static final String LOADING_MESSAGE = "LOADING";
 
-	public Article(String MainText, String DetailText, LinearLayout L, final NewsActivity ma, final String url) {
+	public Article(String mainText, String detailText, LinearLayout L, final NewsActivity ma, final String url) {
 		LinearLayout ll = new LinearLayout(ma);
 		View horizontal = new View(ma);
 		TextView mtv = new TextView(ma);
@@ -23,12 +23,12 @@ public class Article {
 
 		ll.setOrientation(LinearLayout.VERTICAL);
 		ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-		mtv.setText(MainText);
+		mtv.setText(mainText);
 		mtv.setTextColor(Color.BLACK);
-		mtv.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float) Math.floor((50 / MainText.length()) * 5) + 20);
+		mtv.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float) Math.floor((50 / mainText.length()) * 5) + 20);
 		mtv.setTypeface(null, Typeface.BOLD);
 		mtv.setPadding(20, 0, 20, 0);
-		dtv.setText(DetailText);
+		dtv.setText(detailText);
 		dtv.setTextColor(Color.BLACK);
 		dtv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 		dtv.setPadding(20, 0, 20, 0);
