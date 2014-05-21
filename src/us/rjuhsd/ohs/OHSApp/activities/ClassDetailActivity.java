@@ -24,17 +24,14 @@ import us.rjuhsd.ohs.OHSApp.tasks.ClassDetailTaskReceiver;
 public class ClassDetailActivity extends Activity implements ClassDetailTaskReceiver, LoginSetupImpl {
 	public SchoolClass sClass;
 	private int classId;
-	final AeriesManager aeriesManager;
-
-	public ClassDetailActivity() {
-		aeriesManager = new AeriesManager(this);
-	}
+	AeriesManager aeriesManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		classId = getIntent().getIntExtra("schoolClassId", -1);
 		setContentView(R.layout.class_detail);
+		aeriesManager = new AeriesManager(this);
 		if(classId != -1) {
 			sClass = aeriesManager.getById(classId);
 		}
