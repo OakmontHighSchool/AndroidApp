@@ -125,7 +125,7 @@ public class ClassesOverviewAppWidgetConfigure extends Activity implements Class
 	@Override
 	public void onGradesStart() {
 		progressDialog = new ProgressDialog(this);
-		progressDialog.setMessage("Loading your classes. Please Wait");
+		progressDialog.setMessage("Loading your classes.\nPlease Wait");
 		progressDialog.setIndeterminate(false);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		progressDialog.setCancelable(true);
