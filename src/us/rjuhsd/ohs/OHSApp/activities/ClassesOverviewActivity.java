@@ -47,7 +47,6 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 			inflateList();
 		}
 		getGradesOverview(false);
-		updateLastUpdate();
 	}
 
 	public void getGradesOverview(boolean forceUpdate) {
@@ -70,10 +69,6 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 		} else {
 			new ClassesOverviewTask(this, aeriesManager, this).execute();
 		}
-	}
-
-	public void updateLastUpdate() {
-
 	}
 
 	public void onClick(View v) {
