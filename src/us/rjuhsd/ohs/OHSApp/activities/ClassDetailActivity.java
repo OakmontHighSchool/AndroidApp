@@ -84,7 +84,7 @@ public class ClassDetailActivity extends Activity implements ClassDetailTaskRece
 	@Override
 	public void onGradesStart() {
 		progressDialog = new ProgressDialog(this);
-		progressDialog.setMessage("Loading class details. Please Wait");
+		progressDialog.setMessage("Loading class details.\nPlease Wait");
 		progressDialog.setIndeterminate(false);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		progressDialog.setCancelable(true);
