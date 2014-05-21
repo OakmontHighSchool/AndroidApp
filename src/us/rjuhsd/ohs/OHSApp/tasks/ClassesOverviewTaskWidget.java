@@ -35,15 +35,15 @@ public class ClassesOverviewTaskWidget implements ClassesOverviewTaskReceiver {
 	}
 
 	private void processIDs(String ids) {
-		if(ids.equals("all")) {
-			showAll = true;
-		} else if(!ids.equals("")) {
+		if(!ids.equals("") && !ids.equals("all")) {
 			String[] classes = ids.split(",");
 
 			for (String i: classes) {
 				Integer id = Integer.parseInt(i);
 				this.IDs.add(id);
 			}
+		} else { //This matches the "all" selector and provides back-support for older widgets that don't have it set.
+			showAll = true;
 		}
 	}
 
