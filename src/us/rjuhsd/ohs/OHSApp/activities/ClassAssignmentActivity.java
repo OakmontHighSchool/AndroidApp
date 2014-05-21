@@ -22,7 +22,7 @@ public class ClassAssignmentActivity extends Activity {
 		int assignId = getIntent().getIntExtra("assignmentId", -1);
 		setContentView(R.layout.assignment_details);
 		if(sClassId != -1 && assignId != -1) {
-			SchoolClass sClass = new AeriesManager(this).getById(sClassId);
+			SchoolClass sClass = new AeriesManager(this).grades.get(sClassId);
 			assign = sClass.assignments.get(assignId);
 		}
 		DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.assignment_details_drawer_layout);

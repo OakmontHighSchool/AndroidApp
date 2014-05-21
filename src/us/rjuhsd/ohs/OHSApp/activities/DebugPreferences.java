@@ -33,7 +33,7 @@ public class DebugPreferences extends PreferenceActivity {
 		clearCache.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				new AeriesManager(activity).destroyAll();
+				new AeriesManager(activity).nukeCache();
 				return true;
 			}
 		});

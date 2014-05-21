@@ -1,6 +1,5 @@
 package us.rjuhsd.ohs.OHSApp.managers;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,16 +36,10 @@ public class AeriesManager {
 
 	private static final String CLASSES_FILENAME = "classes.json";
 	private final Context context;
-	private long lastUpdate;
+	public long lastUpdate;
 
 	public final HttpClient client;
 	public ArrayList<SchoolClass> grades = new ArrayList<SchoolClass>();
-
-	public AeriesManager(Activity activity) {
-		this.context = activity;
-		client = Tools.sslClient();
-		readAllData();
-	}
 
 	public AeriesManager(Context context) {
 		this.context = context;
@@ -113,16 +106,7 @@ public class AeriesManager {
 		return toReturn;
 	}
 
-	public SchoolClass getById(int id) {
-		return grades.get(id);
-	}
-
-	public void setSchoolClasses(ArrayList<SchoolClass> grades){
-		lastUpdate = System.currentTimeMillis() / 1000L;
-		this.grades = grades;
-	}
-
-	public void destroyAll() {
+	public void nukeCache() {
 		grades = new ArrayList<SchoolClass>();
 		writeAllData();
 	}

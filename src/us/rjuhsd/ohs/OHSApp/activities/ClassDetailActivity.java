@@ -33,7 +33,7 @@ public class ClassDetailActivity extends Activity implements ClassDetailTaskRece
 		setContentView(R.layout.class_detail);
 		aeriesManager = new AeriesManager(this);
 		if(classId != -1) {
-			sClass = aeriesManager.getById(classId);
+			sClass = aeriesManager.grades.get(classId);
 		}
 		DrawerLayout drawerLayout = (DrawerLayout) this.findViewById(R.id.class_detail_drawer_layout);
 		ListView drawerList = (ListView) this.findViewById(R.id.class_detail_drawer_list);
@@ -75,7 +75,7 @@ public class ClassDetailActivity extends Activity implements ClassDetailTaskRece
 	}
 
 	public void reGet() {
-		sClass = new AeriesManager(this).getById(classId);
+		sClass = new AeriesManager(this).grades.get(classId);
 	}
 
 	ProgressDialog progressDialog;

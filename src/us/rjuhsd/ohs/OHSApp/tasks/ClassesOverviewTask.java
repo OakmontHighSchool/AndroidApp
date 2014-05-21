@@ -110,7 +110,8 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 			onCancelled();
 			return;
 		}
-		aeriesManager.setSchoolClasses(grades);
+		aeriesManager.grades = grades;
+		aeriesManager.lastUpdate = System.currentTimeMillis() / 1000L;
 		layer.onGradesDone();
 		aeriesManager.writeAllData();
 	}
