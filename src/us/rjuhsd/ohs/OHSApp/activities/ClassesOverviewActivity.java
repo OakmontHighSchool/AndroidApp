@@ -67,7 +67,11 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 			adb.show();
 
 		} else {
-			new ClassesOverviewTask(this, aeriesManager, this).execute();
+			if(aeriesManager.grades.size() != 0 && !forceUpdate) {
+				inflateList();
+			} else {
+				new ClassesOverviewTask(this, aeriesManager, this).execute();
+			}
 		}
 	}
 
