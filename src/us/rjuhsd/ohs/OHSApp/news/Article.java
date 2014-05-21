@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.activities.NewsActivity;
 
 public class Article {
@@ -23,6 +24,7 @@ public class Article {
 
 		ll.setOrientation(LinearLayout.VERTICAL);
 		ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+		ll.setBackgroundResource(R.drawable.two_line_list_item_color);
 		mtv.setText(mainText);
 		mtv.setTextColor(Color.BLACK);
 		mtv.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float) Math.floor((50 / mainText.length()) * 5) + 20);
