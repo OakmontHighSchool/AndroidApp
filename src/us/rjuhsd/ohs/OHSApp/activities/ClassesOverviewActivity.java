@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.R;
+import us.rjuhsd.ohs.OHSApp.ShouldUpdate;
 import us.rjuhsd.ohs.OHSApp.Tools;
 import us.rjuhsd.ohs.OHSApp.drawer.DrawerList;
 import us.rjuhsd.ohs.OHSApp.grades.GradesArrayAdapter;
@@ -66,6 +67,8 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 			});
 			adb.show();
 
+		} else if(ShouldUpdate.check(aeriesManager.lastUpdate)) {
+			new ClassesOverviewTask(this, aeriesManager, this).execute();
 		} else {
 			if(aeriesManager.grades.size() != 0 && !forceUpdate) {
 				inflateList();

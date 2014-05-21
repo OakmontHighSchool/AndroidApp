@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
+import us.rjuhsd.ohs.OHSApp.ShouldUpdate;
 import us.rjuhsd.ohs.OHSApp.drawer.DrawerList;
 import us.rjuhsd.ohs.OHSApp.grades.GradesDetailArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
@@ -55,7 +56,7 @@ public class ClassDetailActivity extends Activity implements ClassDetailTaskRece
 	}
 
 	public void updateAssignments(boolean forceUpdate) {
-		if(sClass.assignments.isEmpty() || forceUpdate) {
+		if(sClass.assignments.isEmpty() || forceUpdate || ShouldUpdate.check(sClass.lastGetUpdate)) {
 			new ClassDetailTask(this, this).execute(sClass);
 		} else {
 			inflateList();
