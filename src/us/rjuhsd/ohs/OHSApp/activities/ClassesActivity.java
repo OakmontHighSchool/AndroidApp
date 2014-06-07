@@ -22,9 +22,9 @@ import us.rjuhsd.ohs.OHSApp.grades.GradesArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 import us.rjuhsd.ohs.OHSApp.managers.LoginSetupImpl;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;
-import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTaskReceiver;
+import us.rjuhsd.ohs.OHSApp.tasks.ClassesTaskShim;
 
-public class ClassesOverviewActivity extends Activity implements ClassesOverviewTaskReceiver, LoginSetupImpl {
+public class ClassesActivity extends Activity implements ClassesTaskShim, LoginSetupImpl {
 
 	public AeriesManager aeriesManager;
 	private ProgressDialog progressDialog;
@@ -97,7 +97,7 @@ public class ClassesOverviewActivity extends Activity implements ClassesOverview
 	@Override
 	public void onGradesError(String errorMsg) {
 		progressDialog.dismiss();
-		final ClassesOverviewActivity parent = this;
+		final ClassesActivity parent = this;
 		AlertDialog.Builder adb = new AlertDialog.Builder(this)
 				.setTitle("Login Failure!")
 				.setMessage(errorMsg)

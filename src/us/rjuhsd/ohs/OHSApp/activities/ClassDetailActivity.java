@@ -20,9 +20,9 @@ import us.rjuhsd.ohs.OHSApp.grades.GradesDetailArrayAdapter;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 import us.rjuhsd.ohs.OHSApp.managers.LoginSetupImpl;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassDetailTask;
-import us.rjuhsd.ohs.OHSApp.tasks.ClassDetailTaskReceiver;
+import us.rjuhsd.ohs.OHSApp.tasks.ClassesTaskShim;
 
-public class ClassDetailActivity extends Activity implements ClassDetailTaskReceiver, LoginSetupImpl {
+public class ClassDetailActivity extends Activity implements ClassesTaskShim, LoginSetupImpl {
 	public SchoolClass sClass;
 	private int classId;
 	AeriesManager aeriesManager;

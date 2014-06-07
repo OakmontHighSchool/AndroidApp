@@ -17,13 +17,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
-	private final ClassesOverviewTaskReceiver layer;
+	private final ClassesTaskShim layer;
 	Context context;
 	final AeriesManager aeriesManager;
 	ArrayList<SchoolClass> grades;
 	private String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
 
-	public ClassesOverviewTask(Context context, AeriesManager aeriesManager, ClassesOverviewTaskReceiver layer) {
+	public ClassesOverviewTask(Context context, AeriesManager aeriesManager, ClassesTaskShim layer) {
 		this.layer = layer;
 		this.context = context;
 		this.aeriesManager = aeriesManager;

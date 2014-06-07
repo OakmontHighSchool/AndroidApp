@@ -37,7 +37,7 @@ public class DrawerList {
 							newIntent = new Intent(c, NewsActivity.class);
 							break;
 						case 2:
-							newIntent = new Intent(c, ClassesOverviewActivity.class);
+							newIntent = new Intent(c, ClassesActivity.class);
 							break;
 						case 3:
 							newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us"));

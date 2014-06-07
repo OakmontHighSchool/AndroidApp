@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 				intent = new Intent(this, NewsActivity.class);
 				break;
 			case R.id.main_link_grades:
-				intent = new Intent(this, ClassesOverviewActivity.class);
+				intent = new Intent(this, ClassesActivity.class);
 				break;
 			case R.id.main_link_website:
 				intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us"));

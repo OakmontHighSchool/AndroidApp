@@ -21,11 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
-	private final ClassDetailTaskReceiver layer;
+	private final ClassesTaskShim layer;
 	private String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
 	private final AeriesManager aeriesManager;
 
-	public ClassDetailTask(Context context, ClassDetailTaskReceiver layer) {
+	public ClassDetailTask(Context context, ClassesTaskShim layer) {
 		this.layer = layer;
 		this.aeriesManager = new AeriesManager(context);
 	}

@@ -15,9 +15,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTask;
-import us.rjuhsd.ohs.OHSApp.tasks.ClassesOverviewTaskReceiver;
+import us.rjuhsd.ohs.OHSApp.tasks.ClassesTaskShim;
 
-public class ClassesOverviewAppWidgetConfigure extends Activity implements ClassesOverviewTaskReceiver {
+public class ClassesAppWidgetConfigure extends Activity implements ClassesTaskShim {
 
 	int appWidgetId;
 	ListView classes_list;

@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.RemoteViews;
 import us.rjuhsd.ohs.OHSApp.R;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
-import us.rjuhsd.ohs.OHSApp.activities.ClassesOverviewActivity;
+import us.rjuhsd.ohs.OHSApp.activities.ClassesActivity;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 import java.util.ArrayList;
 
-public class ClassesOverviewTaskWidget implements ClassesOverviewTaskReceiver {
+public class ClassesTaskWidget implements ClassesTaskShim {
 
 
 	private AppWidgetManager appWidgetManager;
@@ -24,7 +24,7 @@ public class ClassesOverviewTaskWidget implements ClassesOverviewTaskReceiver {
 	private ArrayList<Integer> IDs = new ArrayList<Integer>();
 	private boolean showAll = false;
 
-	public ClassesOverviewTaskWidget(Context context, RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId, String ids) {
+	public ClassesTaskWidget(Context context, RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId, String ids) {
 		this.context = context;
 		this.views = views;
 		this.appWidgetManager = appWidgetManager;
@@ -90,7 +90,7 @@ public class ClassesOverviewTaskWidget implements ClassesOverviewTaskReceiver {
 			rv.setTextViewText(R.id.txtMain, sc.className);
 			rv.setTextViewText(R.id.txtSecond, "Percent: "+sc.percentage+"%");
 
-			Intent intent = new Intent(context, ClassesOverviewActivity.class);
+			Intent intent = new Intent(context, ClassesActivity.class);
 			PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 			views.setOnClickPendingIntent(R.id.appwidget_classes_view, pendingIntent);
 

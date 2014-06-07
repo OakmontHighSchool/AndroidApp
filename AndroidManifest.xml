@@ -23,7 +23,7 @@
 				  android:screenOrientation="portrait"
                   android:label="@string/activity_news">
         </activity>
-        <activity android:name=".activities.ClassesOverviewActivity"
+        <activity android:name=".activities.ClassesActivity"
 				  android:screenOrientation="portrait"
                   android:label="@string/activity_grades">
         </activity>
@@ -62,7 +62,7 @@
 		    <meta-data android:name="android.appwidget.provider"
 		               android:resource="@xml/classes_overview_appwidget_info" />
 	    </receiver>
-	    <activity android:name="us.rjuhsd.ohs.OHSApp.ClassesOverviewAppWidgetConfigure">
+	    <activity android:name=".ClassesAppWidgetConfigure">
 		    <intent-filter>
 			    <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
 		    </intent-filter>
