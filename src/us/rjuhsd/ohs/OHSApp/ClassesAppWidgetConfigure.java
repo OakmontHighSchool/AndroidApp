@@ -83,6 +83,7 @@ public class ClassesAppWidgetConfigure extends Activity implements ClassesTaskSh
 									finish();
 								}
 							});
+					adb.show();
 				}
 				int size = classes_list.getCount();
 				for(int i=0;i<size;i++) {
