@@ -15,10 +15,10 @@
 	<string name="goto_login">Edit login info</string>
 	<string name="activity_debug_preferences">Debug</string>
 	<string name="version">Version</string>
-	<string name="clear_cache">Clear cache</string>
-	<string name="clear_settings">Clear settings</string>
-	<string name="clear_cache_info">This will clear the cache</string>
-	<string name="clear_settings_info">This will clear the cache</string>
+	<string name="debug_clear_cache">Clear Cache</string>
+	<string name="debug_clear_settings">Clear Settings</string>
+	<string name="debug_clear_cache_info">This will clear the cache</string>
+	<string name="debug_clear_settings_info">This will clear the cache</string>
     <string name="menu_image">Image next to the Menu item.</string>
 	<string name="classes_overview">Classes Overview</string>
 	<string name="swipe_instructions">Swipe from the right edge for navigation menu.</string>
@@ -31,6 +31,8 @@
 	<string name="classes_widget_configure_radio_show_some">Choose classes</string>
 	<string name="classes_widget_configure_radio_show_all">Show all classes</string>
 	<string name="activity_news">News</string>
+	<string name="debug_false_data_info">Supplies false data to the grades checking system. This affects the cache.</string>
+	<string name="debug_false_data">Use Fake Data</string>
 
 	<string-array name="drawer_list_values">
 		<item>Home</item>
