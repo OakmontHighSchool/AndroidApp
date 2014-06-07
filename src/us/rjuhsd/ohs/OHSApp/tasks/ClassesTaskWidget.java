@@ -51,6 +51,7 @@ public class ClassesTaskWidget implements ClassesTaskShim {
 	public void onGradesStart() {
 		views.removeAllViews(R.id.appwidget_classes_view);
 
+		views.setViewVisibility(R.id.appwidget_classes_info, View.VISIBLE);
 		views.setViewVisibility(R.id.appwidget_classes_progress, View.VISIBLE);
 		views.setViewVisibility(R.id.appwidget_classes_error, View.GONE);
 
@@ -59,6 +60,7 @@ public class ClassesTaskWidget implements ClassesTaskShim {
 
 	@Override
 	public void onGradesError(String errorMsg) {
+		views.setViewVisibility(R.id.appwidget_classes_info, View.VISIBLE);
 		views.setViewVisibility(R.id.appwidget_classes_error, View.VISIBLE);
 		views.setViewVisibility(R.id.appwidget_classes_progress, View.GONE);
 		appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -66,7 +68,7 @@ public class ClassesTaskWidget implements ClassesTaskShim {
 
 	@Override
 	public void onGradesDone() {
-		views.setViewVisibility(R.id.appwidget_classes_progress, View.GONE);
+		views.setViewVisibility(R.id.appwidget_classes_info, View.GONE);
 		inflateList();
 		appWidgetManager.updateAppWidget(appWidgetId, views);
 	}
