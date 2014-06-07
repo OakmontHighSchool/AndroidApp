@@ -17,4 +17,8 @@
 			android:title="@string/clear_settings"
 	        android:summary="@string/clear_settings_info"
 	        android:key="debug_clear_settings"/>
+	<CheckBoxPreference
+		android:title="Use fake data"
+	    android:summary="Supplies false data to the grades checking system. This affects the cache."
+	    android:key="debug_false_aeries_data"/>
 </PreferenceScreen>

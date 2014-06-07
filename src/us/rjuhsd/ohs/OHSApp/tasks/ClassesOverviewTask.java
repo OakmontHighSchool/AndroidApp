@@ -1,7 +1,9 @@
 package us.rjuhsd.ohs.OHSApp.tasks;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import org.apache.http.HttpResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,6 +14,7 @@ import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 	private final ClassesOverviewTaskReceiver layer;
@@ -34,7 +37,14 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 
 	@Override
 	protected Void doInBackground(Void... voids) {
+
 		grades = new ArrayList<SchoolClass>();
+
+		if(wantFalseData()) {
+			giveFalseData();
+			return null;
+		}
+
 		try {
 			String[] loginData = aeriesManager.aeriesLoginData();
 			HttpResponse response = aeriesManager.client.execute(aeriesManager.getLoginRequest());
@@ -95,6 +105,26 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	private void giveFalseData() {
+		Random rand = new Random();
+		for(int i=0;i<4;i++) {
+			SchoolClass sClass = new SchoolClass(i);
+			sClass.className = "Fake Class #"+(i+1);
+			sClass.period = (i+1)+"";
+			sClass.teacherName = "Teacher #"+(i+1);
+			sClass.percentage = (rand.nextFloat()*100)+"";
+			sClass.mark = "A++";
+			sClass.missingAssign = ""+i;
+			sClass.lastUpdate = "Never!";
+			grades.add(sClass);
+		}
+	}
+
+	private boolean wantFalseData() {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		return prefs.getBoolean("debug_false_aeries_data", false);
 	}
 
 	@Override
