@@ -88,24 +88,17 @@ public class ClassDetailActivity extends Activity implements ClassesTaskShim, Lo
 		progressDialog.setIndeterminate(false);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		progressDialog.setCancelable(true);
-		progressDialog.show();
+        progressDialog.show();
 	}
 
 	@Override
 	public void onGradesError(String errorMsg) {
-		final ClassDetailActivity parent = this;
 		AlertDialog.Builder adb = new AlertDialog.Builder(this)
-				.setTitle("Login Failure!")
+				.setTitle("Homelink Failure!")
 				.setMessage(errorMsg)
 				.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						//Do nothing
-					}
-				})
-				.setPositiveButton(R.string.goto_login, new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						AlertDialog.Builder modLogin = aeriesManager.getLoginDialog(parent);
-						modLogin.show();
+						finish();
 					}
 				});
 		adb.show();

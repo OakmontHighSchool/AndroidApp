@@ -16,13 +16,12 @@ import us.rjuhsd.ohs.OHSApp.Assignment;
 import us.rjuhsd.ohs.OHSApp.SchoolClass;
 import us.rjuhsd.ohs.OHSApp.managers.AeriesManager;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 	private final ClassesTaskShim layer;
-	private String error = "An unknown error occurred while loading your classes"; //This text should never appear, its the default
+	private String error = "An unknown error occurred while loading your assignments"; //This text should never appear, its the default
 	private final AeriesManager aeriesManager;
 
 	public ClassDetailTask(Context context, ClassesTaskShim layer) {
@@ -102,8 +101,9 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 					aeriesManager.setAssignments(schoolClass.ID, schoolClass.assignments);
 				}
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+            error = "An error occurred, This class may have no assignments yet";
+            cancel(true);
 		}
 		return null;
 	}
