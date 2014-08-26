@@ -29,7 +29,8 @@
 				android:layout_height="fill_parent"
 				android:layout_weight="1"
 				android:id="@+id/main_link_grades"
-				android:src="@drawable/ic_accept"
+				android:src="@drawable/homelink"
+                android:scaleType="fitCenter"
 				android:contentDescription="Grades"
 				android:onClick="onClick"/>
 		<ImageButton
