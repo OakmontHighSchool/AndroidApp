@@ -16,30 +16,29 @@
 			android:layout_height="fill_parent"
 			android:orientation="horizontal"
 			android:layout_weight="1">
-		<ImageButton
+		<Button
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:layout_weight="1"
 				android:id="@+id/main_link_news"
-				android:src="@drawable/ic_rss"
-				android:contentDescription="News"
+				android:background="@drawable/main_button"
+				android:text="News"
 				android:onClick="onClick"/>
-		<ImageButton
+		<Button
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:layout_weight="1"
 				android:id="@+id/main_link_grades"
-				android:src="@drawable/homelink"
-                android:scaleType="fitCenter"
-				android:contentDescription="Grades"
+				android:background="@drawable/main_button"
+				android:text="Grades"
 				android:onClick="onClick"/>
-		<ImageButton
+		<Button
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:layout_weight="1"
 				android:id="@+id/main_link_website"
-				android:src="@drawable/ic_web"
-				android:contentDescription="Website"
+				android:background="@drawable/main_button"
+				android:text="Website"
 				android:onClick="onClick"/>
 	</LinearLayout>
 	<LinearLayout
@@ -47,29 +46,29 @@
 			android:layout_height="fill_parent"
 			android:orientation="horizontal"
 			android:layout_weight="1">
-		<ImageButton
+		<Button
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:layout_weight="1"
 				android:id="@+id/main_link_map"
-				android:src="@drawable/ic_map"
-				android:contentDescription="Map"
+				android:background="@drawable/main_button"
+				android:text="Map"
 				android:onClick="onClick"/>
-		<ImageButton
+		<Button
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:layout_weight="1"
 				android:id="@+id/main_link_calendar"
-				android:src="@drawable/ic_date"
-				android:contentDescription="Calendar"
+				android:background="@drawable/main_button"
+				android:text="Calendar"
 				android:onClick="onClick"/>
-		<ImageButton
+		<Button
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:layout_weight="1"
 				android:id="@+id/main_link_settings"
-				android:src="@drawable/ic_cog"
-				android:contentDescription="Settings"
+				android:background="@drawable/main_button"
+				android:text="Settings"
 				android:onClick="onClick"/>
 	</LinearLayout>
 </LinearLayout>
