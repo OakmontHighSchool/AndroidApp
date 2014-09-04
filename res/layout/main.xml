@@ -23,6 +23,7 @@
 				android:id="@+id/main_link_news"
 				android:background="@drawable/main_button"
 				android:text="News"
+                android:textColor="@color/White"
 				android:onClick="onClick"/>
 		<Button
 				android:layout_width="fill_parent"
@@ -31,6 +32,7 @@
 				android:id="@+id/main_link_grades"
 				android:background="@drawable/main_button"
 				android:text="Grades"
+                android:textColor="@color/White"
 				android:onClick="onClick"/>
 		<Button
 				android:layout_width="fill_parent"
@@ -39,6 +41,7 @@
 				android:id="@+id/main_link_website"
 				android:background="@drawable/main_button"
 				android:text="Website"
+                android:textColor="@color/White"
 				android:onClick="onClick"/>
 	</LinearLayout>
 	<LinearLayout
@@ -53,6 +56,7 @@
 				android:id="@+id/main_link_map"
 				android:background="@drawable/main_button"
 				android:text="Map"
+                android:textColor="@color/White"
 				android:onClick="onClick"/>
 		<Button
 				android:layout_width="fill_parent"
@@ -61,6 +65,7 @@
 				android:id="@+id/main_link_calendar"
 				android:background="@drawable/main_button"
 				android:text="Calendar"
+                android:textColor="@color/White"
 				android:onClick="onClick"/>
 		<Button
 				android:layout_width="fill_parent"
@@ -69,6 +74,7 @@
 				android:id="@+id/main_link_settings"
 				android:background="@drawable/main_button"
 				android:text="Settings"
+                android:textColor="@color/White"
 				android:onClick="onClick"/>
 	</LinearLayout>
 </LinearLayout>
