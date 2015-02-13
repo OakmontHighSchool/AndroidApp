@@ -46,7 +46,7 @@ public class ClassesOverviewTask extends AsyncTask<Void, Void, Void> {
 		}
 
 		try {
-			String[] loginData = aeriesManager.aeriesLoginData();
+			String[] loginData = aeriesManager.getLoginData();
 			HttpResponse response = aeriesManager.client.execute(aeriesManager.getLoginRequest());
 
 			Document doc = Jsoup.parse(response.getEntity().getContent(), null, AeriesManager.LOGIN_URL);

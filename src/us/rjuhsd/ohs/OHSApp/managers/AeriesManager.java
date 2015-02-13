@@ -98,7 +98,7 @@ public class AeriesManager {
 		}
 	}
 
-	public String[] aeriesLoginData() {
+	public String[] getLoginData() {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		String[] toReturn = new String[2];
 		toReturn[0] = prefs.getString("aeries_username", "");
@@ -112,7 +112,7 @@ public class AeriesManager {
 	}
 
 	public HttpPost getLoginRequest() throws IOException {
-		String[] loginData = aeriesLoginData();
+		String[] loginData = getLoginData();
 		List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 		nvps.add(new BasicNameValuePair("portalAccountUsername", loginData[0]));
 		nvps.add(new BasicNameValuePair("portalAccountPassword", loginData[1]));
