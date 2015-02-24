@@ -79,7 +79,7 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 				}
 				schoolClass.assignments.clear();
 				for(Element row : rows) {
-					if (row.className().equals("SubHeaderRow")) {
+					if (row.className().equals("SubHeaderRow vab") || row.attr("style").equals("display: none;")) {
 						continue; //Skip the header row
 					}
 					if (row.children().size() >= 3) {
