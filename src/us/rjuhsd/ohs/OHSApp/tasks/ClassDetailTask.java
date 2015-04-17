@@ -51,7 +51,12 @@ public class ClassDetailTask extends AsyncTask<SchoolClass,Void,Void> {
 				String stupidId = option.attr("value");
 				if(!stupidTitle.startsWith("<<")) {
 					for(SchoolClass schoolClass: schoolClasses) {
-						if(stupidTitle.contains(schoolClass.className)) {
+						String fixedClassName = schoolClass.className;
+						int lastDashIndex = fixedClassName.lastIndexOf('-');
+						if(lastDashIndex != -1) {
+							fixedClassName = fixedClassName.substring(0,lastDashIndex-1);
+						}
+						if(stupidTitle.contains(fixedClassName)) {
 							schoolClass.aeriesID = stupidId;
 						}
 					}
