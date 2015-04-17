@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 				intent = new Intent(this, MapViewActivity.class);
 				break;
 			case R.id.main_link_calendar:
-				intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ohs.rjuhsd.us/Page/2"));
+				intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.rjuhsd.us/Page/419"));
 				break;
 			case R.id.main_link_settings:
 				intent = new Intent(this, Preferences.class);
