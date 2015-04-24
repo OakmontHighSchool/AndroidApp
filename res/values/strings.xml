@@ -33,6 +33,7 @@
 	<string name="activity_news">News</string>
 	<string name="debug_false_data_info">Supplies false data to the grades checking system. This affects the cache.</string>
 	<string name="debug_false_data">Use Fake Data</string>
+	<string name="classOverviewImageDescription">Grade Icon</string>
 
 	<string-array name="drawer_list_values">
 		<item>Home</item>

@@ -2,6 +2,9 @@ package us.rjuhsd.ohs.OHSApp.grades;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +49,28 @@ public class GradesArrayAdapter extends ArrayAdapter<SchoolClass>{
 
 		SchoolClass sClass = data.get(position);
 		holder.txtMain.setText(sClass.className);
-		holder.txtSecond.setText("Current Percentage: "+sClass.percentage+"%");
+		holder.txtSecond.setText("Current Percentage: " + sClass.percentage + "%");
+
+		int resId;
+		int percent = Integer.parseInt(sClass.percentage);
+
+		if(percent>=90) {
+			resId = R.drawable.level_a;
+		} else if(percent>=80) {
+			resId = R.drawable.level_b;
+		} else if(percent>=70) {
+			resId = R.drawable.level_c;
+		} else if(percent>=60) {
+			resId = R.drawable.level_d;
+		} else {
+			resId = R.drawable.level_f;
+		}
+
+		Drawable draw = context.getResources().getDrawable(resId);
+		Bitmap bitmap = ((BitmapDrawable) draw).getBitmap();
+		draw = new BitmapDrawable(context.getResources(), Bitmap.createScaledBitmap(bitmap, 50, 50, true));
+
+		holder.txtMain.setCompoundDrawablesWithIntrinsicBounds(draw,null,null,null);
 
 		return row;
 	}
