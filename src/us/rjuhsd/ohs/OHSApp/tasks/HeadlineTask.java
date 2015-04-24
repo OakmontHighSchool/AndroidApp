@@ -35,7 +35,7 @@ public class HeadlineTask extends AsyncTask<Void, ArticleWrapper, Void> {
 			cm.reAddArticles();
 		} else {
 			try {
-				String URL = "http://ohs.rjuhsd.us/site/default.aspx?PageID=1";
+				String URL = "http://www.rjuhsd.us/oakmont";
 				HttpGet request = new HttpGet(URL);
 				HttpClient client = new DefaultHttpClient();
 				HttpResponse response = client.execute(request);

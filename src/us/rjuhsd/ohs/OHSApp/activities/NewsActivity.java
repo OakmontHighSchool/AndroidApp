@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsActivity extends Activity {
-	//Variables:
 	private DrawerLayout drawerLayout;
 	private ListView drawerList;
 	public final List<ArticleWrapper> articleWrapperList = new ArrayList<ArticleWrapper>();
